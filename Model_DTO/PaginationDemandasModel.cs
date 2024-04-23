@@ -31,5 +31,6 @@ namespace Shared_Static_Class.Model_DTO
         public IList<string> status { get; set; }
         public List<DROPDOWN_FILA_MODEL> fila { get; set; }
         public List<DROPDOWN_FILA_MODEL> tipo_fila { get; set; }
+        public bool IsRealTime { get; set; }
     }
 }
