@@ -2,7 +2,7 @@
 
 namespace Shared_Static_Class.Models
 {
-    public class RespostasAcessosPendentesModel
+    public class MENSAGEM_ACESSO_PENDENTE
     {
         public int ID { get; set; }
         public int ID_ACESSOS_PENDENTE { get; set; }

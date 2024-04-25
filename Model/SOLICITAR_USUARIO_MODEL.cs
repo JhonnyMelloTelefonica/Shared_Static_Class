@@ -2,7 +2,9 @@
 using FluentValidation.Internal;
 using FluentValidation.Results;
 using FluentValidation.Validators;
+using Shared_Static_Class.Converters;
 using Shared_Static_Class.Data;
+using Shared_Static_Class.Model_DTO;
 using Shared_Static_Class.Models;
 using System;
 using System.Collections;
@@ -208,6 +210,55 @@ namespace Shared_Static_Class.Models
         }
         private List<int> _perfil = [];
     }
+
+    public class SOLICITACAO_USUARIO_DETALHADO : SOLICITAR_USUARIO_MODEL
+    {
+        public SOLICITACAO_USUARIO_DETALHADO(SOLICITAR_USUARIO_MODEL Model,
+            int? iD_ACESSOS_MOBILE, bool? aPROVACAO, 
+            string tIPO, bool? sTATUS_USUARIO, 
+            ACESSOS_MOBILE? lOGIN_SOLICITANTE, ACESSOS_MOBILE? lOGIN_RESPONSAVEL, 
+            DateTime dT_SOLICITACAO, DateTime? dT_RETORNO, 
+            IEnumerable<PERFIL_PLATAFORMAS_VIVO> pERFIS_SOLICITADOS)
+        {
+            ID = Model.ID;
+            ID_ACESSOS_MOBILE = iD_ACESSOS_MOBILE;
+            EMAIL = Model.EMAIL;
+            MATRICULA = Model.MATRICULA;
+            SENHA = Model.SENHA;
+            REGIONAL = Model.REGIONAL;
+            CARGO = Model.CARGO;
+            CANAL = Model.CANAL;
+            NOME = Model.NOME;
+            UF = Model.UF;
+            CPF = Model.CPF;
+            PDV = Model.PDV;
+            APROVACAO = aPROVACAO;
+            FIXA = Model.FIXA;
+            TIPO = tIPO;
+            STATUS_USUARIO = sTATUS_USUARIO;
+            LOGIN_SOLICITANTE = lOGIN_SOLICITANTE;
+            LOGIN_RESPONSAVEL = lOGIN_RESPONSAVEL;
+            DT_SOLICITACAO = dT_SOLICITACAO;
+            DT_RETORNO = dT_RETORNO;
+            STATUS = STATUS;
+            DDD = Model.DDD;
+            ELEGIVEL = Model.ELEGIVEL;
+            TP_STATUS = Model.TP_STATUS;
+            UserAvatar = Model.UserAvatar;
+            PERFIS_SOLICITADOS = pERFIS_SOLICITADOS;
+        }
+
+        public int? ID_ACESSOS_MOBILE { get; set; } = null;
+        public bool? APROVACAO { get; set; }
+        public string TIPO { get; set; }
+        public bool? STATUS_USUARIO { get; set; }
+        public ACESSOS_MOBILE? LOGIN_SOLICITANTE { get; set; }
+        public ACESSOS_MOBILE? LOGIN_RESPONSAVEL { get; set; }
+        public DateTime DT_SOLICITACAO { get; set; }
+        public DateTime? DT_RETORNO { get; set; }
+        public IEnumerable<PERFIL_PLATAFORMAS_VIVO> PERFIS_SOLICITADOS { get; set; }
+    }
+
 
     public class ListHasElements : ValidationAttribute
     {
