@@ -3,7 +3,7 @@ using Shared_Static_Class.Models;
 
 namespace Shared_Static_Class.Models
 {
-    public class ControleUsuariosModel
+    public class SOLICITAR_USUARIO_MODEL
     {
         public int ID { get; set; }
         public string EMAIL { get; set; }

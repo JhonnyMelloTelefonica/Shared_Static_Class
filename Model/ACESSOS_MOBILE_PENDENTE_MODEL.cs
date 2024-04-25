@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Shared_Static_Class.Data;
+using Shared_Static_Class.Model_DTO;
 
 namespace Shared_Static_Class.Models
 {
-    public class ACESSOS_MOBILE_PENDENTE_MODEL
+    public class ACESSOS_MOBILE_PENDENTE_DTO
     {
         [JsonIgnore]
         public bool SELECTED { get; set; } = false;
@@ -25,7 +26,7 @@ namespace Shared_Static_Class.Models
         public string TP_STATUS { get; set; }
         public bool? ELEGIVEL { get; set; }
         public string TIPO { get; set; }
-        public ACESSOS_MOBILE? SOLICITANTE { get; set; }
+        public ACESSOS_MOBILE_DTO? SOLICITANTE { get; set; }
         public DateTime DT_SOLICITACAO { get; set; }
         public int? LOGIN_RESPONSAVEL { get; set; }
         public DateTime? DT_RETORNO { get; set; }
