@@ -7,7 +7,7 @@ namespace Shared_Static_Class.Models
     public class HistoricoAcessosPendentesModel
     {
         public int ID { get; set; }
-        public ControleUsuariosModel? ID_ACESSOS_MOBILE { get; set; }
+        public SOLICITAR_USUARIO_MODEL? ID_ACESSOS_MOBILE { get; set; }
         public string EMAIL { get; set; }
         public int MATRICULA { get; set; }
         public string SENHA { get; set; }
