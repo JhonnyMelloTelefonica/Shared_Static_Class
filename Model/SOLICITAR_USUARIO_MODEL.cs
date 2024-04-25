@@ -15,11 +15,36 @@ using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace Shared_Static_Class.Models
 {
+    public class SOLICITAR_USUARIO_MODEL : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = "")
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+
+        public int ID
+        {
+            get => _id;
+            set => SetField(ref _id, value);
+        }
+        private int _id;
+        [Required(ErrorMessage = "Campo obrigatório")]
+        [EmailAddress(ErrorMessage = "Campo deve ser um e-mail válido")]
+        public string EMAIL
+        {
+            get => _email;
+            set => SetField(ref _email, value);
         }
         private string _email = string.Empty;
         [Required(ErrorMessage = "Campo obrigatório")]
-        [Range(0,99999999,ErrorMessage = "Campo obrigatório")]
+        [Range(0, 99999999, ErrorMessage = "Campo obrigatório")]
         [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Valor de matrícula inválido")]
         public int MATRICULA
         {
@@ -78,7 +103,7 @@ namespace Shared_Static_Class.Models
         private string _pdv = string.Empty;
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [MaxLength(14, ErrorMessage ="Preenchimento inválido")]
+        [MaxLength(14, ErrorMessage = "Preenchimento inválido")]
         [MinLength(14, ErrorMessage = "Preenchimento inválido")]
         public string CPF
         {
@@ -191,8 +216,8 @@ namespace Shared_Static_Class.Models
             if (value == null)
                 return false;
 
-            if (value is IEnumerable enumerable) 
-                return enumerable.Cast<int>().Where(x=> x != 0).Any();
+            if (value is IEnumerable enumerable)
+                return enumerable.Cast<int>().Where(x => x != 0).Any();
             else return false;
         }
     }
@@ -209,5 +234,4 @@ namespace Shared_Static_Class.Models
               );
         }
     }
-
 }
