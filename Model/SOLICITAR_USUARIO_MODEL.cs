@@ -239,11 +239,6 @@ namespace Shared_Static_Class.Models
 
     public class SOLICITACAO_USUARIO_DETALHADO
     {
-        public SOLICITACAO_USUARIO_DETALHADO()
-        {
-
-        }
-
         public SOLICITACAO_USUARIO_DETALHADO(SOLICITAR_USUARIO_MODEL Model,
             int? iD_ACESSOS_MOBILE, bool? aPROVACAO,
             string tIPO, string? sTATUS_USUARIO,
@@ -280,7 +275,7 @@ namespace Shared_Static_Class.Models
             Model.TP_STATUS,
             Model.UserAvatar);
         }
-        public SOLICITAR_USUARIO_MODEL DADOS_SOLICITACAO { get; set; }
+        public SOLICITAR_USUARIO_MODEL DADOS_SOLICITACAO {get;set;}
         public int? ID_ACESSOS_MOBILE { get; set; } = null;
         public bool? APROVACAO { get; set; }
         public string TIPO { get; set; }
