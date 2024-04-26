@@ -214,30 +214,7 @@ namespace Shared_Static_Class.Models
 
         }
 
-        public SOLICITAR_USUARIO_MODEL(int id, string email, int matricula, string senha, string regional, int cargo, int? canal, string nome, string uf, string cpf, string pdv, bool? fixa, string? tpAfastamento, bool? status, int ddd, bool elegivel, string tpStatus, byte[]? userAvatar)
-        {
-            _id = id;
-            _email = email;
-            _matricula = matricula;
-            _senha = senha;
-            _regional = regional;
-            _cargo = cargo;
-            _canal = canal;
-            _pdv = pdv;
-            _cpf = cpf;
-            _nome = nome;
-            _uf = uf;
-            _status = status;
-            _fixa = fixa;
-            _tpAfastamento = tpAfastamento;
-            _userAvatar = userAvatar;
-            _elegivel = elegivel;
-            _ddd = ddd;
-            _tpStatus = tpStatus;
-        }
-    }
-
-    public class SOLICITACAO_USUARIO_DETALHADO
+    public class SOLICITACAO_USUARIO_DETALHADO : SOLICITAR_USUARIO_MODEL
     {
         public SOLICITACAO_USUARIO_DETALHADO(SOLICITAR_USUARIO_MODEL Model,
             int? iD_ACESSOS_MOBILE, bool? aPROVACAO,
@@ -275,7 +252,7 @@ namespace Shared_Static_Class.Models
             Model.TP_STATUS,
             Model.UserAvatar);
         }
-        public SOLICITAR_USUARIO_MODEL DADOS_SOLICITACAO {get;set;}
+
         public int? ID_ACESSOS_MOBILE { get; set; } = null;
         public bool? APROVACAO { get; set; }
         public string TIPO { get; set; }
