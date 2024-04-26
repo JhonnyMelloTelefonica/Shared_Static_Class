@@ -26,6 +26,19 @@ namespace Shared_Static_Class.Converters
         }
     }
 
+    public class STATUS_ACESSOS_PENDENTES
+    {
+        public const string ABERTO = "ABERTO";
+        public const string AGUARDANDO_ANALISTA = "AGUARDANDO ANALISTA";
+        public const string DEVOLVIDO_PARA_SOLICITANTE = "DEVOLVIDO PARA SOLICITANTE";
+        public const string FINALIZADO = "FINALIZADO";
+        public const string REPROVADO = "REPROVADO";
+    }
+    public class TIPO_ACESSOS_PENDENTES
+    {
+        public const string INCLUSAO = "INCLUSÃO";
+        public const string ALTERACAO = "ALTERAÇÃO";
+    }
     public enum Prioridade
     {
         [Display(Name = "Baixa")]

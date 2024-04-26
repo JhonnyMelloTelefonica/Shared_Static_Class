@@ -209,49 +209,77 @@ namespace Shared_Static_Class.Models
             set => SetField(ref _perfil, value);
         }
         private List<int> _perfil = [];
+        public SOLICITAR_USUARIO_MODEL()
+        {
+
+        }
+
+        public SOLICITAR_USUARIO_MODEL(int id, string email, int matricula, string senha, string regional, int cargo, int? canal, string nome, string uf, string cpf, string pdv, bool? fixa, string? tpAfastamento, bool? status, int ddd, bool elegivel, string tpStatus, byte[]? userAvatar)
+        {
+            _id = id;
+            _email = email;
+            _matricula = matricula;
+            _senha = senha;
+            _regional = regional;
+            _cargo = cargo;
+            _canal = canal;
+            _pdv = pdv;
+            _cpf = cpf;
+            _nome = nome;
+            _uf = uf;
+            _status = status;
+            _fixa = fixa;
+            _tpAfastamento = tpAfastamento;
+            _userAvatar = userAvatar;
+            _elegivel = elegivel;
+            _ddd = ddd;
+            _tpStatus = tpStatus;
+        }
     }
 
-    public class SOLICITACAO_USUARIO_DETALHADO : SOLICITAR_USUARIO_MODEL
+    public class SOLICITACAO_USUARIO_DETALHADO
     {
         public SOLICITACAO_USUARIO_DETALHADO(SOLICITAR_USUARIO_MODEL Model,
-            int? iD_ACESSOS_MOBILE, bool? aPROVACAO, 
-            string tIPO, bool? sTATUS_USUARIO, 
-            ACESSOS_MOBILE? lOGIN_SOLICITANTE, ACESSOS_MOBILE? lOGIN_RESPONSAVEL, 
-            DateTime dT_SOLICITACAO, DateTime? dT_RETORNO, 
+            int? iD_ACESSOS_MOBILE, bool? aPROVACAO,
+            string tIPO, string? sTATUS_USUARIO,
+            ACESSOS_MOBILE? lOGIN_SOLICITANTE, ACESSOS_MOBILE? lOGIN_RESPONSAVEL,
+            DateTime dT_SOLICITACAO, DateTime? dT_RETORNO,
             IEnumerable<PERFIL_PLATAFORMAS_VIVO> pERFIS_SOLICITADOS)
         {
-            ID = Model.ID;
             ID_ACESSOS_MOBILE = iD_ACESSOS_MOBILE;
-            EMAIL = Model.EMAIL;
-            MATRICULA = Model.MATRICULA;
-            SENHA = Model.SENHA;
-            REGIONAL = Model.REGIONAL;
-            CARGO = Model.CARGO;
-            CANAL = Model.CANAL;
-            NOME = Model.NOME;
-            UF = Model.UF;
-            CPF = Model.CPF;
-            PDV = Model.PDV;
-            APROVACAO = aPROVACAO;
-            FIXA = Model.FIXA;
-            TIPO = tIPO;
             STATUS_USUARIO = sTATUS_USUARIO;
             LOGIN_SOLICITANTE = lOGIN_SOLICITANTE;
             LOGIN_RESPONSAVEL = lOGIN_RESPONSAVEL;
             DT_SOLICITACAO = dT_SOLICITACAO;
             DT_RETORNO = dT_RETORNO;
-            STATUS = STATUS;
-            DDD = Model.DDD;
-            ELEGIVEL = Model.ELEGIVEL;
-            TP_STATUS = Model.TP_STATUS;
-            UserAvatar = Model.UserAvatar;
             PERFIS_SOLICITADOS = pERFIS_SOLICITADOS;
+            APROVACAO = aPROVACAO;
+            TIPO = tIPO;
+            DADOS_SOLICITACAO = new(
+                Model.ID,
+            Model.EMAIL,
+            Model.MATRICULA,
+            Model.SENHA,
+            Model.REGIONAL,
+            Model.CARGO,
+            Model.CANAL,
+            Model.NOME,
+            Model.UF,
+            Model.CPF,
+            Model.PDV,
+            Model.FIXA,
+            Model.TP_AFASTAMENTO,
+            Model.STATUS,
+            Model.DDD,
+            Model.ELEGIVEL,
+            Model.TP_STATUS,
+            Model.UserAvatar);
         }
-
+        public SOLICITAR_USUARIO_MODEL DADOS_SOLICITACAO {get;set;}
         public int? ID_ACESSOS_MOBILE { get; set; } = null;
         public bool? APROVACAO { get; set; }
         public string TIPO { get; set; }
-        public bool? STATUS_USUARIO { get; set; }
+        public string? STATUS_USUARIO { get; set; }
         public ACESSOS_MOBILE? LOGIN_SOLICITANTE { get; set; }
         public ACESSOS_MOBILE? LOGIN_RESPONSAVEL { get; set; }
         public DateTime DT_SOLICITACAO { get; set; }
