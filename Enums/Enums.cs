@@ -26,13 +26,20 @@ namespace Shared_Static_Class.Converters
         }
     }
 
-    public class STATUS_ACESSOS_PENDENTES
+    public struct STATUS_ACESSOS_PENDENTES
     {
-        public const string ABERTO = "ABERTO";
-        public const string AGUARDANDO_ANALISTA = "AGUARDANDO ANALISTA";
-        public const string DEVOLVIDO_PARA_SOLICITANTE = "DEVOLVIDO PARA SOLICITANTE";
-        public const string FINALIZADO = "FINALIZADO";
-        public const string REPROVADO = "REPROVADO";
+        public static STATUS_ACESSOS_PENDENTES ABERTO { get { return new ("ABERTO"); } }
+        public static STATUS_ACESSOS_PENDENTES AGUARDANDO_ANALISTA { get { return new ("AGUARDANDO ANALISTA"); } }
+        public static STATUS_ACESSOS_PENDENTES DEVOLVIDO_PARA_SOLICITANTE { get { return new ("DEVOLVIDO PARA SOLICITANTE"); } }
+        public static STATUS_ACESSOS_PENDENTES FINALIZADO { get { return new ("FINALIZADO"); } }
+        public static STATUS_ACESSOS_PENDENTES REPROVADO { get { return new ("REPROVADO"); } }
+        public static STATUS_ACESSOS_PENDENTES APROVADO { get { return new ("APROVADO"); } }
+
+        private STATUS_ACESSOS_PENDENTES(string value) { Value = value; }
+
+        public string Value { get; private set; }
+
+        public override string ToString() => Value;
     }
     public class TIPO_ACESSOS_PENDENTES
     {

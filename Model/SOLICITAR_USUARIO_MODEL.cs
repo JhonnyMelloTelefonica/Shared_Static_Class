@@ -137,12 +137,12 @@ namespace Shared_Static_Class.Models
         }
         private bool? _status;
         [Required(ErrorMessage = "Campo obrigatório")]
-        public bool? FIXA
+        public bool FIXA
         {
             get => _fixa;
             set => SetField(ref _fixa, value);
         }
-        private bool? _fixa;
+        private bool _fixa = true;
 
         public string? TP_AFASTAMENTO
         {
@@ -214,8 +214,35 @@ namespace Shared_Static_Class.Models
 
         }
 
-    public class SOLICITACAO_USUARIO_DETALHADO : SOLICITAR_USUARIO_MODEL
+        public SOLICITAR_USUARIO_MODEL(int id, string email, int matricula, string senha, string regional, int cargo, int? canal, string nome, string uf, string cpf, string pdv, bool fixa, string? tpAfastamento, bool? status, int ddd, bool elegivel, string tpStatus, byte[]? userAvatar)
+        {
+            _id = id;
+            _email = email;
+            _matricula = matricula;
+            _senha = senha;
+            _regional = regional;
+            _cargo = cargo;
+            _canal = canal;
+            _pdv = pdv;
+            _cpf = cpf;
+            _nome = nome;
+            _uf = uf;
+            _status = status;
+            _fixa = fixa;
+            _tpAfastamento = tpAfastamento;
+            _userAvatar = userAvatar;
+            _elegivel = elegivel;
+            _ddd = ddd;
+            _tpStatus = tpStatus;
+        }
+    }
+
+    public record SOLICITACAO_USUARIO_DETALHADO
     {
+        public SOLICITACAO_USUARIO_DETALHADO()
+        {
+        }
+
         public SOLICITACAO_USUARIO_DETALHADO(SOLICITAR_USUARIO_MODEL Model,
             int? iD_ACESSOS_MOBILE, bool? aPROVACAO,
             string tIPO, string? sTATUS_USUARIO,
@@ -252,7 +279,7 @@ namespace Shared_Static_Class.Models
             Model.TP_STATUS,
             Model.UserAvatar);
         }
-
+        public SOLICITAR_USUARIO_MODEL DADOS_SOLICITACAO { get; set; }
         public int? ID_ACESSOS_MOBILE { get; set; } = null;
         public bool? APROVACAO { get; set; }
         public string TIPO { get; set; }

@@ -2,6 +2,7 @@
 using Shared_Static_Class.Data;
 using Shared_Static_Class.Enums;
 using Shared_Static_Class.Model_DTO;
+using Shared_Static_Class.Models;
 
 namespace Shared_Static_Class.Models
 {
