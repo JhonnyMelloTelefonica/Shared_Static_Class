@@ -80,4 +80,7 @@ public partial class ACESSOS_MOBILE
     [JsonIgnore]
     public virtual ICollection<DEMANDA_CHAMADO_RESPOSTA>? RespostasDemandas { get; set; } = new List<DEMANDA_CHAMADO_RESPOSTA>();
 
+    [InverseProperty("USUARIO")]
+    [JsonIgnore]
+    public virtual ICollection<PERFIL_USUARIO>? Perfis { get; set; } = new List<PERFIL_USUARIO>();
 }
