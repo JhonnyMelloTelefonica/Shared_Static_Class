@@ -31,7 +31,7 @@ namespace Shared_Static_Class.Converters
         public static STATUS_ACESSOS_PENDENTES ABERTO { get { return new ("ABERTO"); } }
         public static STATUS_ACESSOS_PENDENTES AGUARDANDO_ANALISTA { get { return new ("AGUARDANDO ANALISTA"); } }
         public static STATUS_ACESSOS_PENDENTES DEVOLVIDO_PARA_SOLICITANTE { get { return new ("DEVOLVIDO PARA SOLICITANTE"); } }
-        public static STATUS_ACESSOS_PENDENTES FINALIZADO { get { return new ("FINALIZADO"); } }
+        public static STATUS_ACESSOS_PENDENTES CANCELADO { get { return new ("CANCELADO"); } }
         public static STATUS_ACESSOS_PENDENTES REPROVADO { get { return new ("REPROVADO"); } }
         public static STATUS_ACESSOS_PENDENTES APROVADO { get { return new ("APROVADO"); } }
 
@@ -41,10 +41,16 @@ namespace Shared_Static_Class.Converters
 
         public override string ToString() => Value;
     }
-    public class TIPO_ACESSOS_PENDENTES
+    public struct TIPO_ACESSOS_PENDENTES
     {
-        public const string INCLUSAO = "INCLUSÃO";
-        public const string ALTERACAO = "ALTERAÇÃO";
+        public static TIPO_ACESSOS_PENDENTES INCLUSAO { get { return new("INCLUSÃO"); } }
+        public static TIPO_ACESSOS_PENDENTES ALTERACAO { get { return new("ALTERAÇÃO"); } }
+
+        private TIPO_ACESSOS_PENDENTES(string value) { Value = value; }
+
+        public string Value { get; private set; }
+
+        public override string ToString() => Value;
     }
     public enum Prioridade
     {

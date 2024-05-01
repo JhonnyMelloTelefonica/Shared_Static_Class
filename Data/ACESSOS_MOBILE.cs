@@ -79,5 +79,5 @@ public partial class ACESSOS_MOBILE
     [InverseProperty("Responsavel")]
     [JsonIgnore]
     public virtual ICollection<DEMANDA_CHAMADO_RESPOSTA>? RespostasDemandas { get; set; } = new List<DEMANDA_CHAMADO_RESPOSTA>();
-
+    //public IEnumerable<PERFIL_USUARIO>? Perfis { get; set; } = [];
 }
