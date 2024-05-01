@@ -185,7 +185,7 @@ namespace Shared_Static_Class.Models
             set => SetField(ref _elegivel, value);
         }
         private bool _elegivel;
-        [Range(1, 99, ErrorMessage = "Valor inválido")]
+        //[Range(1, 99, ErrorMessage = "Valor inválido")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public int DDD
         {
