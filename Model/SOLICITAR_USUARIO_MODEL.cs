@@ -105,8 +105,8 @@ namespace Shared_Static_Class.Models
         private string _pdv = string.Empty;
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [MaxLength(14, ErrorMessage = "Preenchimento inválido")]
-        [MinLength(14, ErrorMessage = "Preenchimento inválido")]
+        //[MaxLength(14, ErrorMessage = "Preenchimento inválido")]
+        //[MinLength(14, ErrorMessage = "Preenchimento inválido")]
         public string CPF
         {
             get => _cpf;
