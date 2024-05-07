@@ -53,7 +53,7 @@ namespace Shared_Static_Class.Converters
 
         public override string ToString() => Value;
     }
-    public enum Prioridade
+    public enum Prioridade : int
     {
         [Display(Name = "Baixa")]
         LEVE = 0,
@@ -63,7 +63,7 @@ namespace Shared_Static_Class.Converters
         ALTA = 2
     }
 
-    public enum RespostaAcessoPendente
+    public enum RespostaAcessoPendente : int
     {
         FINALIZADO = 1,
         REPROVADO = 2,
@@ -72,7 +72,7 @@ namespace Shared_Static_Class.Converters
         FINALIZADO_ALTERAÇÃO = 5,
     }
 
-    public enum Canal
+    public enum Canal : int
     {
         [Display(Name = "Administrador")]
         ADM = 0,
@@ -87,7 +87,7 @@ namespace Shared_Static_Class.Converters
         [Display(Name = "Canal Vendas")]
         Canal_Vendas = 5,
     }
-    public enum Cargos
+    public enum Cargos : int
     {
         [Display(Name = "Administrador")]
         ADM = 0,
@@ -136,8 +136,7 @@ namespace Shared_Static_Class.Converters
         [Display(Name = "Analista de Suporte Comercial")]
         Analista_de_Suporte_Comercial = 22,
     }
-
-    public enum Acao
+    public enum Acao : int
     {
         [Display(Name = "Selecione")] NULL = 0,
         [Display(Name = "1 - Inclusão")] INCLUSÃO = 1,
@@ -145,7 +144,7 @@ namespace Shared_Static_Class.Converters
         [Display(Name = "3 - Reativação")] REATIVAÇÃO = 3
     }
 
-    public enum Genero
+    public enum Genero : int
     {
         [Display(Name = "Selecione")] NULL = 0,
         [Display(Name = "MASCULINO")] M = 1,
@@ -153,7 +152,7 @@ namespace Shared_Static_Class.Converters
         [Display(Name = "OUTRO")] OUTRO = 3
     }
 
-    public enum Canal_Acesso_Terceiro
+    public enum Canal_Acesso_Terceiro : int
     {
         [Display(Name = "Selecione")] NULL = 0,
         [Display(Name = "VAREJO")] VAREJO = 1,
@@ -161,7 +160,7 @@ namespace Shared_Static_Class.Converters
         [Display(Name = "DISTRIBUIÇÃO")] DISTRIBUIÇÃO = 3,
     }
 
-    public enum Operadora
+    public enum Operadora : int
     {
         [Display(Name = "Selecione")] NULL = 0,
         [Display(Name = "VIVO")] VIVO = 1,
@@ -170,7 +169,7 @@ namespace Shared_Static_Class.Converters
         [Display(Name = "TIM")] TIM = 4,
     }
 
-    public enum Funcao
+    public enum Funcao : int
     {
         [Display(Name = "Selecione")] NULL = 0,
         [Display(Name = "80000002 ANALISTA")] ANALISTA = 1,
@@ -181,7 +180,7 @@ namespace Shared_Static_Class.Converters
         [Display(Name = "80000027 VENDEDOR")] VENDEDOR = 6,
     }
 
-    public enum Estado
+    public enum Estado : int
     {
         [Display(Name = "Selecione")] NULL = 0,
         [Display(Name = "AL")] AL = 1,

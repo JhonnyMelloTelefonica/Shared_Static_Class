@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
+using Shared_Static_Class.Converters;
 using Shared_Static_Class.Data;
 
 namespace Shared_Static_Class.DB_Context_Vivo_MAIS;
@@ -101,6 +102,14 @@ public partial class DemandasContext : DbContext
             entity.Property(e => e.ID)
             .HasValueGenerator<SequentialGuidValueGenerator>();
         });
+
+        modelBuilder.Entity<DEMANDA_ACESSOS>().Property(x => x.Sexo).HasDefaultValue(Genero.NULL);
+
+        modelBuilder.Entity<DEMANDA_ACESSOS>().Property(x => x.Acao).HasDefaultValue(Acao.NULL);
+
+        modelBuilder.Entity<DEMANDA_ACESSOS>().Property(x => x.Estado).HasDefaultValue(Estado.NULL);
+
+        modelBuilder.Entity<DEMANDA_ACESSOS>().Property(x => x.Funcao).HasDefaultValue(Funcao.NULL);
 
         OnModelCreatingPartial(modelBuilder);
     }
