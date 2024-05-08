@@ -5,13 +5,15 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using PropertyChanged;
 using Shared_Static_Class.Converters;
 using Shared_Static_Class.Enums;
 
 namespace Shared_Static_Class.Data;
 
 [Table("DEMANDA_ACESSOS", Schema = "Demandas")]
-public partial class DEMANDA_ACESSOS
+[AddINotifyPropertyChangedInterface]
+public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
 {
     [Key]
     public int ID { get; set; }
@@ -78,6 +80,7 @@ public partial class DEMANDA_ACESSOS
         }
     }
     private string _telefone;
+
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     [Phone]
     public string Celular { get; set; }
@@ -140,4 +143,3 @@ public partial class DEMANDA_ACESSOS
     [JsonIgnore]
     public virtual ACESSOS_MOBILE Solicitante { get; set; }
 }
-
