@@ -40,7 +40,14 @@ public partial class DemandasContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
 => optionsBuilder.UseSqlServer("Data Source=10.124.100.153;Initial Catalog=Vivo_MAIS;TrustServerCertificate=True;User ID=RegionalNE;Password=RegionalNEvivo2019;MultipleActiveResultSets=true"
-            , o => { o.UseCompatibilityLevel(120); o.CommandTimeout(36000); o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery); o.MigrationsHistoryTable("__EFMigrationsHistory", "Demandas"); });
+            , o =>
+            {
+                o.UseCompatibilityLevel(120);
+                o.CommandTimeout(36000);
+                o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                o.MigrationsHistoryTable("__EFMigrationsHistory", "Demandas");
+                o.MigrationsAssembly("Api Vivo Apps");
+            });
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -110,6 +117,12 @@ public partial class DemandasContext : DbContext
         modelBuilder.Entity<DEMANDA_ACESSOS>().Property(x => x.Estado).HasDefaultValue(Estado.NULL);
 
         modelBuilder.Entity<DEMANDA_ACESSOS>().Property(x => x.Funcao).HasDefaultValue(Funcao.NULL);
+
+        modelBuilder.Entity<DEMANDA_ACESSOS>()
+            .HasOne(a => a.Solicitante)
+            .WithMany(b => b.AcessosSolicitados)
+            .HasForeignKey(x => x.MATRICULA_SOLICITANTE)
+            .HasPrincipalKey(x => x.MATRICULA);
 
         OnModelCreatingPartial(modelBuilder);
     }

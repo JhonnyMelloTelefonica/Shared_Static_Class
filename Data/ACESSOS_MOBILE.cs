@@ -18,7 +18,7 @@ public partial class ACESSOS_MOBILE
     [StringLength(100)]
     [Unicode(false)]
     public string EMAIL { get; set; }
-    public int? MATRICULA { get; set; }
+    public int MATRICULA { get; set; }
 
     [StringLength(255)]
     [Unicode(false)]
@@ -79,4 +79,8 @@ public partial class ACESSOS_MOBILE
     [InverseProperty("Responsavel")]
     [JsonIgnore]
     public virtual ICollection<DEMANDA_CHAMADO_RESPOSTA>? RespostasDemandas { get; set; } = new List<DEMANDA_CHAMADO_RESPOSTA>();
+
+    [InverseProperty("Solicitante")]
+    [JsonIgnore]
+    public virtual ICollection<DEMANDA_ACESSOS>? AcessosSolicitados { get; set; } = new List<DEMANDA_ACESSOS>();
 }

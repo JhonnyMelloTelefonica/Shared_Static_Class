@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using PropertyChanged;
@@ -17,8 +18,9 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
 {
     [Key]
     public int ID { get; set; }
+    [Unicode(false)]
     public Guid ID_RELACAO { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
+    [Unicode(false)]
     public int MATRICULA_SOLICITANTE { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     [EnumDataType(typeof(Acao), ErrorMessage = "Por favor escolha um valor válido")]
@@ -50,6 +52,7 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string OrgaoEmissor { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
+    [DataType(DataType.Date, ErrorMessage = "Campo {0} não é uma data válida")]
     public DateTime? DataNascimento { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string Rua { get; set; }
@@ -90,10 +93,9 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     public string NomeContato { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string SubGrupo { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string DataContratoInicio { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string DataContratoFim { get; set; }
+    public DateTime? DataContratoInicio { get; set; }
+    public DateTime? DataContratoFim => DataContratoInicio?.AddDays(2);
+
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     [EnumDataType(typeof(Estado), ErrorMessage = "Por favor escolha um valor válido")]
     public Estado? Area { get; set; }
@@ -102,6 +104,7 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string Ddd { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
+    [DataType(DataType.Date, ErrorMessage = "Campo {0} não é uma data válida")]
     public DateTime? DataCadastro { get; set; }
     public DateTime? DataFinalizacao { get; set; }
     public DateTime? DataExtracao { get; set; }
@@ -118,7 +121,6 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     [EnumDataType(typeof(Funcao), ErrorMessage = "Por favor escolha um valor válido")]
     public Funcao? Funcao { get; set; }
-    public DateTime? MobileToken { get; set; }
     public DateTime? RejeitarSenha { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string AceiteSenha { get; set; }
@@ -137,9 +139,11 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
 
     [ForeignKey("ID_RELACAO")]
     [JsonIgnore]
-    public virtual DEMANDA_RELACAO_CHAMADO Relacao { get; set; }
+    [AllowNull]
+    public virtual DEMANDA_RELACAO_CHAMADO Relacao { get; set; } = new();
 
     [ForeignKey("MATRICULA_SOLICITANTE")]
     [JsonIgnore]
-    public virtual ACESSOS_MOBILE Solicitante { get; set; }
+    [AllowNull]
+    public virtual ACESSOS_MOBILE? Solicitante { get; set; }
 }
