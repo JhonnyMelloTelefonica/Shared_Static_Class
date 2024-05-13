@@ -108,6 +108,11 @@ public partial class DemandasContext : DbContext
         {
             entity.Property(e => e.ID)
             .HasValueGenerator<SequentialGuidValueGenerator>();
+
+            entity.HasOne(a => a.Solicitante)
+                .WithMany(b => b.DemandasTotais)
+                .HasForeignKey(x => x.MATRICULA_SOLICITANTE)
+                .HasPrincipalKey(x => x.MATRICULA);
         });
 
         modelBuilder.Entity<DEMANDA_ACESSOS>().Property(x => x.Sexo).HasDefaultValue(Genero.NULL);

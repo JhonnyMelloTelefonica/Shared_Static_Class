@@ -20,8 +20,6 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     public int ID { get; set; }
     [Unicode(false)]
     public Guid ID_RELACAO { get; set; }
-    [Unicode(false)]
-    public int MATRICULA_SOLICITANTE { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     [EnumDataType(typeof(Acao), ErrorMessage = "Por favor escolha um valor válido")]
     public Acao? Acao { get; set; }
@@ -134,8 +132,15 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     public string Origem { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string PIS { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string Regional { get; set; }
+    public string REGIONAL { get; set; } = string.Empty;
+    public DateTime DATA_ABERTURA { get; set; }
+    public int MATRICULA_SOLICITANTE { get; set; }
+    public void SetPrivateData(string regional, DateTime Hora, int matricula)
+    {
+        MATRICULA_SOLICITANTE = matricula;        
+        REGIONAL = regional;        
+        DATA_ABERTURA = Hora;        
+    }
 
     [ForeignKey("ID_RELACAO")]
     [JsonIgnore]

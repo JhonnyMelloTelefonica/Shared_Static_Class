@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using Newtonsoft.Json;
@@ -17,6 +18,10 @@ public partial class DEMANDA_RELACAO_CHAMADO
     public Guid ID { get; set; }
     public int ID_CHAMADO { get; set; }
     public int Sequence { get; set; }
+    public DateTime DATA_ABERTURA { get; set; }
+    public int MATRICULA_SOLICITANTE { get; set; }
+    public bool PRIORIDADE { get; set; } 
+    public bool PRIORIDADE_SEGMENTO { get; set; }  /* Coluna se aplica apenas a DEMANDAS */
     [Required]
     public Tabela_Demanda Tabela { get; set; }
 
@@ -34,6 +39,10 @@ public partial class DEMANDA_RELACAO_CHAMADO
     [InverseProperty("Relacao_DEMANDA")]
     [JsonIgnore]
     public virtual ICollection<DEMANDA_STATUS_CHAMADO> Status { get; set; } = new List<DEMANDA_STATUS_CHAMADO>();
+
+    [ForeignKey("MATRICULA_SOLICITANTE")]
+    [JsonIgnore]
+    public virtual ACESSOS_MOBILE Solicitante { get; set; }
     /** Tabelas de relação **/
 
     public enum Tabela_Demanda

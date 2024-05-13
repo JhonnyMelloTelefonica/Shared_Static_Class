@@ -30,10 +30,6 @@ public partial class DEMANDA_CHAMADO
     [Column(TypeName = "datetime")]
     public DateTime? DATA_FECHAMENTO { get; set; }
 
-    [StringLength(550)]
-    [Unicode(false)]
-    public string PRIORIDADE { get; set; }
-
     [StringLength(10)]
     [Unicode(false)]
     public string REGIONAL { get; set; }

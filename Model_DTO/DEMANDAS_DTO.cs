@@ -13,6 +13,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using JsonIgnoreAttribute = Newtonsoft.Json.JsonIgnoreAttribute;
+using static Shared_Static_Class.Data.DEMANDA_RELACAO_CHAMADO;
 
 namespace Shared_Static_Class.Model_DTO
 {
@@ -134,7 +135,7 @@ namespace Shared_Static_Class.Model_DTO
 
         public byte[] UserAvatar { get; set; } =
             null;
-            //            File.ReadAllBytes("C:\\FilesTemplates\\usericon.png")
+        //            File.ReadAllBytes("C:\\FilesTemplates\\usericon.png")
         public List<Messages> ChatMessages { get; set; } = new();
         public bool NewMessage { get; set; } = false;
         public bool Connected { get; set; } = false;
@@ -177,6 +178,21 @@ namespace Shared_Static_Class.Model_DTO
         public bool? Primeiro_Acesso { get; set; }
     }
 
+
+    public class DEMANDA_DTO
+    {
+        public Guid ID { get; set; }
+        public int ID_CHAMADO { get; set; }
+        public int Sequence { get; set; }
+        public Tabela_Demanda Tabela { get; set; }
+        public string tipo => Tabela.GetDisplayName();
+        public PAINEL_DEMANDAS_CHAMADO_DTO? ChamadoRelacao { get; set; } = null;
+        public DEMANDA_ACESSOS? AcessoRelacao { get; set; } = null;
+        public DEMANDA_DESLIGAMENTOS? DesligamentoRelacao { get; set; } = null;
+        public IEnumerable<DEMANDA_CHAMADO_RESPOSTA> Respostas { get; set; } = [];
+        public IEnumerable<DEMANDA_STATUS_CHAMADO> Status { get; set; } = [];
+    }
+
     public partial class PAINEL_DEMANDAS_CHAMADO_DTO
     {
         public int ID { get; set; }
@@ -200,12 +216,11 @@ namespace Shared_Static_Class.Model_DTO
                 return DateTime.Now - this.DATA_ABERTURA;
             }
         }
-        public TimeSpan? SLA_PRIMEIRA_RESPOSTA => 
-            (Respostas.Any() 
-            && Respostas.Where(x => x.MATRICULA_RESPONSAVEL != Solicitante.MATRICULA).Any()) == true 
-            ? (DateTime.Now - Respostas.Where(x=> x.MATRICULA_RESPONSAVEL != Solicitante.MATRICULA)?.Min(x => x.DATA_RESPOSTA)) 
+        public TimeSpan? SLA_PRIMEIRA_RESPOSTA =>
+            (Respostas.Any()
+            && Respostas.Where(x => x.MATRICULA_RESPONSAVEL != Solicitante.MATRICULA).Any()) == true
+            ? (DateTime.Now - Respostas.Where(x => x.MATRICULA_RESPONSAVEL != Solicitante.MATRICULA)?.Min(x => x.DATA_RESPOSTA))
             : null;
-         
     }
 
     public partial class DEMANDAS_CHAMADO_DTO

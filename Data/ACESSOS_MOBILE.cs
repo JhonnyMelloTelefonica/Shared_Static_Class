@@ -70,17 +70,21 @@ public partial class ACESSOS_MOBILE
 
     [InverseProperty("Responsavel")]
     [JsonIgnore]
-    public virtual ICollection<DEMANDA_CHAMADO>? DemandasResponsavel { get; set; } = new List<DEMANDA_CHAMADO>();
+    public virtual ICollection<DEMANDA_CHAMADO>? DemandasResponsavel { get; set; } = [];
 
     [InverseProperty("Solicitante")]
     [JsonIgnore]
-    public virtual ICollection<DEMANDA_CHAMADO>? DemandasSolicitadas { get; set; } = new List<DEMANDA_CHAMADO>();
+    public virtual ICollection<DEMANDA_CHAMADO>? DemandasSolicitadas { get; set; } = [];
 
     [InverseProperty("Responsavel")]
     [JsonIgnore]
-    public virtual ICollection<DEMANDA_CHAMADO_RESPOSTA>? RespostasDemandas { get; set; } = new List<DEMANDA_CHAMADO_RESPOSTA>();
+    public virtual ICollection<DEMANDA_CHAMADO_RESPOSTA>? RespostasDemandas { get; set; } = [];
 
     [InverseProperty("Solicitante")]
     [JsonIgnore]
-    public virtual ICollection<DEMANDA_ACESSOS>? AcessosSolicitados { get; set; } = new List<DEMANDA_ACESSOS>();
+    public virtual ICollection<DEMANDA_ACESSOS>? AcessosSolicitados { get; set; } = [];
+
+    [InverseProperty("Solicitante")]
+    [JsonIgnore]
+    public virtual ICollection<DEMANDA_RELACAO_CHAMADO>? DemandasTotais { get; set; } = [];
 }
