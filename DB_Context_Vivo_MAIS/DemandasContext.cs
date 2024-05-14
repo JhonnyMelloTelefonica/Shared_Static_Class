@@ -27,7 +27,7 @@ public partial class DemandasContext : DbContext
     public virtual DbSet<DEMANDA_ARQUIVOS_RESPOSTA> DEMANDA_ARQUIVOS_RESPOSTA { get; set; }
     public virtual DbSet<DEMANDA_CAMPOS_CHAMADO> DEMANDA_CAMPOS_CHAMADO { get; set; }
     public virtual DbSet<DEMANDA_STATUS_CHAMADO> DEMANDA_STATUS_CHAMADO { get; set; }
-    public virtual DbSet<DEMANDA_HISTORICO_PRIORIDADE> DEMANDA_HISTORICO_PRIORIDADE { get; set; }
+    public virtual DbSet<CHAMADO_HISTORICO_PRIORIDADE> DEMANDA_HISTORICO_PRIORIDADE { get; set; }
     public virtual DbSet<ACESSOS_MOBILE> ACESSOS_MOBILE { get; set; }
     public virtual DbSet<DEMANDA_SUB_FILA> DEMANDA_SUB_FILA { get; set; }
     public virtual DbSet<DEMANDA_TIPO_FILA> DEMANDA_TIPO_FILA { get; set; }

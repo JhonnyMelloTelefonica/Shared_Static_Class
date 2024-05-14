@@ -9,26 +9,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Shared_Static_Class.Data;
 
-[Table("DEMANDA_HISTORICO_PRIORIDADE", Schema = "Demandas")]
-public partial class DEMANDA_HISTORICO_PRIORIDADE
+[Table("CHAMADO_HISTORICO_PRIORIDADE", Schema = "Demandas")]
+public partial class CHAMADO_HISTORICO_PRIORIDADE
 {
     [Key]
     public int ID { get; set; }
-    public int ID_CHAMADO { get; set; }
+    public Guid ID_CHAMADO { get; set; }
     [Unicode(false)]
     public int MAT_RESPONSAVEL { get; set; }
     [Unicode(false)]
-    public string PRIORIDADE { get; set; }
+    public bool PRIORIDADE { get; set; }
     [Unicode(false)]
     public DateTime DATA { get; set; }
 
     [ForeignKey("ID_CHAMADO")]
     [JsonIgnore]
-    public virtual DEMANDA_CHAMADO DEMANDANav { get; set; }
+    public virtual DEMANDA_RELACAO_CHAMADO DEMANDANav { get; set; }
 
     [ForeignKey("MAT_RESPONSAVEL")]
     [JsonIgnore]
     public virtual ACESSOS_MOBILE? Responsavel { get; set; }
-
-
 }

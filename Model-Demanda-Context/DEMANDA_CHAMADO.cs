@@ -48,11 +48,7 @@ public partial class DEMANDA_CHAMADO
     [InverseProperty("DEMANDANav")]
     [JsonIgnore]
     public virtual ICollection<DEMANDA_CAMPOS_CHAMADO> Campos { get; set; } = new List<DEMANDA_CAMPOS_CHAMADO>();
-    [InverseProperty("DEMANDANav")]
-    [JsonIgnore]
-    
-    public virtual ICollection<DEMANDA_HISTORICO_PRIORIDADE> Historico_Prioridade { get; set; } = new List<DEMANDA_HISTORICO_PRIORIDADE>();
-    
+
     [InverseProperty("DEMANDANav")]
     [JsonIgnore]
     public virtual DEMANDA_AVALIACAO_ANALISTA? Avaliacao_Solicitante { get; set; }

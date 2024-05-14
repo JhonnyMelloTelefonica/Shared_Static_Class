@@ -14,6 +14,8 @@ using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using JsonIgnoreAttribute = Newtonsoft.Json.JsonIgnoreAttribute;
 using static Shared_Static_Class.Data.DEMANDA_RELACAO_CHAMADO;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Shared_Static_Class.Model_DTO
 {
@@ -89,6 +91,7 @@ namespace Shared_Static_Class.Model_DTO
         public string CAMPO { get; set; } = string.Empty;
         public string MASCARA { get; set; } = string.Empty;
     }
+    [ValidateNever]
     public partial class ACESSOS_MOBILE_DTO
     {
         [JsonIgnore]
@@ -117,6 +120,7 @@ namespace Shared_Static_Class.Model_DTO
                 return textInfo.ToTitleCase(name.ToLower());
             }
         }
+        [AllowNull]
         public byte[] UserAvatar { get; set; } = null;
         public IEnumerable<DEMANDA_CHAMADO> DemandasResponsavel { get; set; } = new List<DEMANDA_CHAMADO>();
         public IEnumerable<DEMANDA_CHAMADO> DemandasSolicitadas { get; set; } = new List<DEMANDA_CHAMADO>();
@@ -186,11 +190,30 @@ namespace Shared_Static_Class.Model_DTO
         public int Sequence { get; set; }
         public Tabela_Demanda Tabela { get; set; }
         public string tipo => Tabela.GetDisplayName();
+        public DateTime DATA_ABERTURA { get; set; }
+        public int MATRICULA_SOLICITANTE { get; set; }
+        public bool Selected { get; private set; } = false;
+        public void SetSelected() => Selected = !Selected;
+        public bool PRIORIDADE { get; set; }
+        public bool PRIORIDADE_SEGMENTO { get; set; }  /* Coluna se aplica apenas a DEMANDAS */
+        public ACESSOS_MOBILE Solicitante { get; set; } = new();
         public PAINEL_DEMANDAS_CHAMADO_DTO? ChamadoRelacao { get; set; } = null;
         public DEMANDA_ACESSOS? AcessoRelacao { get; set; } = null;
         public DEMANDA_DESLIGAMENTOS? DesligamentoRelacao { get; set; } = null;
         public IEnumerable<DEMANDA_CHAMADO_RESPOSTA> Respostas { get; set; } = [];
         public IEnumerable<DEMANDA_STATUS_CHAMADO> Status { get; set; } = [];
+        public TimeSpan? SLA_TOTAL
+        {
+            get
+            {
+                return DateTime.Now - this.DATA_ABERTURA;
+            }
+        }
+        public TimeSpan? SLA_PRIMEIRA_RESPOSTA =>
+            (Respostas.Any()
+            && Respostas.Where(x => x.MATRICULA_RESPONSAVEL != Solicitante.MATRICULA).Any()) == true
+            ? (DateTime.Now - Respostas.Where(x => x.MATRICULA_RESPONSAVEL != Solicitante.MATRICULA)?.Min(x => x.DATA_RESPOSTA))
+            : null;
     }
 
     public partial class PAINEL_DEMANDAS_CHAMADO_DTO
@@ -209,23 +232,13 @@ namespace Shared_Static_Class.Model_DTO
         public ACESSOS_MOBILE_DTO? Resp_Outra_Area { get; set; }
         public ACESSOS_MOBILE_DTO? Responsavel { get; set; }
         public ACESSOS_MOBILE_DTO Solicitante { get; set; }
-        public TimeSpan? SLA_TOTAL
-        {
-            get
-            {
-                return DateTime.Now - this.DATA_ABERTURA;
-            }
-        }
-        public TimeSpan? SLA_PRIMEIRA_RESPOSTA =>
-            (Respostas.Any()
-            && Respostas.Where(x => x.MATRICULA_RESPONSAVEL != Solicitante.MATRICULA).Any()) == true
-            ? (DateTime.Now - Respostas.Where(x => x.MATRICULA_RESPONSAVEL != Solicitante.MATRICULA)?.Min(x => x.DATA_RESPOSTA))
-            : null;
+      
     }
 
     public partial class DEMANDAS_CHAMADO_DTO
     {
         public int ID { get; set; }
+        public int ID_RELACAO { get; set; }
         public DEMANDA_SUB_FILA_DTO Fila { get; set; } = new();
         public DateTime? DATA_ABERTURA { get; set; }
         public DateTime? DATA_FECHAMENTO { get; set; }

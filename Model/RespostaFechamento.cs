@@ -10,6 +10,7 @@ namespace Shared_Static_Class.Models
         public string resposta { get; set; }
         public int IdChamado { get; set; }
         public int MATRICULA { get; set; }
+        public Guid ID_RELACAO_CHAMADO { get; set; }
         public int? MATRICULA_REDIRECIONADO { get; set; }
         public DateTime Data { get; set; }
         public string Status { get; set; } = string.Empty;

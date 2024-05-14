@@ -20,7 +20,7 @@ public partial class DEMANDA_RELACAO_CHAMADO
     public int Sequence { get; set; }
     public DateTime DATA_ABERTURA { get; set; }
     public int MATRICULA_SOLICITANTE { get; set; }
-    public bool PRIORIDADE { get; set; } 
+    public bool PRIORIDADE { get; set; }
     public bool PRIORIDADE_SEGMENTO { get; set; }  /* Coluna se aplica apenas a DEMANDAS */
     [Required]
     public Tabela_Demanda Tabela { get; set; }
@@ -43,12 +43,19 @@ public partial class DEMANDA_RELACAO_CHAMADO
     [ForeignKey("MATRICULA_SOLICITANTE")]
     [JsonIgnore]
     public virtual ACESSOS_MOBILE Solicitante { get; set; }
+
+    [InverseProperty("DEMANDANav")]
+    [JsonIgnore]
+    public virtual ICollection<CHAMADO_HISTORICO_PRIORIDADE> Historico_Prioridade { get; set; } = new List<CHAMADO_HISTORICO_PRIORIDADE>();
     /** Tabelas de relação **/
 
     public enum Tabela_Demanda
     {
+        [Display(Name = "Demanda Suporte")]
         ChamadoRelacao = 1,
+        [Display(Name = "Acesso")]
         AcessoRelacao = 2,
+        [Display(Name = "Desligamento")]
         DesligamentoRelacao = 3
     }
 }
