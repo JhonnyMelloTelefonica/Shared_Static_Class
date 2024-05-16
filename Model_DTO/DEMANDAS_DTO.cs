@@ -238,7 +238,7 @@ namespace Shared_Static_Class.Model_DTO
     public partial class DEMANDAS_CHAMADO_DTO
     {
         public int ID { get; set; }
-        public int ID_RELACAO { get; set; }
+        public Guid ID_RELACAO { get; set; }
         public DEMANDA_SUB_FILA_DTO Fila { get; set; } = new();
         public DateTime? DATA_ABERTURA { get; set; }
         public DateTime? DATA_FECHAMENTO { get; set; }
