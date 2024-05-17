@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
+using Foolproof;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using PropertyChanged;
@@ -23,8 +24,8 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     [EnumDataType(typeof(Acao), ErrorMessage = "Por favor escolha um valor válido")]
     public Acao? Acao { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string TipoAcesso { get; set; }
+    public bool IsMatriculaRequired => Acao.HasValue ? Acao.Value == Converters.Acao.INCLUSÃO : false;
+
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string Adabas { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
@@ -85,6 +86,7 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     [Phone]
     public string Celular { get; set; }
+
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string Cnpj { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
@@ -95,38 +97,22 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     public DateTime? DataContratoFim => DataContratoInicio?.AddDays(2);
 
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    [EnumDataType(typeof(Estado), ErrorMessage = "Por favor escolha um valor válido")]
-    public Estado? Area { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string SubArea { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string Ddd { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     [DataType(DataType.Date, ErrorMessage = "Campo {0} não é uma data válida")]
     public DateTime? DataCadastro { get; set; }
     public DateTime? DataFinalizacao { get; set; }
     public DateTime? DataExtracao { get; set; }
+
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string Login { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string Senha { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string Obs { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string Perfil { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string Matricula { get; set; }
+    public string Matricula { get; set; } = string.Empty;
+
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     [EnumDataType(typeof(Funcao), ErrorMessage = "Por favor escolha um valor válido")]
     public Funcao? Funcao { get; set; }
     public DateTime? RejeitarSenha { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string AceiteSenha { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string Status { get; set; }
+    public string Status { get; set; } = string.Empty;
     public DateTime? DataStatus { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string NomeMae { get; set; }
     public DateTime? DataMatricula { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string Origem { get; set; }
