@@ -87,4 +87,8 @@ public partial class ACESSOS_MOBILE
     [InverseProperty("Solicitante")]
     [JsonIgnore]
     public virtual ICollection<DEMANDA_RELACAO_CHAMADO>? DemandasTotais { get; set; } = [];
+
+    [InverseProperty("Responsavel")]
+    [JsonIgnore]
+    public virtual ICollection<DEMANDA_RELACAO_CHAMADO>? ResponsavelDemandasTotais { get; set; } = [];
 }
