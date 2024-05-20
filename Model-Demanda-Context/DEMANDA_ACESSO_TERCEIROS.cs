@@ -121,6 +121,7 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     public string REGIONAL { get; set; } = string.Empty;
     public DateTime DATA_ABERTURA { get; set; }
     public int MATRICULA_SOLICITANTE { get; set; }
+    public int? MATRICULA_RESPONSAVEL { get; set; } = null;
     public void SetPrivateData(string regional, DateTime Hora, int matricula)
     {
         MATRICULA_SOLICITANTE = matricula;        
@@ -137,4 +138,9 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     [JsonIgnore]
     [AllowNull]
     public virtual ACESSOS_MOBILE? Solicitante { get; set; }
+
+    [ForeignKey("MATRICULA_RESPONSAVEL")]
+    [JsonIgnore]
+    [AllowNull]
+    public virtual ACESSOS_MOBILE? Responsavel { get; set; }
 }

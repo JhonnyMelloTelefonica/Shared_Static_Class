@@ -57,9 +57,9 @@ namespace Shared_Static_Class.Model_DTO
             }
         }
         private string _telefone = string.Empty;
-        public string Celular { get; set; }= string.Empty;
-        public string Cnpj { get; set; }= string.Empty;
-        public string NomeContato { get; set; }= string.Empty;
+        public string Celular { get; set; } = string.Empty;
+        public string Cnpj { get; set; } = string.Empty;
+        public string NomeContato { get; set; } = string.Empty;
         public string SubGrupo { get; set; } = string.Empty;
         public DateTime? DataContratoInicio { get; set; }
         public DateTime? DataContratoFim => DataContratoInicio?.AddDays(2);
@@ -73,7 +73,7 @@ namespace Shared_Static_Class.Model_DTO
         public string Status { get; set; } = string.Empty;
         public DateTime? DataStatus { get; set; }
         public DateTime? DataMatricula { get; set; }
-        public string Origem { get; set; }= string.Empty;
+        public string Origem { get; set; } = string.Empty;
         public string PIS { get; set; } = string.Empty;
         public DateTime DATA_ABERTURA { get; set; }
         public DEMANDA_RELACAO_CHAMADO Relacao { get; set; } = new();

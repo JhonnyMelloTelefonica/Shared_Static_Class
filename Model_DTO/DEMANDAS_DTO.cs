@@ -194,11 +194,13 @@ namespace Shared_Static_Class.Model_DTO
         public string tipo => Tabela.GetDisplayName();
         public DateTime DATA_ABERTURA { get; set; }
         public int MATRICULA_SOLICITANTE { get; set; }
+        public int MATRICULA_RESPONSAVEL { get; set; }
         public bool Selected { get; private set; } = false;
         public void SetSelected() => Selected = !Selected;
         public bool PRIORIDADE { get; set; }
         public bool PRIORIDADE_SEGMENTO { get; set; }  /* Coluna se aplica apenas a DEMANDAS */
         public ACESSOS_MOBILE Solicitante { get; set; } = new();
+        public ACESSOS_MOBILE Responsavel { get; set; } = new();
         public PAINEL_DEMANDAS_CHAMADO_DTO? ChamadoRelacao { get; set; } = null;
         public DEMANDA_ACESSOS? AcessoRelacao { get; set; } = null;
         public DEMANDA_DESLIGAMENTOS? DesligamentoRelacao { get; set; } = null;
@@ -249,7 +251,7 @@ namespace Shared_Static_Class.Model_DTO
         public string REGIONAL { get; set; } = string.Empty;
         public DEMANDA_PARQUE? Has_Cliente_Valor { get; set; }
         public ACESSOS_MOBILE_DTO? RESPONSAVEL_OUTRA_AREA { get; set; }
-        public IEnumerable<DEMANDA_CHAMADO_RESPOSTA_DTO> Respostas { get; set; } = new List<DEMANDA_CHAMADO_RESPOSTA_DTO>();
+        public IEnumerable<DEMANDA_CHAMADO_RESPOSTA> Respostas { get; set; } = new List<DEMANDA_CHAMADO_RESPOSTA>();
         public IEnumerable<DEMANDA_CAMPOS_CHAMADO> Campos { get; set; } = new List<DEMANDA_CAMPOS_CHAMADO>();
         public ACESSOS_MOBILE_DTO? Responsavel { get; set; }
         public ACESSOS_MOBILE_DTO Solicitante { get; set; } = new();

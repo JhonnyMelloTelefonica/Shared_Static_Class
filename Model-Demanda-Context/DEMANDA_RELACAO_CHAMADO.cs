@@ -20,6 +20,7 @@ public partial class DEMANDA_RELACAO_CHAMADO
     public int Sequence { get; set; }
     public DateTime DATA_ABERTURA { get; set; }
     public int MATRICULA_SOLICITANTE { get; set; }
+    public int? MATRICULA_RESPONSAVEL { get; set; }
     public bool PRIORIDADE { get; set; }
     public bool PRIORIDADE_SEGMENTO { get; set; }  /* Coluna se aplica apenas a DEMANDAS */
     [Required]
@@ -43,6 +44,10 @@ public partial class DEMANDA_RELACAO_CHAMADO
     [ForeignKey("MATRICULA_SOLICITANTE")]
     [JsonIgnore]
     public virtual ACESSOS_MOBILE Solicitante { get; set; }
+
+    [ForeignKey("MATRICULA_RESPONSAVEL")]
+    [JsonIgnore]
+    public virtual ACESSOS_MOBILE? Responsavel { get; set; }
 
     [InverseProperty("DEMANDANav")]
     [JsonIgnore]
