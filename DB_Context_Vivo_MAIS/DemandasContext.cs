@@ -115,6 +115,11 @@ public partial class DemandasContext : DbContext
                 .WithMany(b => b.DemandasTotais)
                 .HasForeignKey(x => x.MATRICULA_SOLICITANTE)
                 .HasPrincipalKey(x => x.MATRICULA);
+
+            entity.HasOne(a => a.Responsavel)
+                .WithMany(b => b.ResponsavelDemandasTotais)
+                .HasForeignKey(x => x.MATRICULA_RESPONSAVEL)
+                .HasPrincipalKey(x => x.MATRICULA);
         });
 
         modelBuilder.Entity<DEMANDA_ACESSOS>().Property(x => x.Sexo).HasDefaultValue(Genero.NULL);

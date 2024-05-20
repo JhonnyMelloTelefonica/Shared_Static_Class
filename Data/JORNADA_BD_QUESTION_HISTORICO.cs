@@ -13,36 +13,23 @@ public partial class JORNADA_BD_QUESTION_HISTORICO
 {
     [Key]
     public int ID { get; set; }
-
     public int? ID_QUESTION { get; set; }
-
     public int? CANAL { get; set; }
-
     [Column(TypeName = "datetime")]
     public DateTime? DT_CRIACAO { get; set; }
-
     public int? ID_CRIADOR { get; set; }
-
     public int? CARGO { get; set; }
-
     public int? CADERNO { get; set; }
-
     [Unicode(false)]
     public string TP_FORMS { get; set; }
-
     [Column(TypeName = "datetime")]
     public DateTime? DT_INICIO_AVALIACAO { get; set; }
-
     [Column(TypeName = "datetime")]
     public DateTime? DT_FINALIZACAO { get; set; }
-
     public bool? FIXA { get; set; }
-
     [StringLength(100)]
     [Unicode(false)]
     public string REGIONAL { get; set; }
-
     public int? ID_PROVA { get; set; }
-
     public bool? ELEGIVEL { get; set; }
 }

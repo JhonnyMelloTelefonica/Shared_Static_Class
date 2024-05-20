@@ -27,18 +27,18 @@ namespace Shared_Static_Class.Model_DTO
             public JORNADA_BD_QUESTION? ID_QUESTION { get; set; }
             public Canal CANAL { get; set; }
             public DateTime DT_CRIACAO { get; set; }
-            public ACESSOS_MOBILE ID_CRIADOR { get; set; }
+            public ACESSOS_MOBILE ID_CRIADOR { get; set; } = new();
             public Cargos CARGO { get; set; }
             public int? CADERNO { get; set; }
-            public string TP_FORMS { get; set; }
+            public string TP_FORMS { get; set; } = string.Empty;
             public DateTime DT_INICIO_AVALIACAO { get; set; }
             public DateTime? DT_FINALIZACAO { get; set; }
             public bool? FIXA { get; set; }
-            public string REGIONAL { get; set; }
+            public string REGIONAL { get; set; } = string.Empty;
             public int? ID_PROVA { get; set; }
             public bool? ELEGIVEL { get; set; }
-            public List<string>? Temas { get; set; } = new();
-            public List<string>? SubTemas { get; set; } = new();
+            public List<string>? Temas { get; set; } = [];
+            public List<string>? SubTemas { get; set; } = [];
             public int Qtd_Respostas { get; set; }
             public int Qtd_Perguntas { get; set; }
             public decimal? Sum_nota { get; set; }
