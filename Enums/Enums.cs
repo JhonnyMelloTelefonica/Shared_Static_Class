@@ -29,12 +29,12 @@ namespace Shared_Static_Class.Converters
 
     public struct STATUS_ACESSOS_PENDENTES
     {
-        public static STATUS_ACESSOS_PENDENTES ABERTO { get { return new ("ABERTO"); } }
-        public static STATUS_ACESSOS_PENDENTES AGUARDANDO_ANALISTA { get { return new ("AGUARDANDO ANALISTA"); } }
-        public static STATUS_ACESSOS_PENDENTES DEVOLVIDO_PARA_SOLICITANTE { get { return new ("DEVOLVIDO PARA SOLICITANTE"); } }
-        public static STATUS_ACESSOS_PENDENTES CANCELADO { get { return new ("CANCELADO"); } }
-        public static STATUS_ACESSOS_PENDENTES REPROVADO { get { return new ("REPROVADO"); } }
-        public static STATUS_ACESSOS_PENDENTES APROVADO { get { return new ("APROVADO"); } }
+        public static STATUS_ACESSOS_PENDENTES ABERTO { get { return new("ABERTO"); } }
+        public static STATUS_ACESSOS_PENDENTES AGUARDANDO_ANALISTA { get { return new("AGUARDANDO ANALISTA"); } }
+        public static STATUS_ACESSOS_PENDENTES DEVOLVIDO_PARA_SOLICITANTE { get { return new("DEVOLVIDO PARA SOLICITANTE"); } }
+        public static STATUS_ACESSOS_PENDENTES CANCELADO { get { return new("CANCELADO"); } }
+        public static STATUS_ACESSOS_PENDENTES REPROVADO { get { return new("REPROVADO"); } }
+        public static STATUS_ACESSOS_PENDENTES APROVADO { get { return new("APROVADO"); } }
 
         private STATUS_ACESSOS_PENDENTES(string value) { Value = value; }
 
@@ -53,14 +53,23 @@ namespace Shared_Static_Class.Converters
 
         public override string ToString() => Value;
     }
+    public enum Controle_Demanda_role
+    {
+        BASICO,
+        ANALISTA,
+        ANALISTA_ACESSO,
+        GERENTE,
+    }
     public enum Prioridade : int
     {
         [Display(Name = "Baixa")]
-        LEVE = 0,
+        LEVE,
+
         [Display(Name = "Médio")]
-        MEDIO = 1,
+        MEDIO,
+
         [Display(Name = "Alto")]
-        ALTA = 2
+        ALTA 
     }
 
     public enum RespostaAcessoPendente : int

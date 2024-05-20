@@ -29,6 +29,7 @@ public partial class DemandasContext : DbContext
     public virtual DbSet<DEMANDA_STATUS_CHAMADO> DEMANDA_STATUS_CHAMADO { get; set; }
     public virtual DbSet<CHAMADO_HISTORICO_PRIORIDADE> DEMANDA_HISTORICO_PRIORIDADE { get; set; }
     public virtual DbSet<ACESSOS_MOBILE> ACESSOS_MOBILE { get; set; }
+    public virtual DbSet<PERFIL_USUARIO> PERFIL_USUARIO { get; set; }
     public virtual DbSet<DEMANDA_SUB_FILA> DEMANDA_SUB_FILA { get; set; }
     public virtual DbSet<DEMANDA_TIPO_FILA> DEMANDA_TIPO_FILA { get; set; }
     public virtual DbSet<DEMANDA_CAMPOS_FILA> DEMANDA_CAMPOS_FILA { get; set; }
@@ -59,6 +60,7 @@ public partial class DemandasContext : DbContext
         modelBuilder.Entity<DEMANDA_CAMPOS_FILA>().ToTable("DEMANDA_CAMPOS_FILA", t => t.ExcludeFromMigrations());
         modelBuilder.Entity<DEMANDA_VALORES_CAMPOS_SUSPENSO>().ToTable("DEMANDA_VALORES_CAMPOS_SUSPENSO", t => t.ExcludeFromMigrations());
         modelBuilder.Entity<DEMANDA_RESPONSAVEL_FILA>().ToTable("DEMANDA_RESPONSAVEL_FILA", t => t.ExcludeFromMigrations());
+        modelBuilder.Entity<PERFIL_USUARIO>().ToTable("PERFIL_USUARIO", t => t.ExcludeFromMigrations());
 
         modelBuilder.Entity<DEMANDA_CHAMADO>(entity =>
         {
