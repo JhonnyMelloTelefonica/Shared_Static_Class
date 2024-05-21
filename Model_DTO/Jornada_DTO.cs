@@ -24,7 +24,7 @@ namespace Shared_Static_Class.Model_DTO
         public class PROVA_REALIZADA_DTO
         {
             public int ID { get; set; }
-            public JORNADA_BD_QUESTION? ID_QUESTION { get; set; }
+            public int? ID_QUESTION { get; set; }
             public Canal CANAL { get; set; }
             public DateTime DT_CRIACAO { get; set; }
             public ACESSOS_MOBILE ID_CRIADOR { get; set; } = new();
@@ -39,23 +39,7 @@ namespace Shared_Static_Class.Model_DTO
             public bool? ELEGIVEL { get; set; }
             public List<string>? Temas { get; set; } = [];
             public List<string>? SubTemas { get; set; } = [];
-            public int Qtd_Respostas { get; set; }
             public int Qtd_Perguntas { get; set; }
-            public decimal? Sum_nota { get; set; }
-            public decimal Media_nota
-            {
-                get
-                {
-                    if (Sum_nota.HasValue && Qtd_Respostas > 0)
-                    {
-                        return Math.Round(Sum_nota.Value / Qtd_Respostas, 1);
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-            }
         }
         public class AVALIACAO_RETORNO_DTO
         {
