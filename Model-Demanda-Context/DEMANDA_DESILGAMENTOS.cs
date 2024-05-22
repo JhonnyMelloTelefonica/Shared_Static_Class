@@ -7,30 +7,47 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using PropertyChanged;
+using Shared_Static_Class.Converters;
 
 namespace Shared_Static_Class.Data;
 
 [Table("DEMANDA_DESLIGAMENTOS", Schema = "Demandas")]
+[AddINotifyPropertyChangedInterface]
 public partial class DEMANDA_DESLIGAMENTOS
 {
     [Key]
     public int ID { get; set; }
     [Required]
     public Guid ID_RELACAO { get; set; }
-    public int MATRICULA_SOLICITANTE { get; set; }
-    public string UF { get; set; }
-    public string DDD { get; set; }
-    public string NOME_FUNCIONARIO { get; set; }
-    public string MATRICULA_FUNCIONARIO { get; set; }
-    public string LOGIN_FUNCIONARIO { get; set; }
-    public DateTime? DATA_CADASTRO_DESLIGAMENTO { get; set; }
-    public string CONFIRMA_DESLIGAMENTO { get; set; }
-    public DateTime? DATA_CONFIRMA_DESLIGAMENTO { get; set; }
-    public string USUARIO { get; set; }
-    public string CPF { get; set; }
-    public string ADABAS { get; set; }
-    public string MOTIVO { get; set; }
-    public string REGIONAL { get; set; }
+    public int MATRICULA_SOLICITANTE { get; private set; }
+    public int? MATRICULA_RESPONSAVEL { get; private set; } = null;
+    public DateTime DATA_ABERTURA { get; private set; }
+    public string REGIONAL { get; private set; }
+
+    public void SetPrivateData(string regional, DateTime Hora, int matricula)
+    {
+        MATRICULA_SOLICITANTE = matricula;
+        REGIONAL = regional;
+        DATA_ABERTURA = Hora;
+    }
+
+    [Required(ErrorMessage = "Campo {0} é obrigatório")]
+    public int Matricula { get; set; }
+    [Required(ErrorMessage = "Campo {0} é obrigatório")]
+    public string Login { get; set; }
+    [Required(ErrorMessage = "Campo {0} é obrigatório")]
+    public string Nome { get; set; }
+    [Required(ErrorMessage = "Campo {0} é obrigatório")]
+    public string Cpf
+    {
+        get => _cpf;
+        set
+        {
+            _cpf = FormatInputs.FormatCPF(value);
+        }
+    }
+    private string _cpf;
 
     [ForeignKey("ID_RELACAO")]
     [Required]
@@ -39,4 +56,6 @@ public partial class DEMANDA_DESLIGAMENTOS
 
     [ForeignKey("MATRICULA_SOLICITANTE")]
     public virtual ACESSOS_MOBILE Solicitante { get; set; }
+    [ForeignKey("MATRICULA_RESPONSAVEL")]
+    public virtual ACESSOS_MOBILE? Responsavel { get; set; }
 }
