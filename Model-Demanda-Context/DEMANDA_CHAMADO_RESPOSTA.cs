@@ -20,7 +20,7 @@ public partial class DEMANDA_CHAMADO_RESPOSTA
     public string RESPOSTA { get; set; }
 
     public int ID_CHAMADO { get; set; }
-    public Guid ID_RELACAO_CHAMADO { get; set; }
+    public Guid ID_RELACAO { get; set; }
 
     [Unicode(false)]
     public int MATRICULA_RESPONSAVEL { get; set; }
@@ -28,12 +28,12 @@ public partial class DEMANDA_CHAMADO_RESPOSTA
     [Column(TypeName = "datetime")]
     public DateTime DATA_RESPOSTA { get; set; }
 
-    [ForeignKey("ID_RELACAO_CHAMADO")]
+    [ForeignKey("ID_RELACAO")]
     public virtual DEMANDA_RELACAO_CHAMADO Relacao_DEMANDA { get; set; }
 
     [InverseProperty("RESPOSTANav")]
     [JsonIgnore]
-    public virtual ICollection<DEMANDA_ARQUIVOS_RESPOSTA>? ARQUIVOS { get; set; } = new List<DEMANDA_ARQUIVOS_RESPOSTA>();
+    public virtual ICollection<DEMANDA_ARQUIVOS_RESPOSTA>? ARQUIVOS { get; set; } = [];
 
     [InverseProperty("Resposta")]
     public virtual DEMANDA_STATUS_CHAMADO? Status { get; set; } // Status 

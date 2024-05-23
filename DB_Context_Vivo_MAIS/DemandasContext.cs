@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
+using Microsoft.Extensions.Configuration;
 using Shared_Static_Class.Converters;
 using Shared_Static_Class.Data;
 
@@ -18,6 +19,7 @@ public partial class DemandasContext : DbContext
     public DemandasContext(DbContextOptions<DemandasContext> options)
         : base(options)
     {
+        
     }
     public virtual DbSet<DEMANDA_RELACAO_CHAMADO> DEMANDA_RELACAO_CHAMADO { get; set; }
     public virtual DbSet<DEMANDA_ACESSOS> DEMANDA_ACESSOS { get; set; }
@@ -39,8 +41,10 @@ public partial class DemandasContext : DbContext
     public virtual DbSet<DEMANDA_AVALIACAO_ANALISTA> DEMANDA_AVALIACAO_ANALISTA { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-=> optionsBuilder.UseSqlServer("Data Source=10.124.100.153;Initial Catalog=Vivo_MAIS;TrustServerCertificate=True;User ID=RegionalNE;Password=RegionalNEvivo2019;MultipleActiveResultSets=true"
+    {
+
+        #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        optionsBuilder.UseSqlServer("Data Source=10.124.100.153;Initial Catalog=Vivo_MAIS;TrustServerCertificate=True;User ID=RegionalNE;Password=RegionalNEvivo2019;MultipleActiveResultSets=true"
             , o =>
             {
                 o.UseCompatibilityLevel(120);
@@ -49,6 +53,7 @@ public partial class DemandasContext : DbContext
                 o.MigrationsHistoryTable("__EFMigrationsHistory", "Demandas");
                 o.MigrationsAssembly("Api Vivo Apps");
             });
+    } 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -108,7 +113,7 @@ public partial class DemandasContext : DbContext
 
         modelBuilder.Entity<DEMANDA_RELACAO_CHAMADO>(entity =>
         {
-            entity.Property(e => e.ID)
+            entity.Property(e => e.ID_RELACAO)
             .HasValueGenerator<SequentialGuidValueGenerator>();
 
             entity.HasOne(a => a.Solicitante)

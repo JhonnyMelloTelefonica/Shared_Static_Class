@@ -187,7 +187,7 @@ namespace Shared_Static_Class.Model_DTO
 
     public class DEMANDA_DTO
     {
-        public Guid ID { get; set; }
+        public Guid ID_RELACAO { get; set; }
         public int ID_CHAMADO { get; set; }
         public int Sequence { get; set; }
         public Tabela_Demanda Tabela { get; set; }

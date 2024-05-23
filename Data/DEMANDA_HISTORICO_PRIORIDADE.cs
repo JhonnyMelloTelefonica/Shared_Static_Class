@@ -14,7 +14,7 @@ public partial class CHAMADO_HISTORICO_PRIORIDADE
 {
     [Key]
     public int ID { get; set; }
-    public Guid ID_CHAMADO { get; set; }
+    public Guid ID_RELACAO { get; set; }
     [Unicode(false)]
     public int MAT_RESPONSAVEL { get; set; }
     [Unicode(false)]
@@ -22,7 +22,7 @@ public partial class CHAMADO_HISTORICO_PRIORIDADE
     [Unicode(false)]
     public DateTime DATA { get; set; }
 
-    [ForeignKey("ID_CHAMADO")]
+    [ForeignKey("ID_RELACAO")]
     [JsonIgnore]
     public virtual DEMANDA_RELACAO_CHAMADO DEMANDANav { get; set; }
 

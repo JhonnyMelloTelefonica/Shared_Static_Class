@@ -15,7 +15,7 @@ public partial class DEMANDA_STATUS_CHAMADO
     [Key]
     public int ID { get; set; }
     public int ID_CHAMADO { get; set; }
-    public Guid ID_RELACAO_CHAMADO { get; set; }
+    public Guid ID_RELACAO { get; set; }
     public int ID_RESPOSTA { get; set; }
     [Required]
     [Unicode(false)]
@@ -30,7 +30,7 @@ public partial class DEMANDA_STATUS_CHAMADO
     [Unicode(false)]
     public int? MAT_DESTINATARIO { get; set; }
 
-    [ForeignKey("ID_RELACAO_CHAMADO")]
+    [ForeignKey("ID_RELACAO")]
     [JsonIgnore]
     public virtual DEMANDA_RELACAO_CHAMADO Relacao_DEMANDA { get; set; }
 

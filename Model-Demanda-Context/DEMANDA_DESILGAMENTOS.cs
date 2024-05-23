@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using PropertyChanged;
@@ -18,13 +19,11 @@ public partial class DEMANDA_DESLIGAMENTOS
 {
     [Key]
     public int ID { get; set; }
-    [Required]
     public Guid ID_RELACAO { get; set; }
-    public int MATRICULA_SOLICITANTE { get; private set; }
-    public int? MATRICULA_RESPONSAVEL { get; private set; } = null;
-    public DateTime DATA_ABERTURA { get; private set; }
-    public string REGIONAL { get; private set; }
-
+    public int MATRICULA_SOLICITANTE { get; set; }
+    public int? MATRICULA_RESPONSAVEL { get; set; } = null;
+    public DateTime DATA_ABERTURA { get; set; }
+    public string REGIONAL { get;  set; }
     public void SetPrivateData(string regional, DateTime Hora, int matricula)
     {
         MATRICULA_SOLICITANTE = matricula;
@@ -35,9 +34,9 @@ public partial class DEMANDA_DESLIGAMENTOS
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public int Matricula { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string Login { get; set; }
+    public string Login { get; set; } = string.Empty;
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string Nome { get; set; }
+    public string Nome { get; set; } = string.Empty;
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string Cpf
     {
@@ -47,12 +46,10 @@ public partial class DEMANDA_DESLIGAMENTOS
             _cpf = FormatInputs.FormatCPF(value);
         }
     }
-    private string _cpf;
+    private string _cpf = string.Empty;
 
     [ForeignKey("ID_RELACAO")]
-    [Required]
-    [JsonIgnore]
-    public virtual DEMANDA_RELACAO_CHAMADO Relacao { get; set; }
+    public virtual DEMANDA_RELACAO_CHAMADO Relacao { get; set; } = new();
 
     [ForeignKey("MATRICULA_SOLICITANTE")]
     public virtual ACESSOS_MOBILE Solicitante { get; set; }

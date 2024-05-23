@@ -15,7 +15,7 @@ namespace Shared_Static_Class.Data;
 public partial class DEMANDA_RELACAO_CHAMADO
 {
     [Key]
-    public Guid ID { get; set; }
+    public Guid ID_RELACAO { get; set; }
     public int ID_CHAMADO { get; set; }
     public int Sequence { get; set; }
     public DateTime DATA_ABERTURA { get; set; }
@@ -36,10 +36,10 @@ public partial class DEMANDA_RELACAO_CHAMADO
 
     [InverseProperty("Relacao_DEMANDA")]
     [JsonIgnore]
-    public virtual ICollection<DEMANDA_CHAMADO_RESPOSTA> Respostas { get; set; } = new List<DEMANDA_CHAMADO_RESPOSTA>();
+    public virtual ICollection<DEMANDA_CHAMADO_RESPOSTA> Respostas { get; set; } = [];
     [InverseProperty("Relacao_DEMANDA")]
     [JsonIgnore]
-    public virtual ICollection<DEMANDA_STATUS_CHAMADO> Status { get; set; } = new List<DEMANDA_STATUS_CHAMADO>();
+    public virtual ICollection<DEMANDA_STATUS_CHAMADO> Status { get; set; } = [];
 
     [ForeignKey("MATRICULA_SOLICITANTE")]
     [JsonIgnore]
@@ -51,9 +51,8 @@ public partial class DEMANDA_RELACAO_CHAMADO
 
     [InverseProperty("DEMANDANav")]
     [JsonIgnore]
-    public virtual ICollection<CHAMADO_HISTORICO_PRIORIDADE> Historico_Prioridade { get; set; } = new List<CHAMADO_HISTORICO_PRIORIDADE>();
+    public virtual ICollection<CHAMADO_HISTORICO_PRIORIDADE> Historico_Prioridade { get; set; } = [];
     /** Tabelas de relação **/
-
     public enum Tabela_Demanda
     {
         [Display(Name = "Demanda Suporte")]
