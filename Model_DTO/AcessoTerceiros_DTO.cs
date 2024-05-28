@@ -22,6 +22,7 @@ namespace Shared_Static_Class.Model_DTO
     public partial class ACESSO_TERCEIROS_DTO
     {
         public int ID { get; set; }
+        public Guid ID_RELACAO { get; set; }
         public Acao? Acao { get; set; }
         public bool IsMatriculaRequired => Acao.HasValue ? Acao.Value == Converters.Acao.INCLUSÃO : false;
         public string Adabas { get; set; } = string.Empty;
@@ -76,9 +77,8 @@ namespace Shared_Static_Class.Model_DTO
         public string Origem { get; set; } = string.Empty;
         public string PIS { get; set; } = string.Empty;
         public DateTime DATA_ABERTURA { get; set; }
-        public DEMANDA_RELACAO_CHAMADO Relacao { get; set; } = new();
         public ACESSOS_MOBILE Solicitante { get; set; } = new();
-        public IEnumerable<DEMANDA_CHAMADO_RESPOSTA> Respostas { get; set; } = new List<DEMANDA_CHAMADO_RESPOSTA>();
+        public IEnumerable<DEMANDA_CHAMADO_RESPOSTA_DTO> Respostas { get; set; } = [];
         public ACESSOS_MOBILE? Responsavel { get; set; } = null;
     }
 

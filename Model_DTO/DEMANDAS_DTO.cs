@@ -251,7 +251,7 @@ namespace Shared_Static_Class.Model_DTO
         public string REGIONAL { get; set; } = string.Empty;
         public DEMANDA_PARQUE? Has_Cliente_Valor { get; set; }
         public ACESSOS_MOBILE_DTO? RESPONSAVEL_OUTRA_AREA { get; set; }
-        public IEnumerable<DEMANDA_CHAMADO_RESPOSTA> Respostas { get; set; } = new List<DEMANDA_CHAMADO_RESPOSTA>();
+        public IEnumerable<DEMANDA_CHAMADO_RESPOSTA_DTO> Respostas { get; set; } = new List<DEMANDA_CHAMADO_RESPOSTA_DTO>();
         public IEnumerable<DEMANDA_CAMPOS_CHAMADO> Campos { get; set; } = new List<DEMANDA_CAMPOS_CHAMADO>();
         public ACESSOS_MOBILE_DTO? Responsavel { get; set; }
         public ACESSOS_MOBILE_DTO Solicitante { get; set; } = new();
@@ -274,7 +274,7 @@ namespace Shared_Static_Class.Model_DTO
         public int ID_CHAMADO { get; set; }
         public DateTime? DATA_RESPOSTA { get; set; }
         public List<DEMANDA_ARQUIVOS_RESPOSTA_DTO>? ARQUIVOS { get; set; } = new List<DEMANDA_ARQUIVOS_RESPOSTA_DTO>();
-        public DEMANDA_STATUS_CHAMADO? Status { get; set; } // Status 
+        public DEMANDA_STATUS_CHAMADO_DTO? Status { get; set; } = null; // Status 
         public ACESSOS_MOBILE_DTO Responsavel { get; set; }
     }
 
@@ -301,5 +301,21 @@ namespace Shared_Static_Class.Model_DTO
 
         public ACESSOS_MOBILE_DTO? MATRICULA_MOD { get; set; }
     }
+    public partial class DEMANDA_STATUS_CHAMADO_DTO
+    {
+        public int ID { get; set; }
+        public int ID_CHAMADO { get; set; }
+        public Guid ID_RELACAO { get; set; }
+        public int ID_RESPOSTA { get; set; }
+        public string STATUS { get; set; } = string.Empty;
+        public DateTime DATA { get; set; }
+        public int? MAT_QUEM_REDIRECIONOU { get; set; }
+        public int? MAT_DESTINATARIO { get; set; }
+        public DEMANDA_RELACAO_CHAMADO Relacao_DEMANDA { get; set; } = new();
+        public ACESSOS_MOBILE? Quem_redirecionou { get; set; } = null;
+        public ACESSOS_MOBILE? Para_Quem_redirecionou { get; set; } = null;
+        public DEMANDA_CHAMADO_RESPOSTA? Resposta { get; set; } = null;
+    }
+
 
 }
