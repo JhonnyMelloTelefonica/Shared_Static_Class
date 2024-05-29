@@ -35,11 +35,10 @@ namespace Shared_Static_Class.Converters
         public static STATUS_ACESSOS_PENDENTES CANCELADO { get { return new("CANCELADO"); } }
         public static STATUS_ACESSOS_PENDENTES REPROVADO { get { return new("REPROVADO"); } }
         public static STATUS_ACESSOS_PENDENTES APROVADO { get { return new("APROVADO"); } }
+        public static STATUS_ACESSOS_PENDENTES REABRIR { get { return new("REABERTO"); } }
 
         private STATUS_ACESSOS_PENDENTES(string value) { Value = value; }
-
         public string Value { get; private set; }
-
         public override string ToString() => Value;
     }
     public struct TIPO_ACESSOS_PENDENTES

@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using Microsoft.Extensions.Configuration;
@@ -19,7 +20,7 @@ public partial class DemandasContext : DbContext
     public DemandasContext(DbContextOptions<DemandasContext> options)
         : base(options)
     {
-        
+
     }
     public virtual DbSet<DEMANDA_RELACAO_CHAMADO> DEMANDA_RELACAO_CHAMADO { get; set; }
     public virtual DbSet<DEMANDA_ACESSOS> DEMANDA_ACESSOS { get; set; }
@@ -43,7 +44,7 @@ public partial class DemandasContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
 
-        #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         optionsBuilder.UseSqlServer("Data Source=10.124.100.153;Initial Catalog=Vivo_MAIS;TrustServerCertificate=True;User ID=RegionalNE;Password=RegionalNEvivo2019;MultipleActiveResultSets=true"
             , o =>
             {
@@ -53,7 +54,7 @@ public partial class DemandasContext : DbContext
                 o.MigrationsHistoryTable("__EFMigrationsHistory", "Demandas");
                 o.MigrationsAssembly("Api Vivo Apps");
             });
-    } 
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -66,6 +67,12 @@ public partial class DemandasContext : DbContext
         modelBuilder.Entity<DEMANDA_VALORES_CAMPOS_SUSPENSO>().ToTable("DEMANDA_VALORES_CAMPOS_SUSPENSO", t => t.ExcludeFromMigrations());
         modelBuilder.Entity<DEMANDA_RESPONSAVEL_FILA>().ToTable("DEMANDA_RESPONSAVEL_FILA", t => t.ExcludeFromMigrations());
         modelBuilder.Entity<PERFIL_USUARIO>().ToTable("PERFIL_USUARIO", t => t.ExcludeFromMigrations());
+
+        //modelBuilder.Entity<DEMANDA_ARQUIVOS_RESPOSTA>()
+        //            .Property(e => e.ARQUIVO)
+        //            .HasConversion(
+        //                v => v, // Convert to store format
+        //                v => ConvertFile(v));
 
         modelBuilder.Entity<DEMANDA_CHAMADO>(entity =>
         {
@@ -143,6 +150,30 @@ public partial class DemandasContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
-
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+    protected static byte[] ConvertFile(byte[] Unconvertedfiles)
+    {
+        try
+        {
+            byte[] decompressedBytes;
+            using (MemoryStream memoryStream = new MemoryStream(Unconvertedfiles))
+            {
+                using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Decompress))
+                {
+                    using (MemoryStream decompressedStream = new MemoryStream())
+                    {
+                        gzipStream.CopyTo(decompressedStream);
+                        decompressedBytes = decompressedStream.ToArray();
+                    }
+                }
+            }
+
+            return decompressedBytes;
+        }
+        catch
+        {
+            return new byte[0];
+        }
+    }
 }
