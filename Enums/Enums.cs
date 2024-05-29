@@ -47,9 +47,7 @@ namespace Shared_Static_Class.Converters
         public static TIPO_ACESSOS_PENDENTES ALTERACAO { get { return new("ALTERAÇÃO"); } }
 
         private TIPO_ACESSOS_PENDENTES(string value) { Value = value; }
-
         public string Value { get; private set; }
-
         public override string ToString() => Value;
     }
     public enum Controle_Demanda_role
