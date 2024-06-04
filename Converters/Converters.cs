@@ -3,6 +3,12 @@ using Shared_Static_Class.Converters;
 using Shared_Static_Class.Enums;
 using Shared_Static_Class.Models;
 using System.Data;
+using System.Net.NetworkInformation;
+using static System.Net.Mime.MediaTypeNames;
+using Microsoft.Office.Interop.Excel;
+using DataTable = System.Data.DataTable;
+
+
 
 namespace Shared_Static_Class.Converters
 {
@@ -32,7 +38,6 @@ namespace Shared_Static_Class.Converters
 
             return enumList;
         }
-        
         public static string RemoveNonNumericCharacters(string input) => new string(input.ToCharArray().Where(c => char.IsDigit(c)).ToArray());
         public static List<TEnum> ConvertStringToEnumList<TEnum>(string input) where TEnum : struct
         {
@@ -89,6 +94,80 @@ namespace Shared_Static_Class.Converters
 
             return canaisArray;
         }
+        public static void ExcelToDataTable(FileDataModel item, int numbercolumns, int numberrows, string excelmodel, out DataTable displayDataTable)
+        {
+            string folderPath = "";
+            string outputPath = "";
 
+            displayDataTable = new DataTable();
+
+            foreach (System.Diagnostics.Process process in System.Diagnostics.Process.GetProcessesByName("EXCEL"))
+            {
+                process.Kill();
+            }
+
+            folderPath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                
+            if (File.Exists(Path.Combine(folderPath, "NewModelQuestion.xls")))
+            {
+                outputPath = Path.Combine(folderPath, "NewModelQuestion.xls");
+                File.Delete(outputPath);
+            }
+            else
+            {
+                outputPath = Path.Combine(folderPath, "NewModelQuestion.xls");
+            }
+
+            var actualfile = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot", "files", $"{excelmodel}.xlsx");
+            if (File.Exists(actualfile))
+            {
+                File.Delete(actualfile);
+            }
+            File.WriteAllBytesAsync(outputPath, SharedConverter.ConvertFile(item.Bytes));
+
+            displayDataTable = new DataTable();
+
+            foreach (System.Diagnostics.Process process in System.Diagnostics.Process.GetProcessesByName("EXCEL"))
+            {
+                process.Kill();
+            }
+
+
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            excelApp.Visible = false;
+
+            Workbook excelWorkbook = excelApp.Workbooks.Open(outputPath);
+            Worksheet excelWorksheet = (Worksheet)excelWorkbook.Sheets[1]; // Or use excelWorkbook.ActiveSheet
+
+            // Add header Columns to the DataTable
+            for (int col = 1; col <= numbercolumns; col++) // Assuming there are 14 columns
+            {
+                var column = ((Microsoft.Office.Interop.Excel.Range)excelWorksheet.Cells[1, col]).Value?.ToString() ?? "-";
+                if (column != "-")
+                {
+                    displayDataTable.Columns.Add(column);
+                }
+            }
+
+            // Populate the DataTable
+            for (int row = 2; row <= numberrows; row++) // Assuming you want to read up to row 100
+            {
+                List<string> excelRow = new List<string>();
+
+                for (int col = 1; col <= displayDataTable.Columns.Count; col++) // Assuming there are 14 columns
+                {
+                    excelRow.Add(((Microsoft.Office.Interop.Excel.Range)excelWorksheet.Cells[row, col]).Value?.ToString() ?? "");
+                }
+
+                if (excelRow.Any(x => !string.IsNullOrEmpty(x)))
+                {
+                    displayDataTable.Rows.Add(excelRow.ToArray());
+                }
+            }
+
+            excelWorkbook.Close(false);
+            excelApp.Quit();
+
+        }
     }
 }

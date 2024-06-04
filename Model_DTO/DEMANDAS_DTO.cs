@@ -19,6 +19,12 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.ObjectModel;
+using Newtonsoft.Json.Linq;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Runtime.ConstrainedExecution;
+using System.Security.Cryptography;
+using System.Web.Helpers;
 
 namespace Shared_Static_Class.Model_DTO
 {
@@ -276,7 +282,7 @@ namespace Shared_Static_Class.Model_DTO
         public string RESPOSTA { get; set; } = string.Empty;
         public int ID_CHAMADO { get; set; }
         public DateTime? DATA_RESPOSTA { get; set; }
-        public List<DEMANDA_ARQUIVOS_RESPOSTA_DTO>? ARQUIVOS { get; set; } = new List<DEMANDA_ARQUIVOS_RESPOSTA_DTO>();
+        public List<DEMANDA_ARQUIVOS_RESPOSTA_DTO>? ARQUIVOS { get; set; } = [];
         public DEMANDA_STATUS_CHAMADO_DTO? Status { get; set; } = null; // Status 
         public ACESSOS_MOBILE_DTO Responsavel { get; set; }
     }

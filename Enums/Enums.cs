@@ -31,6 +31,7 @@ namespace Shared_Static_Class.Converters
     {
         public static STATUS_ACESSOS_PENDENTES ABERTO { get { return new("ABERTO"); } }
         public static STATUS_ACESSOS_PENDENTES AGUARDANDO_ANALISTA { get { return new("AGUARDANDO ANALISTA"); } }
+        public static STATUS_ACESSOS_PENDENTES AGUARDANDO_TREINAMENTO { get { return new("AGUARDANDO TREINAMENTO"); } }
         public static STATUS_ACESSOS_PENDENTES DEVOLVIDO_PARA_SOLICITANTE { get { return new("DEVOLVIDO PARA SOLICITANTE"); } }
         public static STATUS_ACESSOS_PENDENTES CANCELADO { get { return new("CANCELADO"); } }
         public static STATUS_ACESSOS_PENDENTES REPROVADO { get { return new("REPROVADO"); } }
