@@ -276,7 +276,7 @@ namespace Shared_Static_Class.Model_DTO
         public string RESPOSTA { get; set; } = string.Empty;
         public int ID_CHAMADO { get; set; }
         public DateTime? DATA_RESPOSTA { get; set; }
-        public List<DEMANDA_ARQUIVOS_RESPOSTA_DTO>? ARQUIVOS { get; set; } = new List<DEMANDA_ARQUIVOS_RESPOSTA_DTO>();
+        private List<DEMANDA_ARQUIVOS_RESPOSTA_DTO>? ARQUIVOS { get; set; } = [];
         public DEMANDA_STATUS_CHAMADO_DTO? Status { get; set; } = null; // Status 
         public ACESSOS_MOBILE_DTO Responsavel { get; set; }
     }

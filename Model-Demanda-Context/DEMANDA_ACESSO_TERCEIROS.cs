@@ -104,7 +104,7 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     public DateTime? DataFinalizacao { get; set; }
     public DateTime? DataExtracao { get; set; }
 
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
+    [Required(ErrorMessage = "Campo {0} é obrigatório", AllowEmptyStrings = true)]
     public string Matricula { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
