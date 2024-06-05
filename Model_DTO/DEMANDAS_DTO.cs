@@ -19,6 +19,12 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.ObjectModel;
+using Newtonsoft.Json.Linq;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Runtime.ConstrainedExecution;
+using System.Security.Cryptography;
+using System.Web.Helpers;
 
 namespace Shared_Static_Class.Model_DTO
 {

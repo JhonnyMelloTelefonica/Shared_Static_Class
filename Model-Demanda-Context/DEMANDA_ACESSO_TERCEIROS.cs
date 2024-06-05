@@ -17,14 +17,15 @@ namespace Shared_Static_Class.Data;
 [AddINotifyPropertyChangedInterface]
 public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
 {
+
     [Key]
     public int ID { get; set; }
     [Unicode(false)]
     public Guid ID_RELACAO { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     [EnumDataType(typeof(Acao), ErrorMessage = "Por favor escolha um valor válido")]
-    public Acao? Acao { get; set; }
-    public bool IsMatriculaRequired => Acao.HasValue ? Acao.Value == Converters.Acao.INCLUSÃO : false;
+    public Acao Acao { get; set; } = Acao.INCLUSÃO;
+    public bool IsMatriculaRequired => Acao == Acao.INCLUSÃO;
 
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string Adabas { get; set; }
@@ -38,7 +39,7 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string Cpf
     {
-        get => _cpf; 
+        get => _cpf;
         set
         {
             _cpf = FormatInputs.FormatCPF(value);
@@ -83,6 +84,7 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     }
     private string _telefone;
 
+
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     [Phone]
     public string Celular { get; set; }
@@ -124,9 +126,9 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     public int? MATRICULA_RESPONSAVEL { get; set; } = null;
     public void SetPrivateData(string regional, DateTime Hora, int matricula)
     {
-        MATRICULA_SOLICITANTE = matricula;        
-        REGIONAL = regional;        
-        DATA_ABERTURA = Hora;        
+        MATRICULA_SOLICITANTE = matricula;
+        REGIONAL = regional;
+        DATA_ABERTURA = Hora;
     }
 
     [ForeignKey("ID_RELACAO")]
