@@ -8,6 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using Newtonsoft.Json;
+using Shared_Static_Class.Model_Demanda_Context;
 
 namespace Shared_Static_Class.Data;
 
@@ -52,6 +53,7 @@ public partial class DEMANDA_RELACAO_CHAMADO
     [InverseProperty("DEMANDANav")]
     [JsonIgnore]
     public virtual ICollection<CHAMADO_HISTORICO_PRIORIDADE> Historico_Prioridade { get; set; } = [];
+
     /** Tabelas de relação **/
     public enum Tabela_Demanda
     {

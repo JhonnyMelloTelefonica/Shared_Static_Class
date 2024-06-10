@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using PropertyChanged;
 using Shared_Static_Class.Converters;
 using Shared_Static_Class.Enums;
+using Shared_Static_Class.Model_Demanda_Context;
 
 namespace Shared_Static_Class.Data;
 
@@ -135,6 +136,10 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     [JsonIgnore]
     [AllowNull]
     public virtual DEMANDA_RELACAO_CHAMADO Relacao { get; set; } = new();
+
+    [InverseProperty("DemandaAcesso")]
+    [JsonIgnore]
+    public virtual DEMANDA_RELACAO_TREINAMENTO_FINALIZADO? Treinamento { get; set; } = null;
 
     [ForeignKey("MATRICULA_SOLICITANTE")]
     [JsonIgnore]

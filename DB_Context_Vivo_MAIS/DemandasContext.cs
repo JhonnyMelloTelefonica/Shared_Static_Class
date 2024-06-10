@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.ValueGeneration;
 using Microsoft.Extensions.Configuration;
 using Shared_Static_Class.Converters;
 using Shared_Static_Class.Data;
+using Shared_Static_Class.Model_Demanda_Context;
 
 namespace Shared_Static_Class.DB_Context_Vivo_MAIS;
 
@@ -40,6 +41,7 @@ public partial class DemandasContext : DbContext
     public virtual DbSet<DEMANDA_RESPONSAVEL_FILA> DEMANDA_RESPONSAVEL_FILA { get; set; }
     public virtual DbSet<DEMANDA_PARQUE> DEMANDA_PARQUE { get; set; }
     public virtual DbSet<DEMANDA_AVALIACAO_ANALISTA> DEMANDA_AVALIACAO_ANALISTA { get; set; }
+    public virtual DbSet<DEMANDA_RELACAO_TREINAMENTO_FINALIZADO> DEMANDA_RELACAO_TREINAMENTO_FINALIZADO { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -148,32 +150,9 @@ public partial class DemandasContext : DbContext
             .HasForeignKey(x => x.MATRICULA_SOLICITANTE)
             .HasPrincipalKey(x => x.MATRICULA);
 
+
         OnModelCreatingPartial(modelBuilder);
     }
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
-    protected static byte[] ConvertFile(byte[] Unconvertedfiles)
-    {
-        try
-        {
-            byte[] decompressedBytes;
-            using (MemoryStream memoryStream = new MemoryStream(Unconvertedfiles))
-            {
-                using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Decompress))
-                {
-                    using (MemoryStream decompressedStream = new MemoryStream())
-                    {
-                        gzipStream.CopyTo(decompressedStream);
-                        decompressedBytes = decompressedStream.ToArray();
-                    }
-                }
-            }
-
-            return decompressedBytes;
-        }
-        catch
-        {
-            return new byte[0];
-        }
-    }
 }

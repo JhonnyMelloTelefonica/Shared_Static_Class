@@ -38,6 +38,8 @@ public partial class JORNADA_BD_QUESTION
     [StringLength(255)]
     public string CARGO { get; set; }
 
+    public IEnumerable<int> listCargos() => CARGO.Split(new[] { ';' }).Select(c => int.Parse(c));
+
     public bool? STATUS_QUESTION { get; set; }
 
     public bool? FIXA { get; set; }
