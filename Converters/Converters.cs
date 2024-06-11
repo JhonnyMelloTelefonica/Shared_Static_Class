@@ -94,6 +94,13 @@ namespace Shared_Static_Class.Converters
 
             return canaisArray;
         }
+        /** 
+         * FileDataModel item -> arquivo,
+         * int numbercolumns -> número de colunas,
+         * int numberrows -> número de linhas,
+         * string excelmodel -> nome de saída do excel,
+         * out DataTable displayDataTable -> Retorna o DataTable
+         * **/
         public static void ExcelToDataTable(FileDataModel item, int numbercolumns, int numberrows, string excelmodel, out DataTable displayDataTable)
         {
             string folderPath = "";

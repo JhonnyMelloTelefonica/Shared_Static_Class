@@ -79,6 +79,7 @@ namespace Shared_Static_Class.Models
 
             return cpf;
         }
+
     }
 
 
