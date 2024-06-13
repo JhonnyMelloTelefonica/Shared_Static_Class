@@ -20,7 +20,8 @@ namespace Shared_Static_Class.Model_Demanda_Context
         {
         }
 
-        public DEMANDA_RELACAO_TREINAMENTO_FINALIZADO(int mATRICULA, string nome, DateTime data_Admissão, string cargo, string empresa, string cNPJ, string canal, string uf, string cidade, DateTime data_Conclusao)
+        public DEMANDA_RELACAO_TREINAMENTO_FINALIZADO(
+            int mATRICULA, string nome, DateTime data_Admissão, string cargo, string empresa, string cNPJ, string canal, string uf, string cidade, DateTime data_Conclusao, int matricula_user, Formato_inclusao formato_Inclusao)
         {
             MATRICULA = mATRICULA;
             Nome = nome;
@@ -32,39 +33,56 @@ namespace Shared_Static_Class.Model_Demanda_Context
             Uf = uf;
             Cidade = cidade;
             Data_Conclusao = data_Conclusao;
+            MAT_MOD = matricula_user;
+            DT_MOD = DateTime.Now;
+            Modo_Inclusao = formato_Inclusao;
         }
 
         [Key]
         public int ID { get; set; }
+
         [Required(ErrorMessage = "Este Campo é obrigatório")]
         public int MATRICULA { get; set; }
         public int ID_RELACAO { get; set; }
+
         [Required(ErrorMessage = "Este Campo é obrigatório")]
         [MaxLength(255)]
         public string Nome { get; set; } = string.Empty;
+
         [Required(ErrorMessage = "Este Campo é obrigatório")]
         public DateTime Data_Admissão { get; set; }
+
         [Required(ErrorMessage = "Este Campo é obrigatório")]
         public string Cargo { get; set; } = string.Empty;
+
         [Required(ErrorMessage = "Este Campo é obrigatório")]
         public string Empresa { get; set; } = string.Empty;
+
         [Required(ErrorMessage = "Este Campo é obrigatório")]
         [MaxLength(19)]
         public string CNPJ { get; set; } = string.Empty;
+
         [Required(ErrorMessage = "Este Campo é obrigatório")]
         public string Canal { get; set; } = string.Empty;
+
         [Required(ErrorMessage = "Este Campo é obrigatório")]
         [MaxLength(3)]
         public string Uf { get; set; } = string.Empty;
         [Required(ErrorMessage = "Este Campo é obrigatório")]
+
         [MaxLength(255)]
         public string Cidade { get; set; } = string.Empty;
         [Required(ErrorMessage = "Este Campo é obrigatório")]
+
         public DateTime Data_Conclusao { get; set; }
+
         [Required(ErrorMessage = "Este Campo é obrigatório")]
         [MaxLength(10)]
         [AllowedValues("ATIVO", "INATIVO", ErrorMessage = "Valor inválido")]
         public string STATUS_MATRICULA { get; set; } = "INATIVO";
+        public DateTime DT_MOD { get; set; }
+        public int MAT_MOD { get; set; }
+        public Formato_inclusao Modo_Inclusao { get; set; }
 
         [ForeignKey("ID_RELACAO")]
         [JsonIgnore]

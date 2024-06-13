@@ -33,6 +33,7 @@ namespace Shared_Static_Class.Converters
         public static STATUS_ACESSOS_PENDENTES AGUARDANDO_OUTRA_AREA { get { return new("AGUARDANDO OUTRA ÁREA"); } }
         public static STATUS_ACESSOS_PENDENTES AGUARDANDO_ANALISTA { get { return new("AGUARDANDO ANALISTA"); } }
         public static STATUS_ACESSOS_PENDENTES AGUARDANDO_TREINAMENTO { get { return new("AGUARDANDO TREINAMENTO"); } }
+        public static STATUS_ACESSOS_PENDENTES AGUARDANDO_CRIAÇÃO_DE_ACESSO { get { return new("AGUARDANDO CRIAÇÃO DE ACESSO"); } }
         public static STATUS_ACESSOS_PENDENTES DEVOLVIDO_PARA_SOLICITANTE { get { return new("DEVOLVIDO PARA SOLICITANTE"); } }
         public static STATUS_ACESSOS_PENDENTES CANCELADO { get { return new("CANCELADO"); } }
         public static STATUS_ACESSOS_PENDENTES REPROVADO { get { return new("REPROVADO"); } }
@@ -59,6 +60,12 @@ namespace Shared_Static_Class.Converters
         ANALISTA_ACESSO,
         GERENTE,
     }
+    public enum Formato_inclusao
+    {
+        DETALHADO,
+        MASSIVO
+    }
+
     public enum Prioridade : int
     {
         [Display(Name = "Baixa")]
