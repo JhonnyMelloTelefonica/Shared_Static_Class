@@ -26,6 +26,7 @@ public partial class DEMANDA_RELACAO_CHAMADO
     public bool PRIORIDADE_SEGMENTO { get; set; }  /* Coluna se aplica apenas a DEMANDAS */
     [Required]
     public Tabela_Demanda Tabela { get; set; }
+    public string LastStatus { get; set; }
 
     /** Tabelas de relação **/
     [InverseProperty("Relacao")]

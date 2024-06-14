@@ -55,6 +55,48 @@ namespace Shared_Static_Class.Converters
                 return string.Empty;
             }
         }
+        public static string CompressFileString(byte[] Unconvertedfiles)
+        {
+            try
+            {
+                byte[] compressedbytes;
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionLevel.Optimal))
+                    {
+                        gzipStream.Write(Unconvertedfiles, 0, Unconvertedfiles.Length);
+                    }
+                    compressedbytes = memoryStream.ToArray();
+                }
+
+                return Convert.ToBase64String(compressedbytes);
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+        public static byte[] CompressFile(byte[] Unconvertedfiles)
+        {
+            try
+            {
+                byte[] compressedbytes;
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionLevel.Optimal))
+                    {
+                        gzipStream.Write(Unconvertedfiles, 0, Unconvertedfiles.Length);
+                    }
+                    compressedbytes = memoryStream.ToArray();
+                }
+
+                return compressedbytes;
+            }
+            catch
+            {
+                return [];
+            }
+        }
     }
 
 }
