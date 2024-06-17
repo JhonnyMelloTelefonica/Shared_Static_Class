@@ -154,10 +154,10 @@ namespace Shared_Static_Class.Converters
     public enum Acao : int
     {
         [Display(Name = "Selecione")] NULL = 0,
-        [Display(Name = "1 - Inclusão")] INCLUSÃO = 1,
-        [Display(Name = "2 - Alteração")] ALTERAÇÃO = 2,
-        [Display(Name = "3 - Inativação")] INATIVAÇÃO = 3,
-        [Display(Name = "4 - Reativação")] REATIVAÇÃO = 4
+        [Display(Name = "1 Inclusão")] INCLUSÃO = 1,
+        [Display(Name = "2 Alteração")] ALTERAÇÃO = 2,
+        [Display(Name = "3 Inativação")] INATIVAÇÃO = 3,
+        [Display(Name = "4 Reativação")] REATIVAÇÃO = 4
     }
 
     public enum Genero : int

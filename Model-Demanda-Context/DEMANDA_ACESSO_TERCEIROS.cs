@@ -85,7 +85,6 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     }
     private string _telefone;
 
-
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     [Phone]
     public string Celular { get; set; }
@@ -97,7 +96,6 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string SubGrupo { get; set; }
     public DateTime? DataContratoInicio { get; set; }
-    public DateTime? DataContratoFim => DataContratoInicio?.AddDays(2);
 
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string Ddd { get; set; }
@@ -118,9 +116,9 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     public DateTime? DataStatus { get; set; }
     public DateTime? DataMatricula { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string Origem { get; set; }
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string PIS { get; set; }
+    public string PIS { get => pIS; set => pIS = FormatInputs.FormatPIS(value); }
+
+    private string pIS = string.Empty;
     public string REGIONAL { get; set; } = string.Empty;
     public DateTime DATA_ABERTURA { get; set; }
     public int MATRICULA_SOLICITANTE { get; set; }
@@ -137,10 +135,6 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     [AllowNull]
     public virtual DEMANDA_RELACAO_CHAMADO Relacao { get; set; } = new();
 
-    [InverseProperty("DemandaAcesso")]
-    [JsonIgnore]
-    public virtual DEMANDA_RELACAO_TREINAMENTO_FINALIZADO? Treinamento { get; set; } = null;
-
     [ForeignKey("MATRICULA_SOLICITANTE")]
     [JsonIgnore]
     [AllowNull]
@@ -150,4 +144,9 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     [JsonIgnore]
     [AllowNull]
     public virtual ACESSOS_MOBILE? Responsavel { get; set; }
+
+    [InverseProperty("DemandaRelacao")]
+    [JsonIgnore]
+    [AllowNull]
+    public virtual DEMANDA_RELACAO_TREINAMENTO_FINALIZADO? Treinamento { get; set; } = null;
 }

@@ -75,5 +75,28 @@ namespace Shared_Static_Class.Converters
 
             return formattedCNPJ;
         }
+        public static string FormatPIS(string pis)
+        {
+            // Remove any non-digit characters
+            var numberPis = new string(pis.Where(char.IsDigit).ToArray());
+            var countNumbers = numberPis.Length;
+
+            // Format as XX.XXX.XXX/XXXX-XX
+            string formattedPIS = numberPis;
+            if (countNumbers >= 9)
+                formattedPIS = $"{numberPis.Substring(0, 2)}.{numberPis.Substring(2, 7)}.{numberPis.Substring(7,9)}-{numberPis.Substring(9)}";
+            else if (countNumbers >= 7)
+                formattedPIS = $"{numberPis.Substring(0, 2)}.{numberPis.Substring(2, 7)}.{numberPis.Substring(7)}";
+            else if (countNumbers >= 3)
+                formattedPIS = $"{numberPis.Substring(0, 2)}.{numberPis.Substring(2)}";
+
+            // Ensure the formatted CNPJ does not exceed the maximum length
+            if (formattedPIS.Length > 14)
+            {
+                formattedPIS = formattedPIS.Substring(0, 14);
+            }
+
+            return formattedPIS;
+        }
     }
 }
