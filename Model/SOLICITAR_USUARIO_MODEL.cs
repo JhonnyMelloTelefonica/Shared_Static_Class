@@ -202,7 +202,7 @@ namespace Shared_Static_Class.Models
         private string _tpStatus = string.Empty;
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [ListHasElements(ErrorMessage = "Campo {0} precisa conter algum elemento")]
+        [ListHasElements<int>(ErrorMessage = "Campo {0} precisa conter algum elemento")]
         public List<int> Perfil
         {
             get => _perfil;
@@ -292,15 +292,28 @@ namespace Shared_Static_Class.Models
     }
 
 
-    public class ListHasElements : ValidationAttribute
+    public class ListHasElements<T> : ValidationAttribute
     {
+
+        readonly int _minCount = 0;
+        public ListHasElements(int mincount = 0)
+        {
+            _minCount = mincount;
+        }
         public override bool IsValid(object? value)
         {
             if (value == null)
                 return false;
 
             if (value is IEnumerable enumerable)
-                return enumerable.Cast<int>().Where(x => x != 0).Any();
+            {
+                if (_minCount != 0)
+                {
+                    return enumerable.Cast<T>().Where(x => x != null).Count() >= _minCount;
+                }
+
+                return enumerable.Cast<T>().Where(x => x != null).Any();
+            }
             else return false;
         }
     }

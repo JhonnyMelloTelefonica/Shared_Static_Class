@@ -113,6 +113,10 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     public Funcao? Funcao { get; set; }
     public DateTime? RejeitarSenha { get; set; }
     public string Status { get; set; } = string.Empty;
+    [Required(ErrorMessage = "Campo {0} é obrigatório")]
+    public string Area { get; set; } = string.Empty;
+    [Required(ErrorMessage = "Campo {0} é obrigatório")]
+    public string SubArea { get; set; } = string.Empty;
     public DateTime? DataStatus { get; set; }
     public DateTime? DataMatricula { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]

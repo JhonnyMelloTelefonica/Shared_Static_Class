@@ -5,7 +5,9 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
-
+	<ItemGroup>
+		<Content Include="wwwroot\**" CopyAlways="true" />
+	</ItemGroup>
 	<ItemGroup>
 		<COMReference Include="Microsoft.Office.Interop.Excel">
 			<EmbedInteropTypes>true</EmbedInteropTypes>
@@ -31,6 +33,13 @@
 		</PackageReference>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="wwwroot\DropDownSubArea.json">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
 	</ItemGroup>
 
 </Project>
