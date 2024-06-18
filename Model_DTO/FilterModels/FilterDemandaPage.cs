@@ -1,0 +1,27 @@
+﻿using Shared_Static_Class.Converters;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Shared_Static_Class.Model_DTO.FilterModels
+{
+    public class FilterDemandaPage
+    {
+        public List<DEMANDA_TIPO_FILA_DTO> tipo_fila { get; set; } = [];
+        public List<DEMANDA_SUB_FILA_DTO> fila { get; set; } = [];
+        public List<ACESSOS_MOBILE_DTO> responsável { get; set; } = [];
+        public bool Demandas { get; set; } = true;
+        public bool Acessos { get; set; } = true;
+        public bool Desligamentos { get; set; } = true;
+        public Acao AcessoAcao { get; set; }
+        public List<string> id_demandas { get; set; } = [];
+        public bool Status_ABERTO { get; set; } = false;
+        public bool Status_CANCELADO { get; set; } = false;
+        public bool Status_REPROVADO { get; set; } = false;
+        public bool Status_APROVADO { get; set; } = false;
+        public bool Status_REABRIR { get; set; } = false;
+
+    }
+}
