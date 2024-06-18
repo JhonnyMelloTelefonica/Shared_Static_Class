@@ -43,7 +43,7 @@ namespace Shared_Static_Class.Model_Demanda_Context
 
         [Required(ErrorMessage = "Este Campo é obrigatório")]
         public int MATRICULA { get; set; }
-        public int ID_ACESSO { get; set; }
+        public Guid ID_RELACAO { get; set; }
 
         [Required(ErrorMessage = "Este Campo é obrigatório")]
         [MaxLength(255)]
@@ -83,10 +83,10 @@ namespace Shared_Static_Class.Model_Demanda_Context
         public DateTime DT_MOD { get; set; }
         public int MAT_MOD { get; set; }
         public Formato_inclusao Modo_Inclusao { get; set; }
-        [ForeignKey("ID_ACESSO")]
+        [ForeignKey("ID_RELACAO")]
         [JsonIgnore]
         [AllowNull]
-        public virtual DEMANDA_ACESSOS DemandaRelacao { get; set; }
+        public virtual DEMANDA_RELACAO_CHAMADO DemandaRelacao { get; set; }
     }
 
     public class TREINAMENTO_MODEL

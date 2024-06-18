@@ -148,9 +148,4 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     [JsonIgnore]
     [AllowNull]
     public virtual ACESSOS_MOBILE? Responsavel { get; set; }
-
-    [InverseProperty("DemandaRelacao")]
-    [JsonIgnore]
-    [AllowNull]
-    public virtual DEMANDA_RELACAO_TREINAMENTO_FINALIZADO? Treinamento { get; set; } = null;
 }

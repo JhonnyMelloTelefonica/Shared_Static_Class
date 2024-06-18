@@ -43,6 +43,10 @@ public partial class DEMANDA_RELACAO_CHAMADO
     [JsonIgnore]
     public virtual ICollection<DEMANDA_STATUS_CHAMADO> Status { get; set; } = [];
 
+    [InverseProperty("DemandaRelacao")]
+    [JsonIgnore]
+    public virtual DEMANDA_RELACAO_TREINAMENTO_FINALIZADO? Treinamento { get; set; } = null;
+
     [ForeignKey("MATRICULA_SOLICITANTE")]
     [JsonIgnore]
     public virtual ACESSOS_MOBILE Solicitante { get; set; }
