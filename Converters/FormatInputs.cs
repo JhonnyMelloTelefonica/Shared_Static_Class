@@ -83,10 +83,17 @@ namespace Shared_Static_Class.Converters
 
             // Format as XX.XXX.XXX/XXXX-XX
             string formattedPIS = numberPis;
-            if (countNumbers >= 9)
-                formattedPIS = $"{numberPis.Substring(0, 2)}.{numberPis.Substring(2, 7)}.{numberPis.Substring(7,9)}-{numberPis.Substring(9)}";
+            /**
+            {numberPis.Substring(0, 2)} Busca os 3 primeiros números
+            {numberPis.Substring(2, 5)} Busca os do 3 ao 7 números
+            {numberPis.Substring(7, 2)} Busca os do 7 ao 9 números
+            {numberPis.Substring(10)} pega do 10 número pra cima, no caso o último número
+            **/
+
+            if (countNumbers >= 10)
+                formattedPIS = $"{numberPis.Substring(0, 2)}.{numberPis.Substring(2, 5)}.{numberPis.Substring(7, 2)}-{numberPis.Substring(10)}";
             else if (countNumbers >= 7)
-                formattedPIS = $"{numberPis.Substring(0, 2)}.{numberPis.Substring(2, 7)}.{numberPis.Substring(7)}";
+                formattedPIS = $"{numberPis.Substring(0, 2)}.{numberPis.Substring(2, 5)}.{numberPis.Substring(7)}";
             else if (countNumbers >= 3)
                 formattedPIS = $"{numberPis.Substring(0, 2)}.{numberPis.Substring(2)}";
 
