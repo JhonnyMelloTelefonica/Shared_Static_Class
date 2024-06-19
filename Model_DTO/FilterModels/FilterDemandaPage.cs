@@ -22,6 +22,11 @@ namespace Shared_Static_Class.Model_DTO.FilterModels
         public bool Status_REPROVADO { get; set; } = false;
         public bool Status_APROVADO { get; set; } = false;
         public bool Status_REABRIR { get; set; } = false;
+        public bool Status_AGUARDANDO_OUTRA_AREA { get; set; } = false;
+        public bool Status_AGUARDANDO_ANALISTA { get; set; } = false;
+        public bool Status_AGUARDANDO_TREINAMENTO { get; set; } = false;
+        public bool Status_AGUARDANDO_CRIAÇÃO_DE_ACESSO { get; set; } = false;
+        public bool Status_DEVOLVIDO_PARA_SOLICITANTE { get; set; } = false;
 
     }
 }
