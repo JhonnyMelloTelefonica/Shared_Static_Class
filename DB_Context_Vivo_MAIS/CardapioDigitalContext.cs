@@ -54,63 +54,63 @@ public partial class CardapioDigitalContext : DbContext
         modelBuilder.Entity<ACESSOS_MOBILE>().ToTable("ACESSOS_MOBILE", t => t.ExcludeFromMigrations());
         modelBuilder.Entity<PERFIL_USUARIO>().ToTable("PERFIL_USUARIO", t => t.ExcludeFromMigrations());
 
-        var produtoId = Guid.NewGuid();
+        //var produtoId = Guid.NewGuid();
 
-        // Seed PRODUTOS_CARDAPIO
-        modelBuilder.Entity<PRODUTOS_CARDAPIO>().HasData(
-            new PRODUTOS_CARDAPIO
-            {
-                ID_PRODUTO = produtoId,
-                Nome = "Samsung A54 5G",
-                Descrição = "Apenas um Celular",
-                Avaliacao = 65,
-                Categoria = Categoria.SMARTPHONE,
-                Fabricante = "Samsung",
-                Cor = "Preta",
-                IsOferta = false,
-                Valor = 799.0m,
-                MaxParcelas = 24,
-                MaxParcelasSemJuros = 10,
-                DATA_INCLUSÃO = DateTime.Now,
-                DATA_MODIFICAÇÃO = DateTime.Now,
-                MAT_INCLUSÃO = 151191,
-                MAT_MODIFICAÇÃO = 151191
-            });
+        //// Seed PRODUTOS_CARDAPIO
+        //modelBuilder.Entity<PRODUTOS_CARDAPIO>().HasData(
+        //    new PRODUTOS_CARDAPIO
+        //    {
+        //        ID_PRODUTO = produtoId,
+        //        Nome = "Samsung A54 5G",
+        //        Descrição = "Apenas um Celular",
+        //        Avaliacao = 65,
+        //        Categoria = Categoria.SMARTPHONE,
+        //        Fabricante = "Samsung",
+        //        Cor = "Preta",
+        //        IsOferta = false,
+        //        Valor = 799.0m,
+        //        MaxParcelas = 24,
+        //        MaxParcelasSemJuros = 10,
+        //        DATA_INCLUSÃO = DateTime.Now,
+        //        DATA_MODIFICAÇÃO = DateTime.Now,
+        //        MAT_INCLUSÃO = 151191,
+        //        MAT_MODIFICAÇÃO = 151191
+        //    });
 
-        modelBuilder.Entity<FICHA_TECNICA>().HasData(
-            new FICHA_TECNICA
-            {
-                ID_FICHA = Guid.NewGuid(),
-                ID_PRODUTO = produtoId,
-                Especificação = "Tela",
-                Valor = "6.5 polegadas",
-                IsImportant = true,
-                IsInfoAdicional = false
-            },
-            new FICHA_TECNICA
-            {
-                ID_FICHA = Guid.NewGuid(),
-                ID_PRODUTO = produtoId,
-                Especificação = "Memória",
-                Valor = "128GB",
-                IsImportant = true,
-                IsInfoAdicional = false
-            }
-        );
+        //modelBuilder.Entity<FICHA_TECNICA>().HasData(
+        //    new FICHA_TECNICA
+        //    {
+        //        ID_FICHA = Guid.NewGuid(),
+        //        ID_PRODUTO = produtoId,
+        //        Especificação = "Tela",
+        //        Valor = "6.5 polegadas",
+        //        IsImportant = true,
+        //        IsInfoAdicional = false
+        //    },
+        //    new FICHA_TECNICA
+        //    {
+        //        ID_FICHA = Guid.NewGuid(),
+        //        ID_PRODUTO = produtoId,
+        //        Especificação = "Memória",
+        //        Valor = "128GB",
+        //        IsImportant = true,
+        //        IsInfoAdicional = false
+        //    }
+        //);
         
-        string folderPath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "FilesTemplates/CardapioDigital");
-        List<PRODUTO_IMAGEM> imagens = [];
-        for (int i = 1; i < 6; i++)
-        {
-            imagens.Add(new PRODUTO_IMAGEM
-            {
-                ID_IMAGEM = Guid.NewGuid(),
-                ID_PRODUTO = produtoId,
-                Imagem = SharedConverter.CompressFile(File.ReadAllBytes(Path.Combine(folderPath, $"A54{i}.jpg")))
-            });
-        }
+        //string folderPath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "FilesTemplates/CardapioDigital");
+        //List<PRODUTO_IMAGEM> imagens = [];
+        //for (int i = 1; i < 6; i++)
+        //{
+        //    imagens.Add(new PRODUTO_IMAGEM
+        //    {
+        //        ID_IMAGEM = Guid.NewGuid(),
+        //        ID_PRODUTO = produtoId,
+        //        Imagem = SharedConverter.CompressFile(File.ReadAllBytes(Path.Combine(folderPath, $"A54{i}.jpg")))
+        //    });
+        //}
 
-        modelBuilder.Entity<PRODUTO_IMAGEM>().HasData(imagens);
+        //modelBuilder.Entity<PRODUTO_IMAGEM>().HasData(imagens);
 
 
         modelBuilder.Entity<PRODUTOS_CARDAPIO>(entity =>

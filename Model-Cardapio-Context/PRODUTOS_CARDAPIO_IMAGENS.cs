@@ -16,6 +16,16 @@ namespace Shared_Static_Class.Data;
 [Table("PRODUTOS_CARDAPIO_IMAGENS", Schema = "Cardapio")]
 public partial class PRODUTO_IMAGEM
 {
+    public PRODUTO_IMAGEM()
+    {
+    }
+
+    public PRODUTO_IMAGEM(byte[] imagem, Guid? id_produto = null)
+    {
+        ID_PRODUTO = id_produto ?? Guid.Empty;
+        Imagem = imagem;
+    }
+
     [Key]
     public Guid ID_IMAGEM { get; set; }
     public Guid ID_PRODUTO { get; set; }

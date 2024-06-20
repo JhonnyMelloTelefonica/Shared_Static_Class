@@ -16,6 +16,31 @@ namespace Shared_Static_Class.Data;
 [Table("PRODUTOS_CARDAPIO", Schema = "Cardapio")]
 public partial class PRODUTOS_CARDAPIO
 {
+    public PRODUTOS_CARDAPIO()
+    {
+    }
+
+    public PRODUTOS_CARDAPIO(string nome, string descrição, int avaliacao, Categoria categoria, string fabricante, string cor, bool isOferta, decimal valor, int maxParcelas, int maxParcelasSemJuros, DateTime dATA_INCLUSÃO, DateTime dATA_MODIFICAÇÃO, int mAT_INCLUSÃO, int mAT_MODIFICAÇÃO, List<FICHA_TECNICA> ficha, List<PRODUTO_IMAGEM> imagens, Guid? id_produto = null)
+    {
+        ID_PRODUTO = id_produto ?? Guid.Empty;
+        Nome = nome;
+        Descrição = descrição;
+        Avaliacao = avaliacao;
+        Categoria = categoria;
+        Fabricante = fabricante;
+        Cor = cor;
+        IsOferta = isOferta;
+        Valor = valor;
+        MaxParcelas = maxParcelas;
+        MaxParcelasSemJuros = maxParcelasSemJuros;
+        DATA_INCLUSÃO = dATA_INCLUSÃO;
+        DATA_MODIFICAÇÃO = dATA_MODIFICAÇÃO;
+        MAT_INCLUSÃO = mAT_INCLUSÃO;
+        MAT_MODIFICAÇÃO = mAT_MODIFICAÇÃO;
+        Ficha = ficha;
+        Imagens = imagens;
+    }
+
     [Key]
     public Guid ID_PRODUTO { get; set; }
     [MaxLength(255)]

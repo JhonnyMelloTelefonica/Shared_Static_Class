@@ -16,6 +16,19 @@ namespace Shared_Static_Class.Data;
 [Table("PRODUTOS_CARDAPIO_FICHA_TECNICA", Schema = "Cardapio")]
 public partial class FICHA_TECNICA
 {
+    public FICHA_TECNICA()
+    {
+    }
+
+    public FICHA_TECNICA(string especificação, string valor, bool isImportant, bool isInfoAdicional, Guid? id_produto = null)
+    {
+        ID_PRODUTO = id_produto ?? Guid.Empty;
+        Especificação = especificação;
+        Valor = valor;
+        IsImportant = isImportant;
+        IsInfoAdicional = isInfoAdicional;  
+    }
+
     [Key]
     public Guid ID_FICHA { get; set; }
     public Guid ID_PRODUTO { get; set; }
