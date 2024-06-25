@@ -19,6 +19,6 @@ namespace Shared_Static_Class.Models
         public List<Canal> Canal { get; set; } = [];
         public List<Cargos> Cargos { get; set; } = [];
         public bool APROVACAO { get; set; }
-        public IReadOnlyList<DateTime?> DT_SOLICITACAO { get; set; } = new List<DateTime?>();
+        public IReadOnlyList<DateTime?> DT_SOLICITACAO { get; set; } = [];
     }
 }
