@@ -20,13 +20,13 @@ public partial class PRODUTOS_CARDAPIO
     {
     }
 
-    public PRODUTOS_CARDAPIO(string nome, string descrição, int avaliacao, Categoria categoria, string fabricante, string cor, bool isOferta, decimal valor, int maxParcelas, int maxParcelasSemJuros, DateTime dATA_INCLUSÃO, DateTime dATA_MODIFICAÇÃO, int mAT_INCLUSÃO, int mAT_MODIFICAÇÃO, List<FICHA_TECNICA> ficha, List<PRODUTO_IMAGEM> imagens, Guid? id_produto = null)
+    public PRODUTOS_CARDAPIO(string nome, string descrição, int avaliacao, Categoria_Produto categoria, string fabricante, string cor, bool isOferta, decimal valor, int maxParcelas, int maxParcelasSemJuros, DateTime dATA_INCLUSÃO, DateTime dATA_MODIFICAÇÃO, int mAT_INCLUSÃO, int mAT_MODIFICAÇÃO, List<FICHA_TECNICA> ficha, List<PRODUTO_IMAGEM> imagens, Guid? id_produto = null)
     {
         ID_PRODUTO = id_produto ?? Guid.Empty;
         Nome = nome;
         Descrição = descrição;
         Avaliacao = avaliacao;
-        Categoria = categoria;
+        Categoria_Produto = categoria;
         Fabricante = fabricante;
         Cor = cor;
         IsOferta = isOferta;
@@ -49,7 +49,7 @@ public partial class PRODUTOS_CARDAPIO
     public string Descrição { get; set; }
     [Range(0, 100)]
     public int Avaliacao { get; set; }
-    public Categoria Categoria { get; set; }
+    public Categoria_Produto Categoria_Produto { get; set; }
     public string Fabricante { get; set; }
     public string Cor { get; set; }
     public bool IsOferta { get; set; } = false;
@@ -66,7 +66,7 @@ public partial class PRODUTOS_CARDAPIO
     public List<PRODUTO_IMAGEM> Imagens { get; set; } = [];
 }
 
-public enum Categoria
+public enum Categoria_Produto
 {
     SMARTPHONE,
     NOTEBOOK,

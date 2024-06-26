@@ -20,22 +20,38 @@ public partial class FICHA_TECNICA
     {
     }
 
-    public FICHA_TECNICA(string especificação, string valor, bool isImportant, bool isInfoAdicional, Guid? id_produto = null)
+    public FICHA_TECNICA(string especificação, string valor, bool isImportant, bool isInfoAdicional, Categoria_Especificação categoria, Guid? id_produto = null)
     {
         ID_PRODUTO = id_produto ?? Guid.Empty;
         Especificação = especificação;
         Valor = valor;
         IsImportant = isImportant;
-        IsInfoAdicional = isInfoAdicional;  
+        IsInfoAdicional = isInfoAdicional;
+        Categoria_Especificação = categoria;
     }
 
     [Key]
     public Guid ID_FICHA { get; set; }
     public Guid ID_PRODUTO { get; set; }
     public string Especificação { get; set; }
+    public Categoria_Especificação Categoria_Especificação { get; set; } = Categoria_Especificação.GENÉRICO;
     public string Valor { get; set; }
     public bool IsImportant { get; set; } = false;
     public bool IsInfoAdicional { get; set; } = false;
     public PRODUTOS_CARDAPIO Produto { get; set; }   
+}
 
+public enum Categoria_Especificação
+{
+    REDE,
+    TELA,
+    CÂMERA, 
+    VÍDEO,
+    CONECTIVIDADE,
+    SENSORES,
+    FUNÇÕES,
+    BATERIA,
+    ARMAZENAMENTO,
+    PROCESSADOR,
+    GENÉRICO
 }

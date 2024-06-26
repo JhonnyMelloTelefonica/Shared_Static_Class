@@ -23,9 +23,9 @@ namespace Shared_Static_Class.Model_DTO
         public string Descrição { get; set; } = string.Empty;
         [Range(0, 100, ErrorMessage = "A Avaliação tem que estar entre 0 e 100")]
         public int Avaliacao { get; set; } = 0;
-        [EnumDataType(typeof(Categoria), ErrorMessage = "Este valor não é válido para este campo")]
+        [EnumDataType(typeof(Categoria_Produto), ErrorMessage = "Este valor não é válido para este campo")]
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        public Categoria Categoria { get; set; }
+        public Categoria_Produto Categoria { get; set; }
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string Fabricante { get; set; } = string.Empty;
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
@@ -61,18 +61,21 @@ namespace Shared_Static_Class.Model_DTO
     }
     public class FichaTecnicaDTO
     {
-        public FichaTecnicaDTO(string especificação, string valor, bool isImportant, bool isInfoAdicional)
+        public FichaTecnicaDTO(string especificação, string valor, bool isImportant, bool isInfoAdicional, Categoria_Especificação categoria = Categoria_Especificação.GENÉRICO)
         {
             Especificação = especificação;
             Valor = valor;
             IsImportant = isImportant;
             IsInfoAdicional = isInfoAdicional;
+            Categoria = categoria;
         }
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
         public string Especificação { get; set; } = string.Empty;
         [Required(ErrorMessage = "Este campo é obrigatório")]
         public string Valor { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Este campo é obrigatório")]
+        public Categoria_Especificação Categoria { get; set; } = Categoria_Especificação.GENÉRICO;
         public bool IsImportant { get; set; } = false;
         public bool IsInfoAdicional { get; set; } = false;
     }
@@ -94,7 +97,7 @@ namespace Shared_Static_Class.Model_DTO
     public class GenericProperties
     {
         public string Tipo { get; set; } = string.Empty;
-        public Categoria Categoria_tipo { get; set; }
+        public Categoria_Produto Categoria_tipo { get; set; }
         public List<string> Propriedades { get; set; } = [];
     }
 }
