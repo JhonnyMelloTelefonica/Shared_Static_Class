@@ -12,13 +12,13 @@ namespace Shared_Static_Class.Model_DTO
         public class FILTROS_PROVA_REALIZADA_DTO
         {
             public required int Matricula_Criador { get; set; }
-            public List<string> TP_FORMS { get; set; } = new();
-            public List<DateTime> PeriodoCriacao { get; set; } = new List<DateTime>() { DateTime.Today.AddDays(-30), DateTime.Today };
-            public List<DateTime> PeriodoInicio { get; set; } = new List<DateTime>() { DateTime.Today.AddDays(-30), DateTime.Today };
-            public List<DateTime> PeriodoFinalizacao { get; set; } = new List<DateTime>() { DateTime.Today.AddDays(-30), DateTime.Today };
+            public List<string> TP_FORMS { get; set; } = [];
+            public IReadOnlyList<DateTime?> PeriodoInicioAprovacao { get; set; } = [ DateTime.Today.AddMonths(-2), DateTime.Today ];
+            public IReadOnlyList<DateTime?> PeriodoFinalizacao { get; set; } = [DateTime.Today.AddMonths(-2), DateTime.Today ];
             public bool? FIXA { get; set; }
             public required string REGIONAL { get; set; } = string.Empty;
             public bool? ELEGIVEL { get; set; }
+            public int Caderno { get; set; } = 0;
         }
 
         public class PROVA_REALIZADA_DTO
