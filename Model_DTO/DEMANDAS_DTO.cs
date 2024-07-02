@@ -32,8 +32,6 @@ namespace Shared_Static_Class.Model_DTO
     {
         public int ID_TIPO_FILA { get; set; }
         public string NOME_TIPO_FILA { get; set; } = string.Empty;
-        public string REGIONAL { get; set; } = string.Empty;
-        public bool STATUS_TIPO_FILA { get; set; }
         public string? DESCRICAO { get; set; } = string.Empty;
         public List<DEMANDA_SUB_FILA_DTO> DEMANDA_SUB_FILAs { get; set; } = new();
     }
@@ -55,15 +53,13 @@ namespace Shared_Static_Class.Model_DTO
     {
         public int ID_SUB_FILA { get; set; }
         public string NOME_SUB_FILA { get; set; } = string.Empty;
-        public string REGIONAL { get; set; } = string.Empty;
         public string? DESCRICAO { get; set; } = string.Empty;
         public bool CAMPOS_AUTO { get; set; }
         public bool CAMPOS_IDENT_USER { get; set; }
-        public bool STATUS_SUB_FILA { get; set; }
-        public int ID_TIPO_FILA { get; set; }
-        public int? ID_ANTIGO { get; set; }
+        public int ID_TIPO_FILA { get; set; } = 0;
         public int SLA { get; set; }
-        public DEMANDA_TIPO_FILA ID_TIPO_FILANavigation { get; set; } = new();
+        [AllowNull]
+        public DEMANDA_TIPO_FILA? ID_TIPO_FILANavigation { get; set; } = null;
         public List<DEMANDA_CAMPOS_FILA_DTO> DEMANDA_CAMPOS_FILAs { get; set; } = new();
         public IEnumerable<ACESSOS_MOBILE_DTO>? Responsaveis { get; set; }
     }

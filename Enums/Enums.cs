@@ -70,10 +70,8 @@ namespace Shared_Static_Class.Converters
     {
         [Display(Name = "Baixa")]
         LEVE,
-
         [Display(Name = "Médio")]
         MEDIO,
-
         [Display(Name = "Alto")]
         ALTA 
     }
@@ -165,7 +163,6 @@ namespace Shared_Static_Class.Converters
         [Display(Name = "Selecione")] NULL = 0,
         [Display(Name = "MASCULINO")] M = 1,
         [Display(Name = "FEMININO")] F = 2,
-        [Display(Name = "OUTRO")] OUTRO = 3
     }
 
     public enum Canal_Acesso_Terceiro : int
@@ -182,7 +179,7 @@ namespace Shared_Static_Class.Converters
         [Display(Name = "VIVO")] VIVO = 1,
         [Display(Name = "OI")] OI = 2,
         [Display(Name = "CLARO")] CLARO = 3,
-        [Display(Name = "TIM")] TIM = 4,
+        [Display(Name = "TIM")] TIM = 4
     }
 
     public enum Funcao : int

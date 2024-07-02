@@ -58,6 +58,9 @@ public partial class DEMANDA_RELACAO_CHAMADO
     [InverseProperty("DEMANDANav")]
     [JsonIgnore]
     public virtual ICollection<CHAMADO_HISTORICO_PRIORIDADE> Historico_Prioridade { get; set; } = [];
+    [InverseProperty("Relacao_DEMANDA")]
+    [JsonIgnore]
+    public virtual ICollection<DEMANDA_OBSERVACOES_ANALISTAS> Observacoes { get; set; } = [];
 
     /** Tabelas de relação **/
     public enum Tabela_Demanda

@@ -42,6 +42,7 @@ public partial class DemandasContext : DbContext
     public virtual DbSet<DEMANDA_PARQUE> DEMANDA_PARQUE { get; set; }
     public virtual DbSet<DEMANDA_AVALIACAO_ANALISTA> DEMANDA_AVALIACAO_ANALISTA { get; set; }
     public virtual DbSet<DEMANDA_RELACAO_TREINAMENTO_FINALIZADO> DEMANDA_RELACAO_TREINAMENTO_FINALIZADO { get; set; }
+    public virtual DbSet<DEMANDA_OBSERVACOES_ANALISTAS> DEMANDA_OBSERVACOES_ANALISTAS { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -111,6 +112,7 @@ public partial class DemandasContext : DbContext
                 .HasForeignKey(pt => pt.MATRICULA_RESPONSAVEL)
                 .HasPrincipalKey(pk => pk.MATRICULA);
         });
+
         modelBuilder.Entity<DEMANDA_ACESSOS>(entity =>
         {
             entity.Property(e => e.Sexo)
@@ -119,6 +121,11 @@ public partial class DemandasContext : DbContext
             entity.Property(e => e.Acao)
                 .HasConversion<string>();
         });
+
+        modelBuilder.Entity<DEMANDA_OBSERVACOES_ANALISTAS>()
+            .HasOne(a => a.Analista).WithOne()
+            .HasForeignKey<DEMANDA_OBSERVACOES_ANALISTAS>(x => x.MAT_ANALISTA)
+            .HasPrincipalKey<ACESSOS_MOBILE>(x => x.MATRICULA);
 
         modelBuilder.Entity<DEMANDA_RELACAO_CHAMADO>(entity =>
         {

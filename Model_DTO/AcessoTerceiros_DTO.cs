@@ -71,10 +71,8 @@ namespace Shared_Static_Class.Model_DTO
         public string Matricula { get; set; } = string.Empty;
         public Funcao? Funcao { get; set; }
         public DateTime? RejeitarSenha { get; set; }
-        public string Status { get; set; } = string.Empty;
         public DateTime? DataStatus { get; set; }
         public DateTime? DataMatricula { get; set; }
-        public string Origem { get; set; } = string.Empty;
         public string PIS { get; set; } = string.Empty;
         public DateTime DATA_ABERTURA { get; set; }
         public ACESSOS_MOBILE Solicitante { get; set; } = new();
