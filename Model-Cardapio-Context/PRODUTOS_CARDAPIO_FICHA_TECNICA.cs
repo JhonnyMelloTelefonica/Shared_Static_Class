@@ -20,8 +20,9 @@ public partial class FICHA_TECNICA
     {
     }
 
-    public FICHA_TECNICA(string especificação, string valor, bool isImportant, bool isInfoAdicional, Categoria_Especificação categoria, Guid? id_produto = null)
+    public FICHA_TECNICA(string especificação, string valor, bool isImportant, bool isInfoAdicional, Categoria_Especificação categoria, Tipo_Valor_Ficha Tipovalor , Guid? id_produto = null)
     {
+        TipoValor = Tipovalor;
         ID_PRODUTO = id_produto ?? Guid.Empty;
         Especificação = especificação;
         Valor = valor;
@@ -38,7 +39,14 @@ public partial class FICHA_TECNICA
     public string Valor { get; set; }
     public bool IsImportant { get; set; } = false;
     public bool IsInfoAdicional { get; set; } = false;
+    public Tipo_Valor_Ficha TipoValor { get; set; } = Tipo_Valor_Ficha.STRING;
     public PRODUTOS_CARDAPIO Produto { get; set; }   
+}
+public enum Tipo_Valor_Ficha
+{
+    STRING,
+    NUMERO,
+    BOOLEANO
 }
 
 public enum Categoria_Especificação

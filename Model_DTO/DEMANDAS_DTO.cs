@@ -75,11 +75,7 @@ namespace Shared_Static_Class.Model_DTO
         public bool STATUS_CAMPOS_FILA { get; set; } = true;
         public bool CamposFromDatabase { get; set; } = true;
         public List<DEMANDA_VALORES_CAMPOS_SUSPENSO_DTO> DEMANDA_VALORES_CAMPOS_SUSPENSOs { get; set; } = new();
-        public List<string>? selectedValues
-        {
-            get;
-            set;
-        }
+        public bool IsSelected { get; set; } = false;
     }
 
     public partial class DEMANDA_VALORES_CAMPOS_SUSPENSO_DTO
@@ -202,6 +198,7 @@ namespace Shared_Static_Class.Model_DTO
         public int MATRICULA_SOLICITANTE { get; set; }
         public int MATRICULA_RESPONSAVEL { get; set; }
         public bool Selected { get; private set; } = false;
+        public string NewObs { get; set; } = string.Empty;
         public void SetSelected() => Selected = !Selected;
         public bool PRIORIDADE { get; set; }
         public bool PRIORIDADE_SEGMENTO { get; set; }  /* Coluna se aplica apenas a DEMANDAS */
