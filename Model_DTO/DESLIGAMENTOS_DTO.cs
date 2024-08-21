@@ -17,7 +17,6 @@ namespace Shared_Static_Class.Model_DTO
         public DateTime DATA_ABERTURA { get; set; }
         public string REGIONAL { get; set; } = string.Empty;
         public int Matricula { get; set; }
-        public string Login { get; set; } = string.Empty;
         public string Nome { get; set; } = string.Empty;
         public string Cpf
         {

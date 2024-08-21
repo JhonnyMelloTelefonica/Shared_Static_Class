@@ -45,6 +45,13 @@ namespace Shared_Static_Class.Converters
             else if (countnumbers >= 4)
                 cpf = $"{numbercpf.Substring(0, 3)}.{numbercpf.Substring(3)}";
 
+            // Ensure the formatted CNPJ does not exceed the maximum length
+            if (cpf.Length > 14)
+            {
+                cpf = cpf.Substring(0, 14);
+            }
+
+
             return cpf;
         }
 
