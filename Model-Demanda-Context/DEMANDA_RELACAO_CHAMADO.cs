@@ -27,7 +27,7 @@ public partial class DEMANDA_RELACAO_CHAMADO
     [Required]
     public Tabela_Demanda Tabela { get; set; }
     public string LastStatus { get; set; }
-
+    public string REGIONAL { get; set; } = string.Empty;
     /** Tabelas de relação **/
     [InverseProperty("Relacao")]
     public virtual DEMANDA_CHAMADO? ChamadoRelacao { get; set; } = null;
