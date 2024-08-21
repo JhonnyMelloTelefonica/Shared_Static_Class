@@ -61,13 +61,14 @@ namespace Shared_Static_Class.Model_DTO
     }
     public class FichaTecnicaDTO
     {
-        public FichaTecnicaDTO(string especificação, string valor, bool isImportant, bool isInfoAdicional, Categoria_Especificação categoria = Categoria_Especificação.GENÉRICO)
+        public FichaTecnicaDTO(string especificação, string valor, bool isImportant, bool isInfoAdicional, Categoria_Especificação categoria = Categoria_Especificação.GENÉRICO, Tipo_Valor_Ficha tipoValor = Tipo_Valor_Ficha.STRING)
         {
             Especificação = especificação;
             Valor = valor;
             IsImportant = isImportant;
             IsInfoAdicional = isInfoAdicional;
             Categoria = categoria;
+            TipoValor = tipoValor;
         }
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
@@ -76,6 +77,7 @@ namespace Shared_Static_Class.Model_DTO
         public string Valor { get; set; } = string.Empty;
         [Required(ErrorMessage = "Este campo é obrigatório")]
         public Categoria_Especificação Categoria { get; set; } = Categoria_Especificação.GENÉRICO;
+        public Tipo_Valor_Ficha TipoValor { get; set; } = Tipo_Valor_Ficha.STRING;
         public bool IsImportant { get; set; } = false;
         public bool IsInfoAdicional { get; set; } = false;
     }

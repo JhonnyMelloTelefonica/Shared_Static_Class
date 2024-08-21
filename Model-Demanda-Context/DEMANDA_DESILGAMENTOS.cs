@@ -34,8 +34,6 @@ public partial class DEMANDA_DESLIGAMENTOS
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public int Matricula { get; set; }
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
-    public string Login { get; set; } = string.Empty;
-    [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string Nome { get; set; } = string.Empty;
     [Required(ErrorMessage = "Campo {0} é obrigatório")]
     public string Cpf
