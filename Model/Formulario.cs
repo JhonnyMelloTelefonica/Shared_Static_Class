@@ -149,7 +149,7 @@ namespace Shared_Static_Class.Models
             {
                 if (RESPOSTA_ESCOLHIDA)
                 {
-                    return "list-group-item";
+                    return "list-group-item divSelected";
                 }
                 else
                 {
