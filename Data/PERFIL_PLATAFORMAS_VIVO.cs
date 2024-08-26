@@ -6,21 +6,44 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace Shared_Static_Class.Data;
-
-[Table("PERFIL_PLATAFORMAS_VIVO")]
-public partial class PERFIL_PLATAFORMAS_VIVO
+namespace Shared_Static_Class.Data
 {
-    [Key]
-    public int ID_PERFIL { get; set; }
 
-    [StringLength(100)]
-    [Unicode(false)]
-    public string Perfil { get; set; }
+    [Table("PERFIL_PLATAFORMAS_VIVO")]
+    public class PERFIL_PLATAFORMAS_VIVO
+    {
+        public PERFIL_PLATAFORMAS_VIVO(int iD_PERFIL, string perfil, string obs, string cARGO)
+        {
+            ID_PERFIL = iD_PERFIL;
+            Perfil = perfil;
+            this.obs = obs;
+            CARGO = cARGO;
+        }
 
-    [Unicode(false)]
-    public string obs { get; set; }
+        [Key]
+        public int ID_PERFIL { get; set; }
 
-    [Unicode(false)]
-    public string CARGO { get; set; }
+        [StringLength(100)]
+        [Unicode(false)]
+        public string Perfil { get; set; }
+
+        [Unicode(false)]
+        public string obs { get; set; }
+
+        [Unicode(false)]
+        public string CARGO { get; set; }
+    }
+    public partial class PERFIL_PLATAFORMAS_VIVO_DISSMISS : PERFIL_PLATAFORMAS_VIVO
+    {
+        public PERFIL_PLATAFORMAS_VIVO_DISSMISS(int iD_PERFIL, string perfil, string obs, string cARGO, bool isDismissible = true) : base(iD_PERFIL, perfil, obs, cARGO)
+        {
+            ID_PERFIL = iD_PERFIL;
+            Perfil = perfil;
+            this.obs = obs;
+            CARGO = cARGO;
+            IsDismissible = isDismissible;
+        }
+
+        public bool IsDismissible { get; set; } = true;
+    }
 }

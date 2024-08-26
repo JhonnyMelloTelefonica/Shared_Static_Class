@@ -2,6 +2,7 @@
 using FluentValidation.Internal;
 using FluentValidation.Results;
 using FluentValidation.Validators;
+using Microsoft.EntityFrameworkCore;
 using Shared_Static_Class.Converters;
 using Shared_Static_Class.Data;
 using Shared_Static_Class.Model_DTO;
