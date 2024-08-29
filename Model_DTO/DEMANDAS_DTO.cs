@@ -255,6 +255,7 @@ namespace Shared_Static_Class.Model_DTO
         public string REGIONAL { get; set; } = string.Empty;
         public DEMANDA_PARQUE? Has_Cliente_Valor { get; set; }
         public ACESSOS_MOBILE_DTO? RESPONSAVEL_OUTRA_AREA { get; set; }
+        public DEMANDA_RELACAO_CHAMADO Relacao { get; set; } = null;
         public IEnumerable<DEMANDA_CHAMADO_RESPOSTA_DTO> Respostas { get; set; } = [];
         public IEnumerable<DEMANDA_CAMPOS_CHAMADO> Campos { get; set; } = [];
         public ACESSOS_MOBILE_DTO? Responsavel { get; set; }
