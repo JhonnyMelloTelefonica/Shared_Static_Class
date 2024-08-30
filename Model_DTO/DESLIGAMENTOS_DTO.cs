@@ -27,6 +27,7 @@ namespace Shared_Static_Class.Model_DTO
             }
         }
         private string _cpf = string.Empty;
+        public DEMANDA_RELACAO_CHAMADO Relacao { get; set; } = null;
         public ACESSOS_MOBILE Solicitante { get; set; } = new();
         public ACESSOS_MOBILE? Responsavel { get; set; } = null;
         public IEnumerable<DEMANDA_CHAMADO_RESPOSTA_DTO> Respostas { get; set; } = [];

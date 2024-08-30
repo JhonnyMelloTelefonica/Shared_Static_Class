@@ -26,8 +26,8 @@ namespace Shared_Static_Class.Model_DTO
         public Acao? Acao { get; set; }
         public bool IsMatriculaRequired => Acao.HasValue ? Acao.Value == Converters.Acao.INCLUSÃO : false;
         public string Adabas { get; set; } = string.Empty;
-        public string Nome { get; set; }= string.Empty;
-        public string Sobrenome { get; set; }= string.Empty;
+        public string Nome { get; set; } = string.Empty;
+        public string Sobrenome { get; set; } = string.Empty;
         public Genero? Sexo { get; set; }
         public string Cpf
         {
@@ -75,6 +75,7 @@ namespace Shared_Static_Class.Model_DTO
         public DateTime? DataMatricula { get; set; }
         public string PIS { get; set; } = string.Empty;
         public DateTime DATA_ABERTURA { get; set; }
+        public DEMANDA_RELACAO_CHAMADO Relacao { get; set; } = null;
         public ACESSOS_MOBILE Solicitante { get; set; } = new();
         public IEnumerable<DEMANDA_CHAMADO_RESPOSTA_DTO> Respostas { get; set; } = [];
         public ACESSOS_MOBILE? Responsavel { get; set; } = null;
