@@ -61,7 +61,7 @@ namespace Shared_Static_Class.Model_DTO
         [AllowNull]
         public DEMANDA_TIPO_FILA? ID_TIPO_FILANavigation { get; set; } = null;
         public List<DEMANDA_CAMPOS_FILA_DTO> DEMANDA_CAMPOS_FILAs { get; set; } = new();
-        public IEnumerable<ACESSOS_MOBILE_DTO>? Responsaveis { get; set; }
+        public IEnumerable<ACESSOS_MOBILE_DTO> Responsaveis { get; set; } = [];
     }
 
     public partial class DEMANDA_CAMPOS_FILA_DTO
