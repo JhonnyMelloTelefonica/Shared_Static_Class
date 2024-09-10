@@ -1,7 +1,7 @@
 ﻿using Shared_Static_Class.Data;
 using Shared_Class_Vivo_Apps.ModelDTO;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     public class SingleQuestionModel
     {

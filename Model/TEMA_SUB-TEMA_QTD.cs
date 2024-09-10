@@ -1,4 +1,4 @@
-﻿namespace Shared_Static_Class.Models
+﻿namespace Shared_Razor_Components.FundamentalModels
 {
     public class TEMA_SUB_TEMA_QTD
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using PropertyChanged;
 using Shared_Static_Class.Data;
-using Shared_Static_Class.Models;
+using Shared_Razor_Components.FundamentalModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

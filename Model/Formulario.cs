@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using Shared_Static_Class.Data;
-using Shared_Static_Class.Models;
+using Shared_Razor_Components.FundamentalModels;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     public partial class Formulario
     {

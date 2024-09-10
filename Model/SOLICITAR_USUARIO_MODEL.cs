@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Shared_Static_Class.Converters;
 using Shared_Static_Class.Data;
 using Shared_Static_Class.Model_DTO;
-using Shared_Static_Class.Models;
+using Shared_Razor_Components.FundamentalModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     public class SOLICITAR_USUARIO_MODEL : INotifyPropertyChanged
     {

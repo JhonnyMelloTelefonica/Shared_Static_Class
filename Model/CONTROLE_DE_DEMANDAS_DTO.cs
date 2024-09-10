@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Web.Helpers;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     public class DEMANDAS_FILA
     {

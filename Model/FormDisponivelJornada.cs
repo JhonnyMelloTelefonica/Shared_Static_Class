@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     public class FormDisponivelJornada
     {

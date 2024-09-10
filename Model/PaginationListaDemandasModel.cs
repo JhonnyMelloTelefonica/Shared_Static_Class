@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Web;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     public class PaginationListaDemandasModel
     {

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Shared_Static_Class.DB_Context_Vivo_MAIS;
 using Shared_Static_Class.Data;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     public partial class SequentialGuidGenerator : ValueGenerator<Guid>
     {

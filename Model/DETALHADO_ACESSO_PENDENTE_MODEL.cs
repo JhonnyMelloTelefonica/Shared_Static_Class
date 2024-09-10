@@ -2,9 +2,9 @@
 using Shared_Static_Class.Data;
 using Shared_Static_Class.Enums;
 using Shared_Static_Class.Model_DTO;
-using Shared_Static_Class.Models;
+using Shared_Razor_Components.FundamentalModels;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     public class DETALHADO_ACESSO_PENDENTE_MODEL
     {

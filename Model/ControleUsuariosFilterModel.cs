@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     public class ControleUsuariosFilterModel
     {

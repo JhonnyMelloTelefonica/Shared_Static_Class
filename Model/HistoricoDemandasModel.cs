@@ -3,7 +3,7 @@ using Shared_Static_Class.Data;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     public class HistoricoDemandasModel
     {

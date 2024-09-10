@@ -2,7 +2,7 @@
 using Shared_Static_Class.Data;
 using Shared_Static_Class.Model_DTO;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     public class ACESSOS_MOBILE_PENDENTE_DTO
     {

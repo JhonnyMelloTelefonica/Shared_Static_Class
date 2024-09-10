@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Shared_Static_Class.Data;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     [JsonObject]
     public class Perfil

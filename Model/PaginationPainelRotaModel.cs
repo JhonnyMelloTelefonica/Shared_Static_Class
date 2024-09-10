@@ -6,7 +6,7 @@ using System.Runtime.ConstrainedExecution;
 using Newtonsoft.Json;
 using System.Web;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     
     public class PaginationPainelRotaModel

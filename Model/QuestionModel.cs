@@ -4,7 +4,7 @@ using Shared_Class_Vivo_Apps.ModelDTO;
 using Shared_Static_Class.Converters;
 using Shared_Static_Class.Model_DTO;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     public class QuestionModel
     {

@@ -1,7 +1,7 @@
 ﻿
 using Shared_Static_Class.Converters;
 using Shared_Static_Class.Enums;
-using Shared_Static_Class.Models;
+using Shared_Razor_Components.FundamentalModels;
 using System.Data;
 using System.Net.NetworkInformation;
 using static System.Net.Mime.MediaTypeNames;

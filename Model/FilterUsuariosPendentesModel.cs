@@ -1,7 +1,7 @@
 ﻿using Shared_Static_Class.Converters;
 using Shared_Static_Class.Enums;
 
-namespace Shared_Static_Class.Models
+namespace Shared_Razor_Components.FundamentalModels
 {
     public class FilterUsuariosPendentesModel
     {
