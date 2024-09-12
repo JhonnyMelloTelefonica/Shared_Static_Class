@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using Newtonsoft.Json;
 using Shared_Static_Class.Model_Demanda_Context;
+using Shared_Static_Class.Model_DTO;
 
 namespace Shared_Static_Class.Data;
 
