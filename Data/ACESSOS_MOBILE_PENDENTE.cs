@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +32,11 @@ public partial class ACESSOS_MOBILE_PENDENTE
     public int CARGO { get; set; }
 
     public int CANAL { get; set; }
+
+    [StringLength(15)]
+    [Unicode(false)]
+    [DefaultValue("(00) 00000-0000")]
+    public string? TELEFONE { get; set; } = "(00) 00000-0000";
 
     [Unicode(false)]
     public string NOME { get; set; }

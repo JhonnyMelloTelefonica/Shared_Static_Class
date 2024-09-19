@@ -15,7 +15,9 @@ namespace Shared_Static_Class.Converters
             var countnumbers = numbertelefone.Length;
 
             // Format as (XX) XXXX-XXXX or (XX) XXXXX-XXXX
-            if (countnumbers == 11)
+            if (countnumbers > 11)
+                telefone = $"({numbertelefone.Substring(0, 2)}) {numbertelefone.Substring(2, 5)}-{numbertelefone.Substring(8)}";
+            else if (countnumbers == 11)
                 telefone = $"({numbertelefone.Substring(0, 2)}) {numbertelefone.Substring(2, 5)}-{numbertelefone.Substring(7)}";
             else if (countnumbers == 10)
                 telefone = $"({numbertelefone.Substring(0, 2)}) {numbertelefone.Substring(2, 4)}-{numbertelefone.Substring(6)}";
@@ -25,6 +27,11 @@ namespace Shared_Static_Class.Converters
                 telefone = $"({numbertelefone.Substring(0, 2)}) {numbertelefone.Substring(2)}";
             else if (countnumbers == 2)
                 telefone = $"({numbertelefone.Substring(0, 2)})";
+
+            if (telefone.Length > 15)
+            {
+                telefone = telefone.Substring(0, 15);
+            }
 
             return telefone;
         }

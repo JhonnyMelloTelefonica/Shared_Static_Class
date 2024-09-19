@@ -32,7 +32,7 @@ namespace Shared_Static_Class.Model_DTO
             {
                 string message = string.Empty;
 
-                if (!string.IsNullOrEmpty(this.Titulo))
+                if (!string.IsNullOrEmpty(Titulo))
                 {
                     message += $"<h2><b>{Titulo}</b></h2>";
                 }
@@ -41,12 +41,13 @@ namespace Shared_Static_Class.Model_DTO
                 message += $"<p>{Corpo}</p>";
                 message += "<br>";
 
-                if (string.IsNullOrEmpty(this.Footer))
+                if (string.IsNullOrEmpty(Footer))
                 {
                     string DefaultFooter = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(),"FilesTemplates","htmlEmailModel.html"));
                     byte[] image1 = File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "FilesTemplates", "5g.png"));
-                    byte[] image2 = File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "FilesTemplates", "tdne.png"));
+                    byte[] image2 = File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "FilesTemplates", "icone-vivox.png"));
                     DefaultFooter = DefaultFooter.Replace("@@image1", $"data:image/png;base64,{Convert.ToBase64String(image1)}");
+                    DefaultFooter = DefaultFooter.Replace("@@image2", $"data:image/png;base64,{Convert.ToBase64String(image2)}");
                     message += DefaultFooter;
                 }
                 else

@@ -97,9 +97,28 @@ namespace Shared_Static_Class.Model_DTO
     {
         [JsonIgnore]
         private TextInfo textInfo = new CultureInfo("pt-br", false).TextInfo;
+
+        public ACESSOS_MOBILE_DTO()
+        {
+        }
+
+        public ACESSOS_MOBILE_DTO(string eMAIL, int mATRICULA, string tELEFONE, string rEGIONAL, Cargos cARGO, Canal cANAL, string pDV, string nOME, byte[] userAvatar)
+        {
+            EMAIL = eMAIL;
+            MATRICULA = mATRICULA;
+            TELEFONE = tELEFONE;
+            REGIONAL = rEGIONAL;
+            CARGO = cARGO;
+            CANAL = cANAL;
+            PDV = pDV;
+            NOME = nOME;
+            UserAvatar = userAvatar;
+        }
+
         public int ID { get; set; }
         public string EMAIL { get; set; } = string.Empty;
         public int MATRICULA { get; set; }
+        public string TELEFONE { get; set; } = string.Empty;
         public string REGIONAL { get; set; } = string.Empty;
         public Cargos CARGO { get; set; }
         public Canal CANAL { get; set; }

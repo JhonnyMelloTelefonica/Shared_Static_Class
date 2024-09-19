@@ -66,7 +66,7 @@ public partial class DEMANDA_RELACAO_CHAMADO
     /** Tabelas de relação **/
     public enum Tabela_Demanda
     {
-        [Display(Name = "Demanda")]
+        [Display(Name = "Controle de Demanda")]
         ChamadoRelacao = 1,
         [Display(Name = "Acesso")]
         AcessoRelacao = 2,
