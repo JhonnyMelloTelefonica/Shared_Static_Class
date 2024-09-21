@@ -5,63 +5,6 @@ namespace Shared_Static_Class.Converters
 {
     public static class DePara
     {
-        public static string CanalCargo(string cargo)
-        {
-            switch (cargo)
-            {
-                case "Guru":
-
-                    return "Loja Própria";
-
-                case "GGP":
-
-                    return "MultCanal";
-
-                case "Gerente Geral":
-
-                    return "Loja Própria";
-
-                case "GA":
-
-                    return "MultCanal";
-
-                case "GO":
-
-                    return "Loja Própria";
-
-                case "Supervisor PAP":
-
-                    return "PAP";
-
-                case "Vendedor PAP":
-
-                    return "PAP";
-
-                case "Gerente de Revenda":
-
-                    return "Revenda";
-
-                case "Vendedor Revenda":
-
-                    return "Revenda";
-
-                case "CN":
-
-                    return "Loja Própria";
-
-                case "Vendas_Adm":
-
-                    return "Adm_Consumer";
-
-                case "Adm_Consumer":
-
-                    return "Adm_Consumer";
-
-                default:
-
-                    return "";
-            }
-        }
 
         public static Canal CanalCargoEnum(Cargos cargo)
         {
@@ -150,6 +93,9 @@ namespace Shared_Static_Class.Converters
                 case Cargos.Gerente_Senior_Gestão_Vendas:
 
                     return Canal.Consumer;
+
+                case Cargos.Representante_de_vendas:
+                    return Canal.Distribuicao;
 
                 default:
 
