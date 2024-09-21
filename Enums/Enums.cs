@@ -99,6 +99,8 @@ namespace Shared_Static_Class.Converters
         Revenda = 4,
         [Display(Name = "Canal Vendas")]
         Canal_Vendas = 5,
+        [Display(Name = "Distribuição")]
+        Distribuicao = 6
     }
     public enum Cargos : int
     {
@@ -148,6 +150,8 @@ namespace Shared_Static_Class.Converters
         Gerente_Senior_Gestão_Vendas = 21,
         [Display(Name = "Analista de Suporte Comercial")]
         Analista_de_Suporte_Comercial = 22,
+        [Display(Name = "Representante de Vendas")]
+        Representante_de_vendas = 23
     }
     public enum Acao : int
     {

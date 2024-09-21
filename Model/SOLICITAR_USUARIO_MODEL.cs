@@ -46,6 +46,14 @@ namespace Shared_Razor_Components.FundamentalModels
             set => SetField(ref _email, value);
         }
         private string _email = string.Empty;
+        [MaxLength(15, ErrorMessage = "Número máximo de caracteres foi atingido, máximo : {1}")]
+        [MinLength(14, ErrorMessage = "Número minímo de caracteres não foi atingido, minímo : {1}")]
+        public string TELEFONE
+        {
+            get => _telefone;
+            set => SetField(ref _telefone, value);
+        }
+        private string _telefone;
         [Required(ErrorMessage = "Campo obrigatório")]
         [Range(0, 99999999, ErrorMessage = "Campo obrigatório")]
         [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Valor de matrícula inválido")]
@@ -215,8 +223,9 @@ namespace Shared_Razor_Components.FundamentalModels
 
         }
 
-        public SOLICITAR_USUARIO_MODEL(int id, string email, int matricula, string senha, string regional, int cargo, int? canal, string nome, string uf, string cpf, string pdv, bool fixa, string? tpAfastamento, bool? status, int ddd, bool elegivel, string tpStatus, byte[]? userAvatar)
+        public SOLICITAR_USUARIO_MODEL(string telefone, int id, string email, int matricula, string senha, string regional, int cargo, int? canal, string nome, string uf, string cpf, string pdv, bool fixa, string? tpAfastamento, bool? status, int ddd, bool elegivel, string tpStatus, byte[]? userAvatar)
         {
+            _telefone = telefone;
             _id = id;
             _email = email;
             _matricula = matricula;
@@ -261,24 +270,25 @@ namespace Shared_Razor_Components.FundamentalModels
             APROVACAO = aPROVACAO;
             TIPO = tIPO;
             DADOS_SOLICITACAO = new(
+                Model.TELEFONE,
                 Model.ID,
-            Model.EMAIL,
-            Model.MATRICULA,
-            Model.SENHA,
-            Model.REGIONAL,
-            Model.CARGO,
-            Model.CANAL,
-            Model.NOME,
-            Model.UF,
-            Model.CPF,
-            Model.PDV,
-            Model.FIXA,
-            Model.TP_AFASTAMENTO,
-            Model.STATUS,
-            Model.DDD,
-            Model.ELEGIVEL,
-            Model.TP_STATUS,
-            Model.UserAvatar);
+                Model.EMAIL,
+                Model.MATRICULA,
+                Model.SENHA,
+                Model.REGIONAL,
+                Model.CARGO,
+                Model.CANAL,
+                Model.NOME,
+                Model.UF,
+                Model.CPF,
+                Model.PDV,
+                Model.FIXA,
+                Model.TP_AFASTAMENTO,
+                Model.STATUS,
+                Model.DDD,
+                Model.ELEGIVEL,
+                Model.TP_STATUS,
+                Model.UserAvatar);
         }
         public SOLICITAR_USUARIO_MODEL DADOS_SOLICITACAO { get; set; }
         public int? ID_ACESSOS_MOBILE { get; set; } = null;

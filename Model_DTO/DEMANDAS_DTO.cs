@@ -96,7 +96,60 @@ namespace Shared_Static_Class.Model_DTO
     {
         [JsonIgnore]
         private TextInfo textInfo = new CultureInfo("pt-br", false).TextInfo;
+
+        public ACESSOS_MOBILE_DTO()
+        {
+        }
+
+        public ACESSOS_MOBILE_DTO(string eMAIL, int mATRICULA, string tELEFONE, string rEGIONAL, Cargos cARGO, Canal cANAL, string pDV, string nOME, byte[] userAvatar)
+        {
+            EMAIL = eMAIL;
+            MATRICULA = mATRICULA;
+            TELEFONE = tELEFONE;
+            REGIONAL = rEGIONAL;
+            CARGO = cARGO;
+            CANAL = cANAL;
+            PDV = pDV;
+            NOME = nOME;
+            UserAvatar = userAvatar;
+        }
+
         public int ID { get; set; }
+        public string EMAIL { get; set; } = string.Empty;
+        public int MATRICULA { get; set; }
+        public string TELEFONE { get; set; } = string.Empty;
+        public string REGIONAL { get; set; } = string.Empty;
+        public Cargos CARGO { get; set; }
+        public Canal CANAL { get; set; }
+        public string PDV { get; set; } = string.Empty;
+        public string NOME { get; set; } = string.Empty;
+        [JsonIgnore]
+        public string DISPLAY_NOME
+        {
+            get
+            {
+                var Listname = this.NOME.Split();
+                var name = Listname.FirstOrDefault();
+
+                if (Listname.Length > 1)
+                {
+                    name += " " + Listname.LastOrDefault();
+                }
+
+                return textInfo.ToTitleCase(name.ToLower());
+            }
+        }
+        [AllowNull]
+        public byte[] UserAvatar { get; set; } = null;
+        //public IEnumerable<DEMANDA_CHAMADO> DemandasResponsavel { get; set; } = [];
+        //public IEnumerable<DEMANDA_CHAMADO> DemandasSolicitadas { get; set; } = [];
+        public IEnumerable<PERFIL_USUARIO> Perfis { get; set; } = [];
+        public Controle_Demanda_role role { get; set; } = Controle_Demanda_role.BASICO;
+    }
+    public partial class ACESSOS_MOBILE_NO_RELATIONS
+    {
+        [JsonIgnore]
+        private TextInfo textInfo = new CultureInfo("pt-br", false).TextInfo;
         public string EMAIL { get; set; } = string.Empty;
         public int MATRICULA { get; set; }
         public string REGIONAL { get; set; } = string.Empty;
@@ -122,11 +175,6 @@ namespace Shared_Static_Class.Model_DTO
         }
         [AllowNull]
         public byte[] UserAvatar { get; set; } = null;
-        public IEnumerable<DEMANDA_CHAMADO> DemandasResponsavel { get; set; } = [];
-        public IEnumerable<DEMANDA_CHAMADO> DemandasSolicitadas { get; set; } = [];
-        public IEnumerable<PERFIL_USUARIO> Perfis { get; set; } = [];
-        public Controle_Demanda_role role { get; set; } = Controle_Demanda_role.BASICO;
-
     }
     public partial class ACESSOS_MOBILE_CHAT_DTO
     {
@@ -202,11 +250,11 @@ namespace Shared_Static_Class.Model_DTO
         public void SetSelected() => Selected = !Selected;
         public bool PRIORIDADE { get; set; }
         public bool PRIORIDADE_SEGMENTO { get; set; }  /* Coluna se aplica apenas a DEMANDAS */
-        public ACESSOS_MOBILE Solicitante { get; set; } = new();
-        public ACESSOS_MOBILE Responsavel { get; set; } = new();
+        public ACESSOS_MOBILE_NO_RELATIONS Solicitante { get; set; } = new();
+        public ACESSOS_MOBILE_NO_RELATIONS Responsavel { get; set; } = new();
         public PAINEL_DEMANDAS_CHAMADO_DTO? ChamadoRelacao { get; set; } = null;
-        public DEMANDA_ACESSOS? AcessoRelacao { get; set; } = null;
-        public DEMANDA_DESLIGAMENTOS? DesligamentoRelacao { get; set; } = null;
+        public DEMANDA_ACESSOS_PAINEL? AcessoRelacao { get; set; } = null;
+        public DEMANDA_DESLIGAMENTOS_PAINEL? DesligamentoRelacao { get; set; } = null;
         public IEnumerable<DEMANDA_CHAMADO_RESPOSTA> Respostas { get; set; } = [];
         public IEnumerable<DEMANDA_STATUS_CHAMADO> Status { get; set; } = [];
         public TimeSpan? SLA_TOTAL
@@ -216,30 +264,12 @@ namespace Shared_Static_Class.Model_DTO
                 return DateTime.Now - this.DATA_ABERTURA;
             }
         }
-        public TimeSpan? SLA_PRIMEIRA_RESPOSTA =>
-            (Respostas.Any()
-            && Respostas.Where(x => x.MATRICULA_RESPONSAVEL != Solicitante.MATRICULA).Any()) == true
-            ? (DateTime.Now - Respostas.Where(x => x.MATRICULA_RESPONSAVEL != Solicitante.MATRICULA)?.Min(x => x.DATA_RESPOSTA))
-            : null;
     }
 
     public partial class PAINEL_DEMANDAS_CHAMADO_DTO
     {
         public int ID { get; set; }
         public PAINEL_DEMANDA_SUB_FILA_DTO Fila { get; set; }
-        public DateTime? DATA_ABERTURA { get; set; }
-        public DateTime? DATA_FECHAMENTO { get; set; }
-        public string MOTIVO_FECHAMENTO_SUPORTE { get; set; }
-        public string PRIORIDADE { get; set; }
-        public string REGIONAL { get; set; }
-        public bool IsSelected { get; set; } = false;
-        public IEnumerable<DEMANDA_CHAMADO_RESPOSTA> Respostas { get; set; } = new List<DEMANDA_CHAMADO_RESPOSTA>();
-        public IEnumerable<DEMANDA_CAMPOS_CHAMADO> Campos { get; set; } = new List<DEMANDA_CAMPOS_CHAMADO>();
-        public IEnumerable<DEMANDA_STATUS_CHAMADO> Status { get; set; } = new List<DEMANDA_STATUS_CHAMADO>();
-        public ACESSOS_MOBILE_DTO? Resp_Outra_Area { get; set; }
-        public ACESSOS_MOBILE_DTO? Responsavel { get; set; }
-        public ACESSOS_MOBILE_DTO Solicitante { get; set; }
-
     }
 
     public partial class DEMANDAS_CHAMADO_DTO

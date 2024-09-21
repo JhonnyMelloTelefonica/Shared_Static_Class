@@ -20,12 +20,13 @@ public partial class PRODUTOS_CARDAPIO
     {
     }
 
-    public PRODUTOS_CARDAPIO(string nome, string descrição, int avaliacao, Categoria_Produto categoria, string fabricante, string cor, bool isOferta, decimal valor, int maxParcelas, int maxParcelasSemJuros, DateTime dATA_INCLUSÃO, DateTime dATA_MODIFICAÇÃO, int mAT_INCLUSÃO, int mAT_MODIFICAÇÃO, List<FICHA_TECNICA> ficha, List<PRODUTO_IMAGEM> imagens, Guid? id_produto = null)
+    public PRODUTOS_CARDAPIO(string nome, string descrição,List<ARGUMENTACAO_OURO> aRGUMENTACAO, PRODUTO_AVALIACAO avaliacao, Categoria_Produto categoria, string fabricante, string cor, bool isOferta, decimal valor, int maxParcelas, int maxParcelasSemJuros, DateTime dATA_INCLUSÃO, DateTime dATA_MODIFICAÇÃO, int mAT_INCLUSÃO, int mAT_MODIFICAÇÃO, List<FICHA_TECNICA> ficha, List<PRODUTO_IMAGEM> imagens, Guid? id_produto = null)
     {
         ID_PRODUTO = id_produto ?? Guid.Empty;
         Nome = nome;
         Descrição = descrição;
-        Avaliacao = avaliacao;
+        Avaliacao = avaliacao ?? new(0, false, 0, null, null);
+        Argumentacao = aRGUMENTACAO;
         Categoria_Produto = categoria;
         Fabricante = fabricante;
         Cor = cor;
@@ -47,12 +48,11 @@ public partial class PRODUTOS_CARDAPIO
     public string Nome { get; set; }
     [MaxLength(1200)]
     public string Descrição { get; set; }
-    [Range(0, 100)]
-    public int Avaliacao { get; set; }
     public Categoria_Produto Categoria_Produto { get; set; }
     public string Fabricante { get; set; }
     public string Cor { get; set; }
     public bool IsOferta { get; set; } = false;
+    [Precision(18, 2)]
     public decimal Valor { get; set; } = 0;
     public int MaxParcelas { get; set; } = 0;
     public int MaxParcelasSemJuros { get; set; } = 0;
@@ -64,6 +64,8 @@ public partial class PRODUTOS_CARDAPIO
     public ACESSOS_MOBILE Responsavel_Modificacao { get; set; }
     public List<FICHA_TECNICA> Ficha { get; set; } = [];
     public List<PRODUTO_IMAGEM> Imagens { get; set; } = [];
+    public List<ARGUMENTACAO_OURO> Argumentacao { get; set; } = [];
+    public PRODUTO_AVALIACAO Avaliacao { get; set; }
 }
 
 public enum Categoria_Produto

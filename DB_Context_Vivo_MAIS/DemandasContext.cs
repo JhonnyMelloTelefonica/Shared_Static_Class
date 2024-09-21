@@ -47,8 +47,6 @@ public partial class DemandasContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         optionsBuilder.UseSqlServer("Data Source=10.124.100.153;Initial Catalog=Vivo_MAIS;TrustServerCertificate=True;User ID=RegionalNE;Password=RegionalNEvivo2019;MultipleActiveResultSets=true"
             , o =>
             {
@@ -64,13 +62,13 @@ public partial class DemandasContext : DbContext
     {
         modelBuilder.UseCollation("Latin1_General_CI_AS");
 
-        modelBuilder.Entity<ACESSOS_MOBILE>().ToTable("ACESSOS_MOBILE", t => t.ExcludeFromMigrations());
+        //modelBuilder.Entity<ACESSOS_MOBILE>().ToTable("ACESSOS_MOBILE", t => t.ExcludeFromMigrations());
+        modelBuilder.Entity<PERFIL_USUARIO>().ToTable("PERFIL_USUARIO", t => t.ExcludeFromMigrations());
         modelBuilder.Entity<DEMANDA_SUB_FILA>().ToTable("DEMANDA_SUB_FILA", t => t.ExcludeFromMigrations());
         modelBuilder.Entity<DEMANDA_TIPO_FILA>().ToTable("DEMANDA_TIPO_FILA", t => t.ExcludeFromMigrations());
         modelBuilder.Entity<DEMANDA_CAMPOS_FILA>().ToTable("DEMANDA_CAMPOS_FILA", t => t.ExcludeFromMigrations());
-        modelBuilder.Entity<DEMANDA_VALORES_CAMPOS_SUSPENSO>().ToTable("DEMANDA_VALORES_CAMPOS_SUSPENSO", t => t.ExcludeFromMigrations());
         modelBuilder.Entity<DEMANDA_RESPONSAVEL_FILA>().ToTable("DEMANDA_RESPONSAVEL_FILA", t => t.ExcludeFromMigrations());
-        modelBuilder.Entity<PERFIL_USUARIO>().ToTable("PERFIL_USUARIO", t => t.ExcludeFromMigrations());
+        modelBuilder.Entity<DEMANDA_VALORES_CAMPOS_SUSPENSO>().ToTable("DEMANDA_VALORES_CAMPOS_SUSPENSO", t => t.ExcludeFromMigrations());
         modelBuilder.Entity<DEMANDA_BD_OPERADORE>().ToTable("DEMANDA_BD_OPERADORES", t => t.ExcludeFromMigrations());
 
         //modelBuilder.Entity<DEMANDA_ARQUIVOS_RESPOSTA>()
@@ -82,12 +80,12 @@ public partial class DemandasContext : DbContext
         modelBuilder.Entity<DEMANDA_CHAMADO>(entity =>
         {
             entity.HasOne(pt => pt.Solicitante)
-            .WithMany(t => t.DemandasSolicitadas)
+            .WithMany()
             .HasForeignKey(pt => pt.MATRICULA_SOLICITANTE)
             .HasPrincipalKey(pk => pk.MATRICULA);
 
             entity.HasOne(pt => pt.Responsavel)
-            .WithMany(t => t.DemandasResponsavel)
+            .WithMany()
             .HasForeignKey(pt => pt.MATRICULA_RESPONSAVEL)
             .HasPrincipalKey(pk => pk.MATRICULA);
 
@@ -110,7 +108,7 @@ public partial class DemandasContext : DbContext
                 .HasForeignKey<DEMANDA_STATUS_CHAMADO>(b => b.ID_RESPOSTA);
 
             entity.HasOne(pt => pt.Responsavel)
-                .WithMany(t => t.RespostasDemandas)
+                .WithMany()
                 .HasForeignKey(pt => pt.MATRICULA_RESPONSAVEL)
                 .HasPrincipalKey(pk => pk.MATRICULA);
         });
@@ -135,12 +133,12 @@ public partial class DemandasContext : DbContext
             .HasValueGenerator<SequentialGuidValueGenerator>();
 
             entity.HasOne(a => a.Solicitante)
-                .WithMany(b => b.DemandasTotais)
+                .WithMany()
                 .HasForeignKey(x => x.MATRICULA_SOLICITANTE)
                 .HasPrincipalKey(x => x.MATRICULA);
 
             entity.HasOne(a => a.Responsavel)
-                .WithMany(b => b.ResponsavelDemandasTotais)
+                .WithMany()
                 .HasForeignKey(x => x.MATRICULA_RESPONSAVEL)
                 .HasPrincipalKey(x => x.MATRICULA);
         });
@@ -155,7 +153,7 @@ public partial class DemandasContext : DbContext
 
         modelBuilder.Entity<DEMANDA_ACESSOS>()
             .HasOne(a => a.Solicitante)
-            .WithMany(b => b.AcessosSolicitados)
+            .WithMany()
             .HasForeignKey(x => x.MATRICULA_SOLICITANTE)
             .HasPrincipalKey(x => x.MATRICULA);
 

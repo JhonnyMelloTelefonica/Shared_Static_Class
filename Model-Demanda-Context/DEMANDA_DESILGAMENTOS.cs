@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using PropertyChanged;
 using Shared_Static_Class.Converters;
+using Shared_Static_Class.Model_DTO;
 
 namespace Shared_Static_Class.Data;
 
@@ -53,4 +54,13 @@ public partial class DEMANDA_DESLIGAMENTOS
     public virtual ACESSOS_MOBILE Solicitante { get; set; }
     [ForeignKey("MATRICULA_RESPONSAVEL")]
     public virtual ACESSOS_MOBILE? Responsavel { get; set; }
+}
+
+public partial class DEMANDA_DESLIGAMENTOS_PAINEL
+{
+    public int ID { get; set; }
+    public Guid ID_RELACAO { get; set; }
+    public int MATRICULA_SOLICITANTE { get; set; }
+    public int? MATRICULA_RESPONSAVEL { get; set; } = null;
+    public string REGIONAL { get; set; }
 }

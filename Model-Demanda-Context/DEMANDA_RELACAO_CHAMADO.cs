@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using Newtonsoft.Json;
 using Shared_Static_Class.Model_Demanda_Context;
+using Shared_Static_Class.Model_DTO;
 
 namespace Shared_Static_Class.Data;
 
@@ -65,7 +66,7 @@ public partial class DEMANDA_RELACAO_CHAMADO
     /** Tabelas de relação **/
     public enum Tabela_Demanda
     {
-        [Display(Name = "Demanda")]
+        [Display(Name = "Controle de Demanda")]
         ChamadoRelacao = 1,
         [Display(Name = "Acesso")]
         AcessoRelacao = 2,

@@ -11,6 +11,7 @@ using PropertyChanged;
 using Shared_Static_Class.Converters;
 using Shared_Static_Class.Enums;
 using Shared_Static_Class.Model_Demanda_Context;
+using Shared_Static_Class.Model_DTO;
 
 namespace Shared_Static_Class.Data;
 
@@ -139,7 +140,7 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     [AllowNull]
     public virtual DEMANDA_RELACAO_CHAMADO Relacao { get; set; } = new();
 
-    [ForeignKey("MATRICULA_SOLICITANTE")]
+    [ForeignKey("MATRICULA_SOLICITANTE")]   
     [JsonIgnore]
     [AllowNull]
     public virtual ACESSOS_MOBILE? Solicitante { get; set; }
@@ -148,4 +149,16 @@ public partial class DEMANDA_ACESSOS : INotifyPropertyChanged
     [JsonIgnore]
     [AllowNull]
     public virtual ACESSOS_MOBILE? Responsavel { get; set; }
+}
+
+public partial class DEMANDA_ACESSOS_PAINEL
+{
+    public int ID { get; set; }
+    public Acao Acao { get; set; } = Acao.INCLUSÃO;
+    public Guid ID_RELACAO { get; set; }
+    public string REGIONAL { get; set; } = string.Empty;
+    public DateTime DATA_ABERTURA { get; set; }
+    public int MATRICULA_SOLICITANTE { get; set; }
+    public int? MATRICULA_RESPONSAVEL { get; set; } = null;
+    public DateTime? DataExtracao { get; set; }
 }

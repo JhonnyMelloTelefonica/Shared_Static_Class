@@ -9,9 +9,9 @@ namespace Shared_Static_Class.Model_DTO.FilterModels
 {
     public class FilterDemandaPage
     {
-        public List<DEMANDA_TIPO_FILA_DTO> tipo_fila { get; set; } = [];
-        public List<DEMANDA_SUB_FILA_DTO> fila { get; set; } = [];
-        public List<ACESSOS_MOBILE_DTO> responsável { get; set; } = [];
+        public List<int> fila_macro { get; set; } = [];
+        public List<int> fila { get; set; } = [];
+        public List<int> responsável { get; set; } = [];
         public bool Demandas { get; set; } = true;
         public bool Acessos { get; set; } = true;
         public bool Desligamentos { get; set; } = true;

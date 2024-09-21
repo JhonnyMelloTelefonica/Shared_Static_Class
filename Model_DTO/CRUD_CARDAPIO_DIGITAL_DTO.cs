@@ -21,25 +21,36 @@ namespace Shared_Static_Class.Model_DTO
         [MaxLength(1200, ErrorMessage = "O Nome do produto tem o máximo de 1200 caracteres")]
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string Descrição { get; set; } = string.Empty;
-        [Range(0, 100, ErrorMessage = "A Avaliação tem que estar entre 0 e 100")]
-        public int Avaliacao { get; set; } = 0;
+
+        [ValidateComplexType]
+        [Required]
+        public AvaliacaoDTO Avaliacao { get; set; } = new();
+
+        [ValidateComplexType]
+        [Required]
+        public List<ArgumentacaoDTO> Argumentacao { get; set; } = [];
+
         [EnumDataType(typeof(Categoria_Produto), ErrorMessage = "Este valor não é válido para este campo")]
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public Categoria_Produto Categoria { get; set; }
+        
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string Fabricante { get; set; } = string.Empty;
+        
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string Cor { get; set; } = string.Empty;
         public bool IsOferta { get; set; } = false;
         public decimal Valor { get; set; } = 0;
         public int MaxParcelas { get; set; } = 0;
         public int MaxParcelasSemJuros { get; set; } = 0;
+        
         [ListHasElements<FichaTecnicaDTO>(mincount: 5, ErrorMessage = "É necessário no mínimo 5 valores")]
-        [ValidateObjectMembers]
         [ValidateComplexType]
+        [Required]
         public List<FichaTecnicaDTO> Ficha { get; set; } = [];
 
         [ListHasElements<ProdutoImageDTO>(mincount: 1, ErrorMessage = "É necessário no mínimo 1 imagem")]
+        [Required]
         public List<ProdutoImageDTO> Imagens { get; set; } = [];
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -53,12 +64,25 @@ namespace Shared_Static_Class.Model_DTO
 
             Ficha.Add(newficha);
         }
+        public void AddArg(ArgumentacaoDTO? newarg = null)
+        {
+            if (newarg == null)
+            {
+                newarg = new ArgumentacaoDTO(string.Empty,DateTime.Now,false,false);
+            }
+
+            Argumentacao.Add(newarg);
+        }
         public void RemoveInfo(FichaTecnicaDTO item)
         {
             Ficha.Remove(item);
         }
-
+        public void RemoveArg(ArgumentacaoDTO arg)
+        {
+            Argumentacao.Remove(arg);
+        }
     }
+
     public class FichaTecnicaDTO
     {
         public FichaTecnicaDTO(string especificação, string valor, bool isImportant, bool isInfoAdicional, Categoria_Especificação categoria = Categoria_Especificação.GENÉRICO, Tipo_Valor_Ficha tipoValor = Tipo_Valor_Ficha.STRING)
@@ -71,11 +95,12 @@ namespace Shared_Static_Class.Model_DTO
             TipoValor = tipoValor;
         }
 
-        [Required(ErrorMessage = "Este campo é obrigatório")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo é obrigatório")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Especificação { get; set; } = string.Empty;
-        [Required(ErrorMessage = "Este campo é obrigatório")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo é obrigatório")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Valor { get; set; } = string.Empty;
-        [Required(ErrorMessage = "Este campo é obrigatório")]
         public Categoria_Especificação Categoria { get; set; } = Categoria_Especificação.GENÉRICO;
         public Tipo_Valor_Ficha TipoValor { get; set; } = Tipo_Valor_Ficha.STRING;
         public bool IsImportant { get; set; } = false;
@@ -96,7 +121,62 @@ namespace Shared_Static_Class.Model_DTO
         public byte[] Image { get; set; } = null;
         public bool IsLoading { get; set; } = false;
     }
-    public class GenericProperties
+    public class AvaliacaoDTO
+    {
+        public AvaliacaoDTO(int avaliacao = 0 , int positionInRank = 0, bool isInHotSpot = false)
+        {
+            Avaliacao = avaliacao;
+            IsInHotSpot = isInHotSpot;
+            PositionInRank = positionInRank;
+        }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo é obrigatório")]
+        [Range(0, 100, ErrorMessage = "A avaliação tem que estar entre 0 e 100")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        public int Avaliacao { get; set; }
+        public bool IsInHotSpot { get; set; }
+        public int PositionInRank { get; set; }
+    }
+
+    public class ArgumentacaoDTO
+    {
+        public ArgumentacaoDTO(string argumentacao,DateTime data_mod, bool isGold = false, bool isBadCaracter = false, ACESSOS_MOBILE_DTO? resp = null)
+        {
+            Argumentacao = argumentacao;
+            IsGold = isGold;
+            IsBadCaracter = isBadCaracter;
+            Responsavel = resp;
+            Data_mod = data_mod;
+        }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo é obrigatório")]
+        [MaxLength(500, ErrorMessage = "As dicas de argumentação do produto tem o máximo de 500 caracteres")]
+        [MinLength(25, ErrorMessage = "As dicas de argumentação do produto tem o mínimo de 25 caracteres")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        public string Argumentacao { get; set; } = string.Empty;
+        public bool IsGold { get; set; }
+        public bool IsBadCaracter { get; set; }
+        public DateTime Data_mod { get; set; }
+        public ACESSOS_MOBILE_DTO? Responsavel { get; set; }
+        public List<Avaliacao_argumentacaoDTO> Avaliacoes_arg { get; set; } = [];
+    }
+
+    public class Avaliacao_argumentacaoDTO
+    {
+        public Avaliacao_argumentacaoDTO() { }
+        public Avaliacao_argumentacaoDTO(int avaliacao, bool isUtil = false)
+        {
+            Avaliacao = avaliacao;
+            IsUtil = isUtil;
+
+        }
+
+        [Range(0, 100)]
+        public int Avaliacao { get; set; }
+        public bool IsUtil { get; set; }
+    }
+
+        public class GenericProperties
     {
         public string Tipo { get; set; } = string.Empty;
         public Categoria_Produto Categoria_tipo { get; set; }
