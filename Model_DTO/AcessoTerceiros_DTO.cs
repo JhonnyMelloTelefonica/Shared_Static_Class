@@ -15,7 +15,6 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using JsonIgnoreAttribute = Newtonsoft.Json.JsonIgnoreAttribute;
 using static Shared_Static_Class.Data.DEMANDA_RELACAO_CHAMADO;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Shared_Static_Class.Model_DTO
 {
