@@ -15,7 +15,6 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using JsonIgnoreAttribute = Newtonsoft.Json.JsonIgnoreAttribute;
 using static Shared_Static_Class.Data.DEMANDA_RELACAO_CHAMADO;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -92,7 +91,7 @@ namespace Shared_Static_Class.Model_DTO
         public string CAMPO { get; set; } = string.Empty;
         public string MASCARA { get; set; } = string.Empty;
     }
-    [ValidateNever]
+
     public partial class ACESSOS_MOBILE_DTO
     {
         [JsonIgnore]
