@@ -80,12 +80,12 @@ public partial class DemandasContext : DbContext
         modelBuilder.Entity<DEMANDA_CHAMADO>(entity =>
         {
             entity.HasOne(pt => pt.Solicitante)
-            .WithMany(t => t.DemandasSolicitadas)
+            .WithMany()
             .HasForeignKey(pt => pt.MATRICULA_SOLICITANTE)
             .HasPrincipalKey(pk => pk.MATRICULA);
 
             entity.HasOne(pt => pt.Responsavel)
-            .WithMany(t => t.DemandasResponsavel)
+            .WithMany()
             .HasForeignKey(pt => pt.MATRICULA_RESPONSAVEL)
             .HasPrincipalKey(pk => pk.MATRICULA);
 
@@ -108,7 +108,7 @@ public partial class DemandasContext : DbContext
                 .HasForeignKey<DEMANDA_STATUS_CHAMADO>(b => b.ID_RESPOSTA);
 
             entity.HasOne(pt => pt.Responsavel)
-                .WithMany(t => t.RespostasDemandas)
+                .WithMany()
                 .HasForeignKey(pt => pt.MATRICULA_RESPONSAVEL)
                 .HasPrincipalKey(pk => pk.MATRICULA);
         });
@@ -133,12 +133,12 @@ public partial class DemandasContext : DbContext
             .HasValueGenerator<SequentialGuidValueGenerator>();
 
             entity.HasOne(a => a.Solicitante)
-                .WithMany(b => b.DemandasTotais)
+                .WithMany()
                 .HasForeignKey(x => x.MATRICULA_SOLICITANTE)
                 .HasPrincipalKey(x => x.MATRICULA);
 
             entity.HasOne(a => a.Responsavel)
-                .WithMany(b => b.ResponsavelDemandasTotais)
+                .WithMany()
                 .HasForeignKey(x => x.MATRICULA_RESPONSAVEL)
                 .HasPrincipalKey(x => x.MATRICULA);
         });
@@ -153,7 +153,7 @@ public partial class DemandasContext : DbContext
 
         modelBuilder.Entity<DEMANDA_ACESSOS>()
             .HasOne(a => a.Solicitante)
-            .WithMany(b => b.AcessosSolicitados)
+            .WithMany()
             .HasForeignKey(x => x.MATRICULA_SOLICITANTE)
             .HasPrincipalKey(x => x.MATRICULA);
 

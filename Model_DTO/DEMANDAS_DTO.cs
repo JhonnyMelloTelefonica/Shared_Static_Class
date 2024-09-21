@@ -142,8 +142,8 @@ namespace Shared_Static_Class.Model_DTO
         }
         [AllowNull]
         public byte[] UserAvatar { get; set; } = null;
-        public IEnumerable<DEMANDA_CHAMADO> DemandasResponsavel { get; set; } = [];
-        public IEnumerable<DEMANDA_CHAMADO> DemandasSolicitadas { get; set; } = [];
+        //public IEnumerable<DEMANDA_CHAMADO> DemandasResponsavel { get; set; } = [];
+        //public IEnumerable<DEMANDA_CHAMADO> DemandasSolicitadas { get; set; } = [];
         public IEnumerable<PERFIL_USUARIO> Perfis { get; set; } = [];
         public Controle_Demanda_role role { get; set; } = Controle_Demanda_role.BASICO;
     }

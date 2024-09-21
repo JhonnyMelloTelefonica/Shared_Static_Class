@@ -73,27 +73,27 @@ public partial class ACESSOS_MOBILE
 
     public int? TP_STATUS { get; set; }
 
-    [InverseProperty("Responsavel")]
-    [JsonIgnore]
-    public virtual ICollection<DEMANDA_CHAMADO>? DemandasResponsavel { get; set; } = [];
+    //[InverseProperty("Responsavel")]
+    //[JsonIgnore]
+    //public virtual ICollection<DEMANDA_CHAMADO>? DemandasResponsavel { get; set; } = [];
 
-    [InverseProperty("Solicitante")]
-    [JsonIgnore]
-    public virtual ICollection<DEMANDA_CHAMADO>? DemandasSolicitadas { get; set; } = [];
+    //[InverseProperty("Solicitante")]
+    //[JsonIgnore]
+    //public virtual ICollection<DEMANDA_CHAMADO>? DemandasSolicitadas { get; set; } = [];
 
-    [InverseProperty("Responsavel")]
-    [JsonIgnore]
-    public virtual ICollection<DEMANDA_CHAMADO_RESPOSTA>? RespostasDemandas { get; set; } = [];
+    //[InverseProperty("Responsavel")]
+    //[JsonIgnore]
+    //public virtual ICollection<DEMANDA_CHAMADO_RESPOSTA>? RespostasDemandas { get; set; } = [];
 
-    [InverseProperty("Solicitante")]
-    [JsonIgnore]
-    public virtual ICollection<DEMANDA_ACESSOS>? AcessosSolicitados { get; set; } = [];
+    //[InverseProperty("Solicitante")]
+    //[JsonIgnore]
+    //public virtual ICollection<DEMANDA_ACESSOS>? AcessosSolicitados { get; set; } = [];
 
-    [InverseProperty("Solicitante")]
-    [JsonIgnore]
-    public virtual ICollection<DEMANDA_RELACAO_CHAMADO>? DemandasTotais { get; set; } = [];
+    //[InverseProperty("Solicitante")]
+    //[JsonIgnore]
+    //public virtual ICollection<DEMANDA_RELACAO_CHAMADO>? DemandasTotais { get; set; } = [];
 
-    [InverseProperty("Responsavel")]
-    [JsonIgnore]
-    public virtual ICollection<DEMANDA_RELACAO_CHAMADO>? ResponsavelDemandasTotais { get; set; } = [];
+    //[InverseProperty("Responsavel")]
+    //[JsonIgnore]
+    //public virtual ICollection<DEMANDA_RELACAO_CHAMADO>? ResponsavelDemandasTotais { get; set; } = [];
 }
