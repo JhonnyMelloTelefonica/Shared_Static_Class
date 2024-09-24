@@ -20,11 +20,11 @@ namespace Shared_Static_Class.Converters
                         {
                             gzipStream.CopyTo(decompressedStream);
                             decompressedBytes = decompressedStream.ToArray();
+                            return decompressedBytes;
                         }
                     }
                 }
 
-                return decompressedBytes;
             }
             catch
             {
@@ -44,11 +44,11 @@ namespace Shared_Static_Class.Converters
                         {
                             gzipStream.CopyTo(decompressedStream);
                             decompressedBytes = decompressedStream.ToArray();
+                            return Convert.ToBase64String(decompressedBytes);
                         }
                     }
                 }
 
-                return Convert.ToBase64String(decompressedBytes);
             }
             catch
             {
@@ -65,11 +65,11 @@ namespace Shared_Static_Class.Converters
                     using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionLevel.Optimal))
                     {
                         gzipStream.Write(Unconvertedfiles, 0, Unconvertedfiles.Length);
+                        compressedbytes = memoryStream.ToArray();
+                        return Convert.ToBase64String(compressedbytes);
                     }
-                    compressedbytes = memoryStream.ToArray();
                 }
 
-                return Convert.ToBase64String(compressedbytes);
             }
             catch
             {
@@ -86,11 +86,11 @@ namespace Shared_Static_Class.Converters
                     using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionLevel.Optimal))
                     {
                         gzipStream.Write(Unconvertedfiles, 0, Unconvertedfiles.Length);
-                    }
-                    compressedbytes = memoryStream.ToArray();
-                }
+                        compressedbytes = memoryStream.ToArray();
 
-                return compressedbytes;
+                        return compressedbytes;
+                    }
+                }
             }
             catch
             {

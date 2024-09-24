@@ -151,7 +151,9 @@ namespace Shared_Static_Class.Converters
         [Display(Name = "Analista de Suporte Comercial")]
         Analista_de_Suporte_Comercial = 22,
         [Display(Name = "Representante de Vendas")]
-        Representante_de_vendas = 23
+        Representante_de_vendas = 23,
+        [Display(Name = "Gerente de Área - PAP")]
+        Gerente_de_area_PAP = 24
     }
     public enum Acao : int
     {
