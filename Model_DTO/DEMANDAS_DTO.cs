@@ -139,8 +139,7 @@ namespace Shared_Static_Class.Model_DTO
                 return textInfo.ToTitleCase(name.ToLower());
             }
         }
-        [AllowNull]
-        public byte[] UserAvatar { get; set; } = null;
+        public byte[]? UserAvatar { get; set; } = null;
         //public IEnumerable<DEMANDA_CHAMADO> DemandasResponsavel { get; set; } = [];
         //public IEnumerable<DEMANDA_CHAMADO> DemandasSolicitadas { get; set; } = [];
         public IEnumerable<PERFIL_USUARIO> Perfis { get; set; } = [];
