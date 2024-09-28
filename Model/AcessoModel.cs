@@ -26,7 +26,7 @@ namespace Shared_Razor_Components.FundamentalModels
         public byte[]? UserAvatar { get; set; }
         public int? LOGIN_MOD { get; set; }
         public DateTime? DT_MOD { get; set; }
-        public IEnumerable<Perfil> Perfil { get; set; } = new List<Perfil>();
+        public IEnumerable<Perfil> Perfil { get; set; } = [];
         public bool IsMaster()
         {
             if (this.Perfil.Any(x=> x.Perfil_Plataforma.ID_PERFIL == 1)

@@ -11,6 +11,6 @@
         public List<int>? Sub_temas { get; set; } = new List<int>();
         public List<int>? Cargos { get; set; } = new List<int>();
         public IEnumerable<int>? Canal { get; set; } = new List<int>();
-        public bool? Status { get; set; } = null;
+        public bool? Status { get; set; } = true;
     }
 }

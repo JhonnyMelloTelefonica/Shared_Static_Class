@@ -12,6 +12,7 @@ namespace Shared_Razor_Components.FundamentalModels
         public string regional { get; set; }
         public IReadOnlyList<int> CARGO { get; set; } = new List<int>();
         public bool? FIXA { get; set; }
+        public bool STATUS { get; set; }
         public List<JORNADA_BD_ANSWER_ALTERNATIVA> ALTERNATIVAS { get; set; } = new();
         public int? matricula { get; set; }
     }
