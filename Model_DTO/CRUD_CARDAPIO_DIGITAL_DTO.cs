@@ -68,7 +68,7 @@ namespace Shared_Static_Class.Model_DTO
         {
             if (newarg == null)
             {
-                newarg = new ArgumentacaoDTO(string.Empty, DateTime.Now, false, false);
+                newarg = new ArgumentacaoDTO(string.Empty, DateTime.Now, 0, false, false);
             }
 
             Argumentacao.Add(newarg);
@@ -140,14 +140,17 @@ namespace Shared_Static_Class.Model_DTO
 
     public class ArgumentacaoDTO
     {
-        public ArgumentacaoDTO(string argumentacao, DateTime data_mod, bool isGold = false, bool isBadCaracter = false, Guid? id_argumentacao = null, ACESSOS_MOBILE_DTO? resp = null)
+        public ArgumentacaoDTO(string argumentacao, DateTime data_mod, int Media_arg, bool isGold = false, bool isBadCaracter = false, Guid? id_argumentacao = null, ACESSOS_MOBILE_DTO? resp = null)
         {
             Id_Argumentacao = id_argumentacao ?? Guid.Empty;
+            MediaAvaliacao = Media_arg;
             Argumentacao = argumentacao;
             IsGold = isGold;
             IsBadCaracter = isBadCaracter;
             Responsavel = resp;
             Data_mod = data_mod;
+            if (MediaAvaliacao > 0)
+                ActualAvaliacao = (int)Math.Round((MediaAvaliacao / 1000.0), 0);
         }
         public Guid Id_Argumentacao { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo é obrigatório")]
@@ -160,6 +163,8 @@ namespace Shared_Static_Class.Model_DTO
         public DateTime Data_mod { get; set; }
         public ACESSOS_MOBILE_DTO? Responsavel { get; set; }
         public List<Avaliacao_argumentacaoDTO> Avaliacoes_arg { get; set; } = [];
+        public int MediaAvaliacao { get; set; } = 0;
+        public int ActualAvaliacao { get; set; } = 0;
     }
 
     public class Avaliacao_argumentacaoDTO
@@ -169,7 +174,6 @@ namespace Shared_Static_Class.Model_DTO
         {
             Avaliacao = avaliacao;
             IsUtil = isUtil;
-
         }
 
         [Range(0, 100)]

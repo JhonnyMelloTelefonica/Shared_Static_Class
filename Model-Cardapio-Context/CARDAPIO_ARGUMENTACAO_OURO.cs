@@ -29,7 +29,6 @@ public partial class ARGUMENTACAO_OURO
         MATRICULA_RESPONSAVEL = mATRICULA_RESPONSAVEL;
         DT_MODIFICACAO = dT_MODIFICACAO;
         Avaliacoes = avaliacoes ?? [];
-        SetAvaliacaoArgumentacaoGeral();
     }
 
     [Key]
@@ -49,11 +48,4 @@ public partial class ARGUMENTACAO_OURO
     public PRODUTOS_CARDAPIO Produto { get; set; } = null;
     public ACESSOS_MOBILE Responsavel { get; set; } = null;
     public List<AVALIACAO_ARGUMENTACAO> Avaliacoes { get; set; } = [];
-    private int MediaAvaliacao { get; set; }
-    protected void SetAvaliacaoArgumentacaoGeral()
-    {
-        var count = Avaliacoes.Count;
-        var sumnotas = Avaliacoes.Sum(x => x.Avaliacao);
-        MediaAvaliacao = (int)Math.Round(((sumnotas / count) / 10.0) / 2, 0);
-    }
 }

@@ -16,9 +16,9 @@ namespace Shared_Static_Class.Data;
 public partial class AVALIACAO_ARGUMENTACAO
 {
     public AVALIACAO_ARGUMENTACAO() { }
-    public AVALIACAO_ARGUMENTACAO(int avaliacao, bool isUtil, int mATRICULA_RESPONSAVEL, DateTime dT_MODIFICACAO, Guid? id_Avaliacao_Argumentacao = null)
+    public AVALIACAO_ARGUMENTACAO(int avaliacao, bool isUtil, int mATRICULA_RESPONSAVEL, DateTime dT_MODIFICACAO, Guid? id_Argumentacao = null)
     {
-        ID_AVALIACAO_ARGUMENTACAO = id_Avaliacao_Argumentacao ?? Guid.Empty;
+        ID_ARGUMENTACAO = id_Argumentacao ?? Guid.Empty;
         Avaliacao = avaliacao;
         IsUtil = isUtil;
         MATRICULA_RESPONSAVEL = mATRICULA_RESPONSAVEL;
@@ -26,8 +26,8 @@ public partial class AVALIACAO_ARGUMENTACAO
     }
 
     [Key]
-    public Guid ID_ARGUMENTACAO { get; set; }
     public Guid ID_AVALIACAO_ARGUMENTACAO { get; set; }
+    public Guid ID_ARGUMENTACAO { get; set; }
     [Range(0, 100)]
     public int Avaliacao { get; set; }
     public bool IsUtil { get; set; }
