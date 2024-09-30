@@ -33,17 +33,17 @@ namespace Shared_Static_Class.Model_DTO
         [EnumDataType(typeof(Categoria_Produto), ErrorMessage = "Este valor não é válido para este campo")]
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public Categoria_Produto Categoria { get; set; }
-        
+
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string Fabricante { get; set; } = string.Empty;
-        
+
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string Cor { get; set; } = string.Empty;
         public bool IsOferta { get; set; } = false;
         public decimal Valor { get; set; } = 0;
         public int MaxParcelas { get; set; } = 0;
         public int MaxParcelasSemJuros { get; set; } = 0;
-        
+
         [ListHasElements<FichaTecnicaDTO>(mincount: 5, ErrorMessage = "É necessário no mínimo 5 valores")]
         [ValidateComplexType]
         [Required]
@@ -68,7 +68,7 @@ namespace Shared_Static_Class.Model_DTO
         {
             if (newarg == null)
             {
-                newarg = new ArgumentacaoDTO(string.Empty,DateTime.Now,false,false);
+                newarg = new ArgumentacaoDTO(string.Empty, DateTime.Now, false, false);
             }
 
             Argumentacao.Add(newarg);
@@ -123,7 +123,7 @@ namespace Shared_Static_Class.Model_DTO
     }
     public class AvaliacaoDTO
     {
-        public AvaliacaoDTO(int avaliacao = 0 , int positionInRank = 0, bool isInHotSpot = false)
+        public AvaliacaoDTO(int avaliacao = 0, int positionInRank = 0, bool isInHotSpot = false)
         {
             Avaliacao = avaliacao;
             IsInHotSpot = isInHotSpot;
@@ -140,15 +140,16 @@ namespace Shared_Static_Class.Model_DTO
 
     public class ArgumentacaoDTO
     {
-        public ArgumentacaoDTO(string argumentacao,DateTime data_mod, bool isGold = false, bool isBadCaracter = false, ACESSOS_MOBILE_DTO? resp = null)
+        public ArgumentacaoDTO(string argumentacao, DateTime data_mod, bool isGold = false, bool isBadCaracter = false, Guid? id_argumentacao = null, ACESSOS_MOBILE_DTO? resp = null)
         {
+            Id_Argumentacao = id_argumentacao ?? Guid.Empty;
             Argumentacao = argumentacao;
             IsGold = isGold;
             IsBadCaracter = isBadCaracter;
             Responsavel = resp;
             Data_mod = data_mod;
         }
-
+        public Guid Id_Argumentacao { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo é obrigatório")]
         [MaxLength(500, ErrorMessage = "As dicas de argumentação do produto tem o máximo de 500 caracteres")]
         [MinLength(25, ErrorMessage = "As dicas de argumentação do produto tem o mínimo de 25 caracteres")]
@@ -176,7 +177,7 @@ namespace Shared_Static_Class.Model_DTO
         public bool IsUtil { get; set; }
     }
 
-        public class GenericProperties
+    public class GenericProperties
     {
         public string Tipo { get; set; } = string.Empty;
         public Categoria_Produto Categoria_tipo { get; set; }

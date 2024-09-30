@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
@@ -73,10 +74,13 @@ public enum Categoria_Produto
     SMARTPHONE,
     NOTEBOOK,
     CONSOLE,
+    [Display(Name = "CASA INTELIGENTE")]
     CASA_INTELIGENTE,
     GAMES,
+    [Display(Name = "CUIDADO PESSOAL")]
     CUIDADO_PESSOAL,
     MODA,
     ACESSÓRIOS,
+    [Display(Name = "AÚDIO VÍDEO")]
     AÚDIO_VÍDEO
 }

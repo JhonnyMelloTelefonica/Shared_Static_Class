@@ -8,7 +8,6 @@ using System.Runtime.ConstrainedExecution;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Office.Interop.Excel;
 using Shared_Static_Class.Converters;
 using Shared_Static_Class.Data;
 using Shared_Static_Class.Model_Demanda_Context;
