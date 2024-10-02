@@ -88,4 +88,6 @@ public partial class ACESSOS_MOBILE_PENDENTE
     public bool? ELEGIVEL { get; set; }
 
     public byte[] UserAvatar { get; set; }
+
+    public ACESSOS_MOBILE Solicitante { get; set; } = null;
 }

@@ -3,7 +3,9 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Shared_Static_Class.Data;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Shared_Static_Class.DB_Context_Vivo_MAIS;
 
@@ -695,8 +697,13 @@ public partial class Vivo_MaisContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
     => optionsBuilder.UseSqlServer("Data Source=10.124.100.153;Initial Catalog=Vivo_MAIS;TrustServerCertificate=True;User ID=RegionalNE;Password=RegionalNEvivo2019;MultipleActiveResultSets=true"
-                //; MultipleActiveResultSets=true
-                , o => { o.UseCompatibilityLevel(120); o.CommandTimeout(36000); o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery); });
+    //; MultipleActiveResultSets=true
+                , o => { 
+                    o.UseCompatibilityLevel(120); 
+                    o.CommandTimeout(36000);
+                    o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                    o.MigrationsAssembly("Api Vivo Apps");
+                });
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -778,6 +785,10 @@ public partial class Vivo_MaisContext : DbContext
         modelBuilder.Entity<ACESSOS_MOBILE_PENDENTE>(entity =>
         {
             entity.HasKey(e => e.ID).HasName("PK__ACESSOS___3214EC27196F6B07");
+            entity.HasOne<ACESSOS_MOBILE>(x => x.Solicitante)
+            .WithOne()
+            .HasPrincipalKey<ACESSOS_MOBILE>(x => x.MATRICULA)
+            .HasForeignKey<ACESSOS_MOBILE_PENDENTE>(x => x.LOGIN_SOLICITANTE);
         });
 
         modelBuilder.Entity<ACESSO_PERMISSAO_MENU>(entity =>

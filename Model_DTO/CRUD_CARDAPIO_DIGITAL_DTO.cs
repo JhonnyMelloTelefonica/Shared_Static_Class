@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Shared_Static_Class.Model_DTO
 {
     [AddINotifyPropertyChangedInterface]
-    public class CreateProdutoDTO : INotifyPropertyChanged
+    public record CreateProdutoDTO : INotifyPropertyChanged
     {
         [MaxLength(255, ErrorMessage = "O Nome do produto tem o máximo de 255 caracteres")]
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
@@ -83,7 +83,7 @@ namespace Shared_Static_Class.Model_DTO
         }
     }
 
-    public class FichaTecnicaDTO
+    public record FichaTecnicaDTO
     {
         public FichaTecnicaDTO(string especificação, string valor, bool isImportant, bool isInfoAdicional, Categoria_Especificação categoria = Categoria_Especificação.GENÉRICO, Tipo_Valor_Ficha tipoValor = Tipo_Valor_Ficha.STRING)
         {
@@ -107,7 +107,7 @@ namespace Shared_Static_Class.Model_DTO
         public bool IsInfoAdicional { get; set; } = false;
     }
 
-    public class ProdutoImageDTO
+    public record ProdutoImageDTO
     {
         public ProdutoImageDTO(byte[] image, bool isloading, Guid? id = null)
         {
@@ -118,15 +118,14 @@ namespace Shared_Static_Class.Model_DTO
 
         public Guid? Id { get; set; } = null;
         [Required(ErrorMessage = "Imagem inválida")]
-        public byte[] Image { get; set; } = null;
+        public byte[] Image { get; set; }
         public bool IsLoading { get; set; } = false;
     }
-    public class AvaliacaoDTO
+    public record AvaliacaoDTO
     {
-        public AvaliacaoDTO(int avaliacao = 0, int positionInRank = 0, bool isInHotSpot = false)
+        public AvaliacaoDTO(int avaliacao = 0, int positionInRank = 0)
         {
             Avaliacao = avaliacao;
-            IsInHotSpot = isInHotSpot;
             PositionInRank = positionInRank;
         }
 
@@ -134,11 +133,10 @@ namespace Shared_Static_Class.Model_DTO
         [Range(0, 100, ErrorMessage = "A avaliação tem que estar entre 0 e 100")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public int Avaliacao { get; set; }
-        public bool IsInHotSpot { get; set; }
         public int PositionInRank { get; set; }
     }
 
-    public class ArgumentacaoDTO
+    public record ArgumentacaoDTO
     {
         public ArgumentacaoDTO(string argumentacao, DateTime data_mod, int Media_arg, bool isGold = false, bool isBadCaracter = false, Guid? id_argumentacao = null, ACESSOS_MOBILE_DTO? resp = null)
         {
@@ -150,7 +148,7 @@ namespace Shared_Static_Class.Model_DTO
             Responsavel = resp;
             Data_mod = data_mod;
             if (MediaAvaliacao > 0)
-                ActualAvaliacao = (int)Math.Round((MediaAvaliacao / 1000.0), 0);
+                ActualAvaliacao = MediaAvaliacao;
         }
         public Guid Id_Argumentacao { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo é obrigatório")]
@@ -167,7 +165,7 @@ namespace Shared_Static_Class.Model_DTO
         public int ActualAvaliacao { get; set; } = 0;
     }
 
-    public class Avaliacao_argumentacaoDTO
+    public record Avaliacao_argumentacaoDTO
     {
         public Avaliacao_argumentacaoDTO() { }
         public Avaliacao_argumentacaoDTO(int avaliacao, bool isUtil = false)

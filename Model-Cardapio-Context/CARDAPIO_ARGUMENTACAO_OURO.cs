@@ -48,4 +48,19 @@ public partial class ARGUMENTACAO_OURO
     public PRODUTOS_CARDAPIO Produto { get; set; } = null;
     public ACESSOS_MOBILE Responsavel { get; set; } = null;
     public List<AVALIACAO_ARGUMENTACAO> Avaliacoes { get; set; } = [];
+
+    public int SetAvaliacaoArgumentacaoGeral()
+    {
+        var count = Avaliacoes.Count;
+        var sumnotas = Avaliacoes.Sum(x => x.Avaliacao);
+
+        if (count > 0)
+        {
+            return (int)Math.Round((double)(sumnotas / count), 0);
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }

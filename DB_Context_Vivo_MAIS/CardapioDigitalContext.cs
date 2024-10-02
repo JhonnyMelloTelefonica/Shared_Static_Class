@@ -97,11 +97,10 @@ public partial class CardapioDigitalContext : DbContext
             new Data.PRODUTO_AVALIACAO
             {
                 //(28, false, 52, produtoId)
-                
+
                 ID_AVALIACAO = avaliacao,
                 ID_PRODUTO = produtoId,
                 Avaliacao = 28,
-                IsInHotSpot = false,
                 PositionInRank = 52,
             });
 
@@ -275,7 +274,12 @@ public partial class CardapioDigitalContext : DbContext
         });
 
         modelBuilder.Entity<ARGUMENTACAO_OURO>(entity =>
-        {   
+        {
+            entity.HasMany(x => x.Avaliacoes)
+               .WithOne(x => x.Argumentacao)
+               .HasForeignKey(x => x.ID_ARGUMENTACAO)
+               .OnDelete(DeleteBehavior.Cascade);
+
             entity.HasOne(x => x.Responsavel)
               .WithOne()
               .HasForeignKey<ARGUMENTACAO_OURO>(x => x.MATRICULA_RESPONSAVEL)
@@ -292,7 +296,7 @@ public partial class CardapioDigitalContext : DbContext
 
             entity.HasOne(x => x.Responsavel)
                 .WithOne()
-                .HasForeignKey<AVALIACAO_ARGUMENTACAO>(x=> x.MATRICULA_RESPONSAVEL)
+                .HasForeignKey<AVALIACAO_ARGUMENTACAO>(x => x.MATRICULA_RESPONSAVEL)
                 .HasPrincipalKey<ACESSOS_MOBILE>("MATRICULA")
                 .IsRequired();
         });

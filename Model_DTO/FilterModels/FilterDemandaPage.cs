@@ -9,6 +9,32 @@ namespace Shared_Static_Class.Model_DTO.FilterModels
 {
     public class FilterDemandaPage
     {
+        public FilterDemandaPage()
+        {
+        }
+
+        public FilterDemandaPage(List<int> fila_macro, List<int> fila, List<int> responsável, bool demandas, bool acessos, bool desligamentos, Acao acessoAcao, List<string> id_demandas, bool status_ABERTO, bool status_CANCELADO, bool status_REPROVADO, bool status_APROVADO, bool status_REABRIR, bool status_AGUARDANDO_OUTRA_AREA, bool status_AGUARDANDO_ANALISTA, bool status_AGUARDANDO_TREINAMENTO, bool status_AGUARDANDO_CRIAÇÃO_DE_ACESSO, bool status_DEVOLVIDO_PARA_SOLICITANTE)
+        {
+            this.fila_macro = fila_macro;
+            this.fila = fila;
+            this.responsável = responsável;
+            Demandas = demandas;
+            Acessos = acessos;
+            Desligamentos = desligamentos;
+            AcessoAcao = acessoAcao;
+            this.id_demandas = id_demandas;
+            Status_ABERTO = status_ABERTO;
+            Status_CANCELADO = status_CANCELADO;
+            Status_REPROVADO = status_REPROVADO;
+            Status_APROVADO = status_APROVADO;
+            Status_REABRIR = status_REABRIR;
+            Status_AGUARDANDO_OUTRA_AREA = status_AGUARDANDO_OUTRA_AREA;
+            Status_AGUARDANDO_ANALISTA = status_AGUARDANDO_ANALISTA;
+            Status_AGUARDANDO_TREINAMENTO = status_AGUARDANDO_TREINAMENTO;
+            Status_AGUARDANDO_CRIAÇÃO_DE_ACESSO = status_AGUARDANDO_CRIAÇÃO_DE_ACESSO;
+            Status_DEVOLVIDO_PARA_SOLICITANTE = status_DEVOLVIDO_PARA_SOLICITANTE;
+        }
+
         public List<int> fila_macro { get; set; } = [];
         public List<int> fila { get; set; } = [];
         public List<int> responsável { get; set; } = [];

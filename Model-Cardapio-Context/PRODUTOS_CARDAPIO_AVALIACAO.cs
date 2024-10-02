@@ -21,12 +21,11 @@ public partial class PRODUTO_AVALIACAO
     {
     }
 
-    public PRODUTO_AVALIACAO(int avaliacao, bool isInHotSpot, int positionInRank, Guid? id_avaliacao = null, Guid? id_produto = null)
+    public PRODUTO_AVALIACAO(int avaliacao, int positionInRank, Guid? id_avaliacao = null, Guid? id_produto = null)
     {
         ID_AVALIACAO = id_avaliacao ?? Guid.Empty;
         ID_PRODUTO = id_produto ?? Guid.Empty;
         Avaliacao = avaliacao;
-        IsInHotSpot = isInHotSpot;
         PositionInRank = positionInRank;
     }
 
@@ -35,11 +34,6 @@ public partial class PRODUTO_AVALIACAO
     public Guid ID_PRODUTO { get; set; }
     [Range(0, 100)]
     public int Avaliacao { get; set; }
-
-    /// <summary>
-    /// Define se o Produto está sendo muito vendido ou não.
-    /// </summary>
-    public bool IsInHotSpot { get; set; } = false;
     /// <summary>
     /// Posição no ranking, esta propriedade pode ser alterada rapidamente
     /// </summary>

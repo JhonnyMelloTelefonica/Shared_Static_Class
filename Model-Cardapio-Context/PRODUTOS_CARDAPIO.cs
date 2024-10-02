@@ -26,7 +26,7 @@ public partial class PRODUTOS_CARDAPIO
         ID_PRODUTO = id_produto ?? Guid.Empty;
         Nome = nome;
         Descrição = descrição;
-        Avaliacao = avaliacao ?? new(0, false, 0, null, null);
+        Avaliacao = avaliacao ?? new(0, 0, null, null);
         Argumentacao = aRGUMENTACAO;
         Categoria_Produto = categoria;
         Fabricante = fabricante;
