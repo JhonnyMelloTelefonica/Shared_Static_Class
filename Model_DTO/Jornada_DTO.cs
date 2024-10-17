@@ -13,12 +13,12 @@ namespace Shared_Static_Class.Model_DTO
         {
             public required int Matricula_Criador { get; set; }
             public List<string> TP_FORMS { get; set; } = [];
-            public IReadOnlyList<DateTime?> PeriodoInicioAprovacao { get; set; } = [ DateTime.Today.AddMonths(-2), DateTime.Today ];
-            public IReadOnlyList<DateTime?> PeriodoFinalizacao { get; set; } = [DateTime.Today.AddMonths(-2), DateTime.Today ];
+            public IReadOnlyList<DateTime?> PeriodoAbertura { get; set; } = [DateTime.Today.AddMonths(-1), DateTime.Today.AddMonths(1)];
             public bool? FIXA { get; set; }
             public required string REGIONAL { get; set; } = string.Empty;
             public bool? ELEGIVEL { get; set; }
             public int Caderno { get; set; } = 0;
+            public int ID_PROVA { get; set; } = 0;
         }
 
         public class PROVA_REALIZADA_DTO

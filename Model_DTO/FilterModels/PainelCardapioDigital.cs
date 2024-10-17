@@ -13,10 +13,10 @@ public class PainelCardapioDigital
     {
         this.search = search;
         this.avaliacao = avaliacao;
-        this.categorias = categorias;
-        this.especificações = especificações;
-        this.cor = cor;
-        this.fabricante = fabricante;
+        this.categorias = categorias ?? [];
+        this.especificações = especificações ?? [];
+        this.cor = cor ?? [];
+        this.fabricante = fabricante ?? [];
         IsOferta = isOferta;
         Valor = valor;
     }

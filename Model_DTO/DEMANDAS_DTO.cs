@@ -103,14 +103,14 @@ namespace Shared_Static_Class.Model_DTO
 
         public ACESSOS_MOBILE_DTO(string eMAIL, int mATRICULA, string tELEFONE, string rEGIONAL, Cargos cARGO, Canal cANAL, string pDV, string nOME, byte[] userAvatar)
         {
-            EMAIL = eMAIL;
+            EMAIL = eMAIL ?? string.Empty;
             MATRICULA = mATRICULA;
-            TELEFONE = tELEFONE;
-            REGIONAL = rEGIONAL;
+            TELEFONE = tELEFONE ?? string.Empty;
+            REGIONAL = rEGIONAL ?? string.Empty;
             CARGO = cARGO;
             CANAL = cANAL;
-            PDV = pDV;
-            NOME = nOME;
+            PDV = pDV ?? string.Empty;
+            NOME = nOME ?? string.Empty;
             UserAvatar = userAvatar;
         }
 

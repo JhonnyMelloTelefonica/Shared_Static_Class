@@ -66,180 +66,215 @@ public partial class CardapioDigitalContext : DbContext
         modelBuilder.Entity<DEMANDA_OBSERVACOES_ANALISTAS>().ToTable("DEMANDA_OBSERVACOES_ANALISTAS", t => t.ExcludeFromMigrations());
         modelBuilder.Entity<DEMANDA_DESLIGAMENTOS>().ToTable("DEMANDA_DESLIGAMENTOS", t => t.ExcludeFromMigrations());
 
-
-        var produtoId = Guid.NewGuid();
-
-        // Seed PRODUTOS_CARDAPIO
-        modelBuilder.Entity<PRODUTOS_CARDAPIO>().HasData(
-            new PRODUTOS_CARDAPIO
-            {
-                ID_PRODUTO = produtoId,
-                Nome = "Samsung A54 5G",
-                Descrição = "Apenas um Celular",
-                Categoria_Produto = Categoria_Produto.SMARTPHONE,
-                Fabricante = "Samsung",
-                Cor = "Preta",
-                IsOferta = false,
-                Valor = 799.0m,
-                MaxParcelas = 24,
-                MaxParcelasSemJuros = 10,
-                DATA_INCLUSÃO = DateTime.Now,
-                DATA_MODIFICAÇÃO = DateTime.Now,
-                MAT_INCLUSÃO = 151191,
-                MAT_MODIFICAÇÃO = 151191
-            });
-
-        var argumentacao1 = Guid.NewGuid();
-        var argumentacao2 = Guid.NewGuid();
-        var argumentacao3 = Guid.NewGuid();
-        var avaliacao = Guid.NewGuid();
-
-        modelBuilder.Entity<PRODUTO_AVALIACAO>().HasData(
-            new Data.PRODUTO_AVALIACAO
-            {
-                //(28, false, 52, produtoId)
-
-                ID_AVALIACAO = avaliacao,
-                ID_PRODUTO = produtoId,
-                Avaliacao = 28,
-                PositionInRank = 52,
-            });
-
-
-
-        modelBuilder.Entity<ARGUMENTACAO_OURO>().HasData(
-            new Data.ARGUMENTACAO_OURO
-            {
-                ID_ARGUMENTACAO = argumentacao1,
-                ID_PRODUTO = produtoId,
-                Argumentacao = "Este produto é ótimo para jogos ou uso casual",
-                IsGold = true,
-                IsBadCaracter = false,
-                MATRICULA_RESPONSAVEL = 151191,
-                DT_MODIFICACAO = DateTime.Now
-            },
-            new Data.ARGUMENTACAO_OURO
-            {
-                ID_PRODUTO = produtoId,
-                ID_ARGUMENTACAO = argumentacao2,
-                Argumentacao = "Este produto é péssimo para realizar ligações, jogue este celular no lixo!!",
-                IsGold = false,
-                IsBadCaracter = false,
-                MATRICULA_RESPONSAVEL = 151191,
-                DT_MODIFICACAO = DateTime.Now
-            },
-            new Data.ARGUMENTACAO_OURO
-            {
-                ID_PRODUTO = produtoId,
-                ID_ARGUMENTACAO = argumentacao3,
-                Argumentacao = "Não é recomendado que utilize este produto para lavar a louça!",
-                IsGold = true,
-                IsBadCaracter = true,
-                MATRICULA_RESPONSAVEL = 151191,
-                DT_MODIFICACAO = DateTime.Now
-            }
-        );
-
-        var avaliacaoargumentacao1 = Guid.NewGuid();
-        var avaliacaoargumentacao2 = Guid.NewGuid();
-        var avaliacaoargumentacao3 = Guid.NewGuid();
-
-        modelBuilder.Entity<AVALIACAO_ARGUMENTACAO>().HasData(
-            new Data.AVALIACAO_ARGUMENTACAO
-            {
-                ID_ARGUMENTACAO = argumentacao1,
-                ID_AVALIACAO_ARGUMENTACAO = avaliacaoargumentacao1,
-                Avaliacao = 97,
-                IsUtil = true,
-                MATRICULA_RESPONSAVEL = 25183,
-                DT_MODIFICACAO = DateTime.Now
-            },
-            //new Data.AVALIACAO_ARGUMENTACAO { Avaliacao = 47, IsUtil = false, MATRICULA_RESPONSAVEL = 25183, DT_MODIFICACAO = DateTime.Now, ID_ARGUMENTACAO = argumentacao1, ID_AVALIACAO_ARGUMENTACAO = new Guid() },
-            //new Data.AVALIACAO_ARGUMENTACAO { Avaliacao = 28, IsUtil = true, MATRICULA_RESPONSAVEL = 25183, DT_MODIFICACAO = DateTime.Now, ID_ARGUMENTACAO = argumentacao1, ID_AVALIACAO_ARGUMENTACAO = new Guid() },
-            new Data.AVALIACAO_ARGUMENTACAO { Avaliacao = 85, IsUtil = false, MATRICULA_RESPONSAVEL = 25183, DT_MODIFICACAO = DateTime.Now, ID_ARGUMENTACAO = argumentacao2, ID_AVALIACAO_ARGUMENTACAO = avaliacaoargumentacao2 },
-            //new Data.AVALIACAO_ARGUMENTACAO { Avaliacao = 34, IsUtil = true, MATRICULA_RESPONSAVEL = 25183, DT_MODIFICACAO = DateTime.Now, ID_ARGUMENTACAO = argumentacao2, ID_AVALIACAO_ARGUMENTACAO = new Guid() },
-            //new Data.AVALIACAO_ARGUMENTACAO { Avaliacao = 95, IsUtil = false, MATRICULA_RESPONSAVEL = 25183, DT_MODIFICACAO = DateTime.Now, ID_ARGUMENTACAO = argumentacao2, ID_AVALIACAO_ARGUMENTACAO = new Guid() },
-            //new Data.AVALIACAO_ARGUMENTACAO { Avaliacao = 43, IsUtil = true, MATRICULA_RESPONSAVEL = 25183, DT_MODIFICACAO = DateTime.Now, ID_ARGUMENTACAO = argumentacao3, ID_AVALIACAO_ARGUMENTACAO = new Guid() },
-            new Data.AVALIACAO_ARGUMENTACAO { Avaliacao = 19, IsUtil = false, MATRICULA_RESPONSAVEL = 25183, DT_MODIFICACAO = DateTime.Now, ID_ARGUMENTACAO = argumentacao3, ID_AVALIACAO_ARGUMENTACAO = avaliacaoargumentacao3 }
-        );
-
-        modelBuilder.Entity<FICHA_TECNICA>().HasData(
-            new FICHA_TECNICA
-            {
-                ID_FICHA = Guid.NewGuid(),
-                ID_PRODUTO = produtoId,
-                Especificação = "Tela",
-                Valor = "6.5 polegadas",
-                Categoria_Especificação = Categoria_Especificação.TELA,
-                IsImportant = true,
-                IsInfoAdicional = false
-            },
-            new FICHA_TECNICA
-            {
-                ID_FICHA = Guid.NewGuid(),
-                ID_PRODUTO = produtoId,
-                Especificação = "Tv",
-                Valor = "false",
-                Categoria_Especificação = Categoria_Especificação.FUNÇÕES,
-                IsImportant = true,
-                IsInfoAdicional = false
-            },
-            new FICHA_TECNICA
-            {
-                ID_FICHA = Guid.NewGuid(),
-                ID_PRODUTO = produtoId,
-                Especificação = "Mic. de Redução de Ruído",
-                Valor = "true",
-                Categoria_Especificação = Categoria_Especificação.SENSORES,
-                IsImportant = true,
-                IsInfoAdicional = false
-            },
-            new FICHA_TECNICA
-            {
-                ID_FICHA = Guid.NewGuid(),
-                ID_PRODUTO = produtoId,
-                Especificação = "Wi-Fi",
-                Valor = "802.11 a/b/g/n/ac/6/6E/7",
-                Categoria_Especificação = Categoria_Especificação.CONECTIVIDADE,
-                IsImportant = true,
-                IsInfoAdicional = false
-            },
-            new FICHA_TECNICA
-            {
-                ID_FICHA = Guid.NewGuid(),
-                ID_PRODUTO = produtoId,
-                Especificação = "NFC",
-                Valor = "true",
-                Categoria_Especificação = Categoria_Especificação.CONECTIVIDADE,
-                IsImportant = true,
-                IsInfoAdicional = false
-            },
-            new FICHA_TECNICA
-            {
-                ID_FICHA = Guid.NewGuid(),
-                ID_PRODUTO = produtoId,
-                Especificação = "Memória",
-                Categoria_Especificação = Categoria_Especificação.GENÉRICO,
-                Valor = "128GB",
-                IsImportant = true,
-                IsInfoAdicional = false
-            }
-        );
+        #region Insert Into Database
 
         string folderPath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "FilesTemplates/CardapioDigital");
-        List<PRODUTO_IMAGEM> imagens = [];
-        for (int i = 1; i < 6; i++)
+
+        var image1 = SharedConverter.CompressFile(File.ReadAllBytes(Path.Combine(folderPath, $"A541.jpg")));
+        var image2 = SharedConverter.CompressFile(File.ReadAllBytes(Path.Combine(folderPath, $"A542.jpg")));
+        var image3 = SharedConverter.CompressFile(File.ReadAllBytes(Path.Combine(folderPath, $"A543.jpg")));
+        var image4 = SharedConverter.CompressFile(File.ReadAllBytes(Path.Combine(folderPath, $"A544.jpg")));
+        var image5 = SharedConverter.CompressFile(File.ReadAllBytes(Path.Combine(folderPath, $"A545.jpg")));
+
+        for (int j = 0; j < 100; j++)
         {
+            Random rnd = new Random();
+            var produtoId = Guid.NewGuid();
+
+            // Seed PRODUTOS_CARDAPIO
+            modelBuilder.Entity<PRODUTOS_CARDAPIO>().HasData(
+                new PRODUTOS_CARDAPIO
+                {
+                    ID_PRODUTO = produtoId,
+                    Nome = "Samsung A54 5G",
+                    Descrição = "Apenas um Celular",
+                    Categoria_Produto = Categoria_Produto.SMARTPHONE,
+                    Fabricante = "Samsung",
+                    Cor = "Preta",
+                    IsOferta = false,
+                    Valor = rnd.Next(700, 10000),
+                    MaxParcelas = rnd.Next(1, 24),
+                    MaxParcelasSemJuros = rnd.Next(1, 10),
+                    DATA_INCLUSÃO = DateTime.Now,
+                    DATA_MODIFICAÇÃO = DateTime.Now,
+                    MAT_INCLUSÃO = 151191,
+                    MAT_MODIFICAÇÃO = 151191
+                });
+
+            var argumentacao1 = Guid.NewGuid();
+            var argumentacao2 = Guid.NewGuid();
+            var argumentacao3 = Guid.NewGuid();
+            var avaliacao = Guid.NewGuid();
+
+            modelBuilder.Entity<PRODUTO_AVALIACAO>().HasData(
+                new Data.PRODUTO_AVALIACAO
+                {
+                    //(28, false, 52, produtoId)
+
+                    ID_AVALIACAO = avaliacao,
+                    ID_PRODUTO = produtoId,
+                    Avaliacao = rnd.Next(0, 100),
+                    PositionInRank = j + 3,
+                });
+
+
+
+            modelBuilder.Entity<ARGUMENTACAO_OURO>().HasData(
+                new Data.ARGUMENTACAO_OURO
+                {
+                    ID_ARGUMENTACAO = argumentacao1,
+                    ID_PRODUTO = produtoId,
+                    Argumentacao = "Este produto é ótimo para jogos ou uso casual",
+                    IsGold = true,
+                    IsBadCaracter = false,
+                    MATRICULA_RESPONSAVEL = 151191,
+                    DT_MODIFICACAO = DateTime.Now
+                },
+                new Data.ARGUMENTACAO_OURO
+                {
+                    ID_PRODUTO = produtoId,
+                    ID_ARGUMENTACAO = argumentacao2,
+                    Argumentacao = "Este produto é péssimo para realizar ligações, jogue este celular no lixo!!",
+                    IsGold = false,
+                    IsBadCaracter = false,
+                    MATRICULA_RESPONSAVEL = 151191,
+                    DT_MODIFICACAO = DateTime.Now
+                },
+                new Data.ARGUMENTACAO_OURO
+                {
+                    ID_PRODUTO = produtoId,
+                    ID_ARGUMENTACAO = argumentacao3,
+                    Argumentacao = "Não é recomendado que utilize este produto para lavar a louça!",
+                    IsGold = true,
+                    IsBadCaracter = true,
+                    MATRICULA_RESPONSAVEL = 151191,
+                    DT_MODIFICACAO = DateTime.Now
+                }
+            );
+
+            var avaliacaoargumentacao1 = Guid.NewGuid();
+            var avaliacaoargumentacao2 = Guid.NewGuid();
+            var avaliacaoargumentacao3 = Guid.NewGuid();
+
+            modelBuilder.Entity<AVALIACAO_ARGUMENTACAO>().HasData(
+                new Data.AVALIACAO_ARGUMENTACAO
+                {
+                    ID_ARGUMENTACAO = argumentacao1,
+                    ID_AVALIACAO_ARGUMENTACAO = avaliacaoargumentacao1,
+                    Avaliacao = rnd.Next(0, 5),
+                    IsUtil = true,
+                    MATRICULA_RESPONSAVEL = 25183,
+                    DT_MODIFICACAO = DateTime.Now
+                },
+                //new Data.AVALIACAO_ARGUMENTACAO { Avaliacao = 47, IsUtil = false, MATRICULA_RESPONSAVEL = 25183, DT_MODIFICACAO = DateTime.Now, ID_ARGUMENTACAO = argumentacao1, ID_AVALIACAO_ARGUMENTACAO = new Guid() },
+                //new Data.AVALIACAO_ARGUMENTACAO { Avaliacao = 28, IsUtil = true, MATRICULA_RESPONSAVEL = 25183, DT_MODIFICACAO = DateTime.Now, ID_ARGUMENTACAO = argumentacao1, ID_AVALIACAO_ARGUMENTACAO = new Guid() },
+                new Data.AVALIACAO_ARGUMENTACAO { Avaliacao = rnd.Next(0, 5), IsUtil = false, MATRICULA_RESPONSAVEL = 25183, DT_MODIFICACAO = DateTime.Now, ID_ARGUMENTACAO = argumentacao2, ID_AVALIACAO_ARGUMENTACAO = avaliacaoargumentacao2 },
+                //new Data.AVALIACAO_ARGUMENTACAO { Avaliacao = 34, IsUtil = true, MATRICULA_RESPONSAVEL = 25183, DT_MODIFICACAO = DateTime.Now, ID_ARGUMENTACAO = argumentacao2, ID_AVALIACAO_ARGUMENTACAO = new Guid() },
+                //new Data.AVALIACAO_ARGUMENTACAO { Avaliacao = 95, IsUtil = false, MATRICULA_RESPONSAVEL = 25183, DT_MODIFICACAO = DateTime.Now, ID_ARGUMENTACAO = argumentacao2, ID_AVALIACAO_ARGUMENTACAO = new Guid() },
+                //new Data.AVALIACAO_ARGUMENTACAO { Avaliacao = 43, IsUtil = true, MATRICULA_RESPONSAVEL = 25183, DT_MODIFICACAO = DateTime.Now, ID_ARGUMENTACAO = argumentacao3, ID_AVALIACAO_ARGUMENTACAO = new Guid() },
+                new Data.AVALIACAO_ARGUMENTACAO { Avaliacao = rnd.Next(0, 5), IsUtil = false, MATRICULA_RESPONSAVEL = 25183, DT_MODIFICACAO = DateTime.Now, ID_ARGUMENTACAO = argumentacao3, ID_AVALIACAO_ARGUMENTACAO = avaliacaoargumentacao3 }
+            );
+
+            modelBuilder.Entity<FICHA_TECNICA>().HasData(
+                new FICHA_TECNICA
+                {
+                    ID_FICHA = Guid.NewGuid(),
+                    ID_PRODUTO = produtoId,
+                    Especificação = "Tela",
+                    Valor = "6.5 polegadas",
+                    Categoria_Especificação = Categoria_Especificação.TELA,
+                    IsImportant = true,
+                    IsInfoAdicional = false
+                },
+                new FICHA_TECNICA
+                {
+                    ID_FICHA = Guid.NewGuid(),
+                    ID_PRODUTO = produtoId,
+                    Especificação = "Tv",
+                    Valor = "false",
+                    Categoria_Especificação = Categoria_Especificação.FUNÇÕES,
+                    IsImportant = true,
+                    IsInfoAdicional = false
+                },
+                new FICHA_TECNICA
+                {
+                    ID_FICHA = Guid.NewGuid(),
+                    ID_PRODUTO = produtoId,
+                    Especificação = "Mic. de Redução de Ruído",
+                    Valor = "true",
+                    Categoria_Especificação = Categoria_Especificação.SENSORES,
+                    IsImportant = true,
+                    IsInfoAdicional = false
+                },
+                new FICHA_TECNICA
+                {
+                    ID_FICHA = Guid.NewGuid(),
+                    ID_PRODUTO = produtoId,
+                    Especificação = "Wi-Fi",
+                    Valor = "802.11 a/b/g/n/ac/6/6E/7",
+                    Categoria_Especificação = Categoria_Especificação.CONECTIVIDADE,
+                    IsImportant = true,
+                    IsInfoAdicional = false
+                },
+                new FICHA_TECNICA
+                {
+                    ID_FICHA = Guid.NewGuid(),
+                    ID_PRODUTO = produtoId,
+                    Especificação = "NFC",
+                    Valor = "true",
+                    Categoria_Especificação = Categoria_Especificação.CONECTIVIDADE,
+                    IsImportant = true,
+                    IsInfoAdicional = false
+                },
+                new FICHA_TECNICA
+                {
+                    ID_FICHA = Guid.NewGuid(),
+                    ID_PRODUTO = produtoId,
+                    Especificação = "Memória",
+                    Categoria_Especificação = Categoria_Especificação.GENÉRICO,
+                    Valor = "128GB",
+                    IsImportant = true,
+                    IsInfoAdicional = false
+                }
+            );
+
+
+            List<PRODUTO_IMAGEM> imagens = [];
+
             imagens.Add(new PRODUTO_IMAGEM
             {
                 ID_IMAGEM = Guid.NewGuid(),
                 ID_PRODUTO = produtoId,
-                Imagem = SharedConverter.CompressFile(File.ReadAllBytes(Path.Combine(folderPath, $"A54{i}.jpg")))
+                Imagem = image1
             });
+            imagens.Add(new PRODUTO_IMAGEM
+            {
+                ID_IMAGEM = Guid.NewGuid(),
+                ID_PRODUTO = produtoId,
+                Imagem = image2
+            });
+            imagens.Add(new PRODUTO_IMAGEM
+            {
+                ID_IMAGEM = Guid.NewGuid(),
+                ID_PRODUTO = produtoId,
+                Imagem = image3
+            });
+            imagens.Add(new PRODUTO_IMAGEM
+            {
+                ID_IMAGEM = Guid.NewGuid(),
+                ID_PRODUTO = produtoId,
+                Imagem = image4
+            });
+            imagens.Add(new PRODUTO_IMAGEM
+            {
+                ID_IMAGEM = Guid.NewGuid(),
+                ID_PRODUTO = produtoId,
+                Imagem = image5
+            });
+
+            modelBuilder.Entity<PRODUTO_IMAGEM>().HasData(imagens);
         }
-
-        modelBuilder.Entity<PRODUTO_IMAGEM>().HasData(imagens);
-
+        #endregion
 
         modelBuilder.Entity<PRODUTOS_CARDAPIO>(entity =>
         {
