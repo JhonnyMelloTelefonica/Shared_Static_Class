@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
+using System.Runtime.Versioning;
 
 namespace Shared_Static_Class.Model_ForumRTCZ_Context;
 
@@ -28,7 +29,9 @@ public class PUBLICACAO_SOLICITACAO
 
     [Key]
     public Guid ID_SOLICITACAO_PUBLICACAO { get; set; }
+    [Required(AllowEmptyStrings = false,ErrorMessage = "É necessário algum valor no campo de texto")]
     public string TEXT_PUBLICACAO { get; set; } = string.Empty;
+    [Range(1,130, ErrorMessage = "Por favor escolha um Tema válido")]
     public int SUB_TEMA { get; set; }
     public int MAT_RESPONSAVEL { get; set; }
     public DateTime HORA { get; set; }

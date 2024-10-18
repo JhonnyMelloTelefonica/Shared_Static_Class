@@ -31,8 +31,9 @@ public partial class RESPOSTA_PUBLICACAO
     public Guid ID_SOLICITACAO_PUBLICACAO { get; set; }
     public DateTime HORA { get; set; }
     public int MAT_SOLICITANTE { get; set; }
+    [Required(AllowEmptyStrings = false, ErrorMessage = "É necessário algum valor no campo de texto")] 
     public string TEXT_PUBLICACAO { get; set; }
     public List<AVALIACAO_PUBLICACAO> Avaliacao { get; set; } = [];
-    public ACESSOS_MOBILE Solicitante { get; set; } = null;
-    public PUBLICACAO_SOLICITACAO Publicacao_alvo { get; set; } = null;
+    public ACESSOS_MOBILE? Solicitante { get; set; } = null;
+    public PUBLICACAO_SOLICITACAO? Publicacao_alvo { get; set; } = null;
 }

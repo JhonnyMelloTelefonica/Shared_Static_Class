@@ -18,13 +18,13 @@ public class AVALIACAO_PUBLICACAO
     public AVALIACAO_PUBLICACAO(Guid? iD_AVALIACAO, Guid iD_PUBLICACAO, int mATRICULA_RESPONSAVEL, int aVALIACAO)
     {
         ID_AVALIACAO = iD_AVALIACAO ?? Guid.Empty;
-        ID_PUBLICACAO = iD_PUBLICACAO;
+        ID_PUBLICACAO = iD_PUBLICACAO; 
         MATRICULA_RESPONSAVEL = mATRICULA_RESPONSAVEL;
         AVALIACAO = aVALIACAO;
     }
     [Key]
     public Guid ID_AVALIACAO { get; set; }
-    public Guid ID_PUBLICACAO { get; set; }
+    public Guid? ID_PUBLICACAO { get; set; }
     public int MATRICULA_RESPONSAVEL { get; set; }
     [Range(0, 5)]
     public int AVALIACAO { get; set; }
