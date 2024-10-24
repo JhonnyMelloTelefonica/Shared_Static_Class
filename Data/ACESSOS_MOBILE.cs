@@ -69,9 +69,9 @@ public partial class ACESSOS_MOBILE
 
     public bool? ELEGIVEL { get; set; }
 
-    public int? DDD { get; set; }
+    public int? DDD { get; set; } = 0;
 
-    public int? TP_STATUS { get; set; }
+    public int? TP_STATUS { get; set; } = 0;
 
     //[InverseProperty("Responsavel")]
     //[JsonIgnore]

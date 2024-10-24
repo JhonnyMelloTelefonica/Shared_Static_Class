@@ -27,7 +27,7 @@ public class AVALIACAO_PUBLICACAO
     public Guid? ID_PUBLICACAO { get; set; }
     public int MATRICULA_RESPONSAVEL { get; set; }
     [Range(0, 5)]
-    public int AVALIACAO { get; set; }
+    public int AVALIACAO { get; set; } 
     public ACESSOS_MOBILE Responsavel { get; set; } = null;
     public PUBLICACAO_SOLICITACAO? Publicacao_Principal { get; set; } = null;
     public RESPOSTA_PUBLICACAO? Resposta_Publicacao { get; set; } = null;
