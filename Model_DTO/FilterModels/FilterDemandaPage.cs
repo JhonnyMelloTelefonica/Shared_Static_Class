@@ -43,7 +43,9 @@ namespace Shared_Static_Class.Model_DTO.FilterModels
         public bool Desligamentos { get; set; } = true;
         public Acao AcessoAcao { get; set; }
         public List<string> id_demandas { get; set; } = [];
-        public List<string>  Status_Demanda { get; set; } = [];
+
+        public List<string> Status_Demanda { get; set; } = [];
+
         public bool Status_ABERTO { get; set; } = false;
         public bool Status_CANCELADO { get; set; } = false;
         public bool Status_REPROVADO { get; set; } = false;
