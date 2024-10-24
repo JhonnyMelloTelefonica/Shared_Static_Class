@@ -239,7 +239,11 @@ namespace Shared_Static_Class.Model_DTO
         public int Sequence { get; set; }
         public Tabela_Demanda Tabela { get; set; }
         public string tipo => Tabela.GetDisplayName();
-        public string LastStatus { get; set; }
+
+        //public List<string> LastStatus { get; set; } = [];
+
+        public string LastStatus { get; set; } = string.Empty;
+
         public string REGIONAL { get; set; } = string.Empty;
         public DateTime DATA_ABERTURA { get; set; }
         public int MATRICULA_SOLICITANTE { get; set; }
