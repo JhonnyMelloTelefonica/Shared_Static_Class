@@ -172,6 +172,22 @@ namespace Shared_Static_Class.Model_DTO
                 return textInfo.ToTitleCase(name.ToLower());
             }
         }
+        public string NOME_SOBRENOME
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(NOME))
+                    return "-";
+
+                string[] Listname = this.NOME.Split();
+                string name = Listname.First();
+                if (Listname.Count() > 1)
+                {
+                    name += " " + Listname[1];
+                }
+                return textInfo.ToTitleCase(name.ToLower());
+            }
+        }
         [AllowNull]
         public byte[] UserAvatar { get; set; } = null;
     }
