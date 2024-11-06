@@ -39,6 +39,7 @@ public partial class DemandasContext : DbContext
     public virtual DbSet<DEMANDA_CAMPOS_FILA> DEMANDA_CAMPOS_FILA { get; set; }
     public virtual DbSet<DEMANDA_VALORES_CAMPOS_SUSPENSO> DEMANDA_VALORES_CAMPOS_SUSPENSO { get; set; }
     public virtual DbSet<DEMANDA_RESPONSAVEL_FILA> DEMANDA_RESPONSAVEL_FILA { get; set; }
+    public virtual DbSet<DEMANDA_ACESSO_RESPONSAVEL_UF> DEMANDA_ACESSO_RESPONSAVEL_UF { get; set; }
     public virtual DbSet<DEMANDA_PARQUE> DEMANDA_PARQUE { get; set; }
     public virtual DbSet<DEMANDA_AVALIACAO_ANALISTA> DEMANDA_AVALIACAO_ANALISTA { get; set; }
     public virtual DbSet<DEMANDA_RELACAO_TREINAMENTO_FINALIZADO> DEMANDA_RELACAO_TREINAMENTO_FINALIZADO { get; set; }
@@ -156,6 +157,14 @@ public partial class DemandasContext : DbContext
             .WithMany()
             .HasForeignKey(x => x.MATRICULA_SOLICITANTE)
             .HasPrincipalKey(x => x.MATRICULA);
+
+        modelBuilder.Entity<DEMANDA_ACESSO_RESPONSAVEL_UF>()
+            .HasOne(a => a.Responsavel)
+            .WithMany()
+            .HasForeignKey(x => x.MATRICULA_RESPONSAVEL)
+            .HasPrincipalKey(x => x.MATRICULA)
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
 
 
         OnModelCreatingPartial(modelBuilder);
