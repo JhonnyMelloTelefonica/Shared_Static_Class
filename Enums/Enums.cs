@@ -34,13 +34,22 @@ namespace Shared_Static_Class.Converters
         public static STATUS_ACESSOS_PENDENTES AGUARDANDO_ANALISTA { get { return new("AGUARDANDO ANALISTA"); } }
         public static STATUS_ACESSOS_PENDENTES AGUARDANDO_TREINAMENTO { get { return new("AGUARDANDO TREINAMENTO"); } }
         public static STATUS_ACESSOS_PENDENTES AGUARDANDO_CRIAÇÃO_DE_ACESSO { get { return new("AGUARDANDO CRIAÇÃO DE ACESSO"); } }
-        public static STATUS_ACESSOS_PENDENTES DEVOLVIDO_PARA_SOLICITANTE { get { return new("DEVOLVIDO PARA SOLICITANTE"); } } 
+        public static STATUS_ACESSOS_PENDENTES AGUARDANDO_RESPOSTA_SOLICITANTE { get { return new("AGUARDANDO RESPOSTA DO SOLICITANTE"); } }
+        public static STATUS_ACESSOS_PENDENTES DEVOLVIDO_PARA_SOLICITANTE { get { return new("DEVOLVIDO PARA SOLICITANTE"); } }
         public static STATUS_ACESSOS_PENDENTES CANCELADO { get { return new("CANCELADO"); } }
         public static STATUS_ACESSOS_PENDENTES REPROVADO { get { return new("REPROVADO"); } }
         public static STATUS_ACESSOS_PENDENTES CONCLUIDO { get { return new("CONCLUIDO"); } }
+        public static STATUS_ACESSOS_PENDENTES CONCLUIDO_SEM_RETORNO { get { return new("SEM RETORNO"); } }
+        public static STATUS_ACESSOS_PENDENTES CONCLUIDO_INDEVIDO { get { return new("DEMANDA INDEVIDA"); } }
         public static STATUS_ACESSOS_PENDENTES REABRIR { get { return new("REABERTO"); } }
+        public static bool IsFinalizado(string status)
+        {
+            string[] liststatus = [CANCELADO.Value, CONCLUIDO.Value, CONCLUIDO_INDEVIDO.Value, CONCLUIDO_SEM_RETORNO.Value];
+            return liststatus.Contains(status);
+        }
 
         private STATUS_ACESSOS_PENDENTES(string value) { Value = value; }
+
         public string Value { get; private set; }
         public override string ToString() => Value;
     }
@@ -73,7 +82,7 @@ namespace Shared_Static_Class.Converters
         [Display(Name = "Médio")]
         MEDIO,
         [Display(Name = "Alto")]
-        ALTA 
+        ALTA
     }
 
     public enum RespostaAcessoPendente : int
