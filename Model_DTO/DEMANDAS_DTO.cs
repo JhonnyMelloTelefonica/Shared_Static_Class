@@ -139,9 +139,24 @@ namespace Shared_Static_Class.Model_DTO
                 return textInfo.ToTitleCase(name.ToLower());
             }
         }
+
+        public string NOME_SOBRENOME
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(NOME))
+                    return "-";
+
+                string[] Listname = this.NOME.Split();
+                string name = Listname.First();
+                if (Listname.Count() > 1)
+                {
+                    name += " " + Listname[1];
+                }
+                return textInfo.ToTitleCase(name.ToLower());
+            }
+        }
         public byte[]? UserAvatar { get; set; } = null;
-        //public IEnumerable<DEMANDA_CHAMADO> DemandasResponsavel { get; set; } = [];
-        //public IEnumerable<DEMANDA_CHAMADO> DemandasSolicitadas { get; set; } = [];
         public IEnumerable<PERFIL_USUARIO> Perfis { get; set; } = [];
         public Controle_Demanda_role role { get; set; } = Controle_Demanda_role.BASICO;
     }
@@ -365,8 +380,8 @@ namespace Shared_Static_Class.Model_DTO
         public int? MAT_QUEM_REDIRECIONOU { get; set; }
         public int? MAT_DESTINATARIO { get; set; }
         public DEMANDA_RELACAO_CHAMADO Relacao_DEMANDA { get; set; } = new();
-        public ACESSOS_MOBILE? Quem_redirecionou { get; set; } = null;
-        public ACESSOS_MOBILE? Para_Quem_redirecionou { get; set; } = null;
+        public ACESSOS_MOBILE_DTO? Quem_redirecionou { get; set; } = null;
+        public ACESSOS_MOBILE_DTO? Para_Quem_redirecionou { get; set; } = null;
         public DEMANDA_CHAMADO_RESPOSTA? Resposta { get; set; } = null;
     }
 

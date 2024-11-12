@@ -44,7 +44,7 @@ namespace Shared_Static_Class.Converters
         public static STATUS_ACESSOS_PENDENTES REABRIR { get { return new("REABERTO"); } }
         public static bool IsFinalizado(string status)
         {
-            string[] liststatus = [CANCELADO.Value, CONCLUIDO.Value, CONCLUIDO_INDEVIDO.Value, CONCLUIDO_SEM_RETORNO.Value];
+            string[] liststatus = [CANCELADO.Value, CONCLUIDO.Value, CONCLUIDO_INDEVIDO.Value, CONCLUIDO_SEM_RETORNO.Value, REPROVADO.Value];
             return liststatus.Contains(status);
         }
 
