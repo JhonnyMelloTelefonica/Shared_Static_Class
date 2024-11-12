@@ -270,11 +270,9 @@ namespace Shared_Static_Class.Model_DTO
         public int Sequence { get; set; }
         public Tabela_Demanda Tabela { get; set; }
         public string tipo => Tabela.GetDisplayName();
-
-        //public List<string> LastStatus { get; set; } = [];
-
         public string LastStatus { get; set; } = string.Empty;
-
+        public DateTime DATA_ULTIMA_INTERACAO { get; set; }
+        public DateTime? DATA_FINALIZACAO { get; set; }
         public string REGIONAL { get; set; } = string.Empty;
         public DateTime DATA_ABERTURA { get; set; }
         public int MATRICULA_SOLICITANTE { get; set; }
@@ -295,7 +293,14 @@ namespace Shared_Static_Class.Model_DTO
         {
             get
             {
-                return DateTime.Now - this.DATA_ABERTURA;
+                if (DATA_FINALIZACAO.HasValue)
+                {
+                    return DATA_FINALIZACAO.Value - this.DATA_ABERTURA;
+                }
+                else
+                {
+                    return DateTime.Now - this.DATA_ABERTURA;
+                }
             }
         }
     }
