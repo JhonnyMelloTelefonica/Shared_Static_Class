@@ -144,6 +144,6 @@ namespace Shared_Static_Class.Helpers
             int dia = ((h + l - 7 * m + 114) % 31) + 1;
 
             return new DateTime(ano, mes, dia);
-        }
+        } 
     }
 }
