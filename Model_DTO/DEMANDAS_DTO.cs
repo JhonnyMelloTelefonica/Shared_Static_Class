@@ -24,6 +24,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography;
 using System.Web.Helpers;
+using Shared_Static_Class.Helpers;
 
 namespace Shared_Static_Class.Model_DTO
 {
@@ -295,11 +296,11 @@ namespace Shared_Static_Class.Model_DTO
             {
                 if (DATA_FINALIZACAO.HasValue)
                 {
-                    return DATA_FINALIZACAO.Value - this.DATA_ABERTURA;
+                    return DateHelpers.CalcularDiferencaDeTempo(DATA_ABERTURA, DATA_FINALIZACAO.Value);
                 }
                 else
                 {
-                    return DateTime.Now - this.DATA_ABERTURA;
+                    return DateHelpers.CalcularDiferencaDeTempo(DATA_ABERTURA, DateTime.Now);
                 }
             }
         }
