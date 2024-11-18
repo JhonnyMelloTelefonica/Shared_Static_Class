@@ -47,6 +47,11 @@ namespace Shared_Static_Class.Converters
             string[] liststatus = [CANCELADO.Value, CONCLUIDO.Value, CONCLUIDO_INDEVIDO.Value, CONCLUIDO_SEM_RETORNO.Value, REPROVADO.Value];
             return liststatus.Contains(status);
         }
+        public static bool IsWaitingSolicitante(string status)
+        {
+            string[] liststatus = [DEVOLVIDO_PARA_SOLICITANTE.Value];
+            return liststatus.Contains(status);
+        }
 
         private STATUS_ACESSOS_PENDENTES(string value) { Value = value; }
 
