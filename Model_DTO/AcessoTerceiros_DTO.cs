@@ -15,6 +15,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using JsonIgnoreAttribute = Newtonsoft.Json.JsonIgnoreAttribute;
 using static Shared_Static_Class.Data.DEMANDA_RELACAO_CHAMADO;
 using System.Diagnostics.CodeAnalysis;
+using Shared_Static_Class.Helpers;
 
 namespace Shared_Static_Class.Model_DTO
 {
@@ -78,6 +79,38 @@ namespace Shared_Static_Class.Model_DTO
         public ACESSOS_MOBILE Solicitante { get; set; } = new();
         public IEnumerable<DEMANDA_CHAMADO_RESPOSTA_DTO> Respostas { get; set; } = [];
         public ACESSOS_MOBILE? Responsavel { get; set; } = null;
+        public bool IsSolicitante => Respostas.Last().Responsavel.MATRICULA != Solicitante.MATRICULA ? true : false;
+        public TimeSpan SLA_TOTAL
+        {
+            get
+            {
+                if (this.DataFinalizacao.HasValue)
+                {
+                    return DateHelpers.CalcularDiferencaDeTempo(DATA_ABERTURA, DataFinalizacao.Value);
+                }
+                else
+                {
+                    return DateHelpers.CalcularDiferencaDeTempo(DATA_ABERTURA, DateTime.Now);
+                }
+            }
+        }
+
+        public bool AbbleToReOpen()
+        {
+            var sla = SLA_TOTAL.TotalDays; // Busca o total de dias do SLA
+
+            switch (sla)
+            {
+                case > 2:
+                    return false;
+                case < 2:
+                    return false;
+                case 2:
+                    return true;
+                default:
+                    return false;
+            }
+        }
     }
 
 }

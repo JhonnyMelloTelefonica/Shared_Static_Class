@@ -294,7 +294,7 @@ namespace Shared_Static_Class.Model_DTO
         {
             get
             {
-                if (DATA_FINALIZACAO.HasValue)
+                if (DATA_FINALIZACAO.HasValue) 
                 {
                     return DateHelpers.CalcularDiferencaDeTempo(DATA_ABERTURA, DATA_FINALIZACAO.Value);
                 }
@@ -317,7 +317,7 @@ namespace Shared_Static_Class.Model_DTO
         public int ID { get; set; }
         public Guid ID_RELACAO { get; set; }
         public DEMANDA_SUB_FILA_DTO Fila { get; set; } = new();
-        public DateTime? DATA_ABERTURA { get; set; }
+        public DateTime DATA_ABERTURA { get; set; }
         public DateTime? DATA_FECHAMENTO { get; set; }
         public string MOTIVO_FECHAMENTO_SUPORTE { get; set; } = string.Empty;
         public string PRIORIDADE { get; set; } = string.Empty;
@@ -329,8 +329,39 @@ namespace Shared_Static_Class.Model_DTO
         public IEnumerable<DEMANDA_CAMPOS_CHAMADO> Campos { get; set; } = [];
         public ACESSOS_MOBILE_DTO? Responsavel { get; set; }
         public ACESSOS_MOBILE_DTO Solicitante { get; set; } = new();
-    }
+        public bool IsSolicitante => Respostas.Last().Responsavel.MATRICULA != Solicitante.MATRICULA ? true : false;
+        public TimeSpan SLA_TOTAL
+        {
+            get
+            {
+                if (DATA_FECHAMENTO.HasValue)
+                {
+                    return DateHelpers.CalcularDiferencaDeTempo(DATA_ABERTURA, DATA_FECHAMENTO.Value);
+                }
+                else
+                {
+                    return DateHelpers.CalcularDiferencaDeTempo(DATA_ABERTURA, DateTime.Now);
+                }
+            }
+        }
 
+        public bool AbbleToReOpen()
+        {
+            var sla = SLA_TOTAL.TotalDays; // Busca o total de dias do SLA
+
+            switch (sla)
+            {
+                case > 2:
+                    return false;
+                case < 2:
+                    return false;
+                case 2:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    }
     public partial class HistoricoDemanda
     {
         public string? STATUS { get; set; } = null!;
