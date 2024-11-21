@@ -8,6 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using Newtonsoft.Json;
+using Shared_Static_Class.Converters;
 using Shared_Static_Class.Model_Demanda_Context;
 using Shared_Static_Class.Model_DTO;
 
@@ -28,6 +29,8 @@ public partial class DEMANDA_RELACAO_CHAMADO
     [Required]
     public Tabela_Demanda Tabela { get; set; }
     public string LastStatus { get; set; }
+    public DateTime DATA_ULTIMA_INTERACAO { get; set; }
+    public DateTime? DATA_FINALIZACAO { get; set; }
     public string REGIONAL { get; set; } = string.Empty;
     /** Tabelas de relação **/
     [InverseProperty("Relacao")]

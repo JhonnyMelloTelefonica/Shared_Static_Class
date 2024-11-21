@@ -24,6 +24,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography;
 using System.Web.Helpers;
+using Shared_Static_Class.Helpers;
 
 namespace Shared_Static_Class.Model_DTO
 {
@@ -139,9 +140,24 @@ namespace Shared_Static_Class.Model_DTO
                 return textInfo.ToTitleCase(name.ToLower());
             }
         }
+
+        public string NOME_SOBRENOME
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(NOME))
+                    return "-";
+
+                string[] Listname = this.NOME.Split();
+                string name = Listname.First();
+                if (Listname.Count() > 1)
+                {
+                    name += " " + Listname[1];
+                }
+                return textInfo.ToTitleCase(name.ToLower());
+            }
+        }
         public byte[]? UserAvatar { get; set; } = null;
-        //public IEnumerable<DEMANDA_CHAMADO> DemandasResponsavel { get; set; } = [];
-        //public IEnumerable<DEMANDA_CHAMADO> DemandasSolicitadas { get; set; } = [];
         public IEnumerable<PERFIL_USUARIO> Perfis { get; set; } = [];
         public Controle_Demanda_role role { get; set; } = Controle_Demanda_role.BASICO;
     }
@@ -255,11 +271,9 @@ namespace Shared_Static_Class.Model_DTO
         public int Sequence { get; set; }
         public Tabela_Demanda Tabela { get; set; }
         public string tipo => Tabela.GetDisplayName();
-
-        //public List<string> LastStatus { get; set; } = [];
-
         public string LastStatus { get; set; } = string.Empty;
-
+        public DateTime DATA_ULTIMA_INTERACAO { get; set; }
+        public DateTime? DATA_FINALIZACAO { get; set; }
         public string REGIONAL { get; set; } = string.Empty;
         public DateTime DATA_ABERTURA { get; set; }
         public int MATRICULA_SOLICITANTE { get; set; }
@@ -280,7 +294,14 @@ namespace Shared_Static_Class.Model_DTO
         {
             get
             {
-                return DateTime.Now - this.DATA_ABERTURA;
+                if (DATA_FINALIZACAO.HasValue) 
+                {
+                    return DateHelpers.CalcularDiferencaDeTempo(DATA_ABERTURA, DATA_FINALIZACAO.Value);
+                }
+                else
+                {
+                    return DateHelpers.CalcularDiferencaDeTempo(DATA_ABERTURA, DateTime.Now);
+                }
             }
         }
     }
@@ -296,7 +317,7 @@ namespace Shared_Static_Class.Model_DTO
         public int ID { get; set; }
         public Guid ID_RELACAO { get; set; }
         public DEMANDA_SUB_FILA_DTO Fila { get; set; } = new();
-        public DateTime? DATA_ABERTURA { get; set; }
+        public DateTime DATA_ABERTURA { get; set; }
         public DateTime? DATA_FECHAMENTO { get; set; }
         public string MOTIVO_FECHAMENTO_SUPORTE { get; set; } = string.Empty;
         public string PRIORIDADE { get; set; } = string.Empty;
@@ -308,8 +329,39 @@ namespace Shared_Static_Class.Model_DTO
         public IEnumerable<DEMANDA_CAMPOS_CHAMADO> Campos { get; set; } = [];
         public ACESSOS_MOBILE_DTO? Responsavel { get; set; }
         public ACESSOS_MOBILE_DTO Solicitante { get; set; } = new();
-    }
+        public bool IsSolicitante => Respostas.Last().Responsavel.MATRICULA != Solicitante.MATRICULA ? true : false;
+        public TimeSpan SLA_TOTAL
+        {
+            get
+            {
+                if (DATA_FECHAMENTO.HasValue)
+                {
+                    return DateHelpers.CalcularDiferencaDeTempo(DATA_ABERTURA, DATA_FECHAMENTO.Value);
+                }
+                else
+                {
+                    return DateHelpers.CalcularDiferencaDeTempo(DATA_ABERTURA, DateTime.Now);
+                }
+            }
+        }
 
+        public bool AbbleToReOpen()
+        {
+            var sla = SLA_TOTAL.TotalDays; // Busca o total de dias do SLA
+
+            switch (sla)
+            {
+                case > 2:
+                    return false;
+                case < 2:
+                    return false;
+                case 2:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    }
     public partial class HistoricoDemanda
     {
         public string? STATUS { get; set; } = null!;
@@ -365,8 +417,8 @@ namespace Shared_Static_Class.Model_DTO
         public int? MAT_QUEM_REDIRECIONOU { get; set; }
         public int? MAT_DESTINATARIO { get; set; }
         public DEMANDA_RELACAO_CHAMADO Relacao_DEMANDA { get; set; } = new();
-        public ACESSOS_MOBILE? Quem_redirecionou { get; set; } = null;
-        public ACESSOS_MOBILE? Para_Quem_redirecionou { get; set; } = null;
+        public ACESSOS_MOBILE_DTO? Quem_redirecionou { get; set; } = null;
+        public ACESSOS_MOBILE_DTO? Para_Quem_redirecionou { get; set; } = null;
         public DEMANDA_CHAMADO_RESPOSTA? Resposta { get; set; } = null;
     }
 
