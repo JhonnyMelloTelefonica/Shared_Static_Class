@@ -73,14 +73,13 @@ public enum Categoria_Produto
 {
     SMARTPHONE,
     NOTEBOOK,
-    CONSOLE,
     [Display(Name = "CASA INTELIGENTE")]
     CASA_INTELIGENTE,
     GAMES,
     [Display(Name = "CUIDADO PESSOAL")]
-    CUIDADO_PESSOAL,
-    MODA,
+    BEM_ESTAR,
+    ESSENCIAL,
     ACESSÓRIOS,
-    [Display(Name = "AÚDIO VÍDEO")]
-    AÚDIO_VÍDEO
+    [Display(Name = "AÚDIO")]
+    AÚDIO
 }
