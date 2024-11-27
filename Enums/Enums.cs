@@ -47,12 +47,17 @@ namespace Shared_Static_Class.Converters
             string[] liststatus = [CANCELADO.Value, CONCLUIDO.Value, CONCLUIDO_INDEVIDO.Value, CONCLUIDO_SEM_RETORNO.Value, REPROVADO.Value];
             return liststatus.Contains(status);
         }
-        public static bool IsWaitingSolicitante(string status)
+        public static bool IsWaitingSolicitante (string status)
         {
             string[] liststatus = [DEVOLVIDO_PARA_SOLICITANTE.Value];
             return liststatus.Contains(status);
         }
 
+        public static bool EmAndamento(string status)
+        {
+            string[] liststatus = [ABERTO.Value, AGUARDANDO_OUTRA_AREA.Value, AGUARDANDO_ANALISTA.Value, AGUARDANDO_TREINAMENTO.Value, AGUARDANDO_CRIAÇÃO_DE_ACESSO.Value, AGUARDANDO_RESPOSTA_SOLICITANTE.Value];
+            return liststatus.Contains(status);
+        }
         private STATUS_ACESSOS_PENDENTES(string value) { Value = value; }
 
         public string Value { get; private set; }
