@@ -52,6 +52,11 @@ namespace Shared_Static_Class.Converters
             string[] liststatus = [DEVOLVIDO_PARA_SOLICITANTE.Value];
             return liststatus.Contains(status);
         }
+        public static bool IsEmAndamento(string status)
+        {
+            string[] liststatus = [ABERTO.Value,AGUARDANDO_OUTRA_AREA.Value,AGUARDANDO_ANALISTA.Value,AGUARDANDO_TREINAMENTO.Value,AGUARDANDO_CRIAÇÃO_DE_ACESSO.Value,AGUARDANDO_RESPOSTA_SOLICITANTE.Value,DEVOLVIDO_PARA_SOLICITANTE.Value];
+            return liststatus.Contains(status);
+        }
 
         public static bool EmAndamento(string status)
         {
