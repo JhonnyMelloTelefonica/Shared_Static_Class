@@ -45,6 +45,7 @@ public partial class ACESSOS_MOBILE
 
     [Unicode(false)]
     public string NOME { get; set; }
+    public string NOME_SOCIAL { get; set; } = "-";
 
     [Unicode(false)]
     public string UF { get; set; }

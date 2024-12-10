@@ -102,7 +102,7 @@ namespace Shared_Static_Class.Model_DTO
         {
         }
 
-        public ACESSOS_MOBILE_DTO(string eMAIL, int mATRICULA, string tELEFONE, string rEGIONAL, Cargos cARGO, Canal cANAL, string pDV, string nOME, byte[] userAvatar)
+        public ACESSOS_MOBILE_DTO(string eMAIL, int mATRICULA, string tELEFONE, string rEGIONAL, Cargos cARGO, Canal cANAL, string pDV, string nOME, byte[] userAvatar, string? nomesocial = null)
         {
             EMAIL = eMAIL ?? string.Empty;
             MATRICULA = mATRICULA;
@@ -112,6 +112,7 @@ namespace Shared_Static_Class.Model_DTO
             CANAL = cANAL;
             PDV = pDV ?? string.Empty;
             NOME = nOME ?? string.Empty;
+            NOME_SOCIAL = nomesocial ?? string.Empty;
             UserAvatar = userAvatar;
         }
 
@@ -124,39 +125,7 @@ namespace Shared_Static_Class.Model_DTO
         public Canal CANAL { get; set; }
         public string PDV { get; set; } = string.Empty;
         public string NOME { get; set; } = string.Empty;
-        [JsonIgnore]
-        public string DISPLAY_NOME
-        {
-            get
-            {
-                var Listname = this.NOME.Split();
-                var name = Listname.FirstOrDefault();
-
-                if (Listname.Length > 1)
-                {
-                    name += " " + Listname.LastOrDefault();
-                }
-
-                return textInfo.ToTitleCase(name.ToLower());
-            }
-        }
-
-        public string NOME_SOBRENOME
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(NOME))
-                    return "-";
-
-                string[] Listname = this.NOME.Split();
-                string name = Listname.First();
-                if (Listname.Count() > 1)
-                {
-                    name += " " + Listname[1];
-                }
-                return textInfo.ToTitleCase(name.ToLower());
-            }
-        }
+        public string NOME_SOCIAL { get; set; } = "-";
         public byte[]? UserAvatar { get; set; } = null;
         public IEnumerable<PERFIL_USUARIO> Perfis { get; set; } = [];
         public Controle_Demanda_role role { get; set; } = Controle_Demanda_role.BASICO;
@@ -294,7 +263,7 @@ namespace Shared_Static_Class.Model_DTO
         {
             get
             {
-                if (DATA_FINALIZACAO.HasValue) 
+                if (DATA_FINALIZACAO.HasValue)
                 {
                     return DateHelpers.CalcularDiferencaDeTempo(DATA_ABERTURA, DATA_FINALIZACAO.Value);
                 }

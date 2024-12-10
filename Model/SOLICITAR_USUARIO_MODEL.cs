@@ -15,6 +15,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using ValidationResult = FluentValidation.Results.ValidationResult;
+using Shared_Static_Class.Helpers;
+using System.Globalization;
+using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Shared_Razor_Components.FundamentalModels
 {
@@ -46,8 +50,8 @@ namespace Shared_Razor_Components.FundamentalModels
             set => SetField(ref _email, value);
         }
         private string _email = string.Empty;
-        [MaxLength(15, ErrorMessage = "Número máximo de caracteres foi atingido, máximo : {1}")]
-        [MinLength(14, ErrorMessage = "Número minímo de caracteres não foi atingido, minímo : {1}")]
+        [MaxLength(15, ErrorMessage = "Número max.: 11")]
+        [MinLength(14, ErrorMessage = "Número min.: 10")]
         public string TELEFONE
         {
             get => _telefone;
@@ -55,7 +59,7 @@ namespace Shared_Razor_Components.FundamentalModels
         }
         private string _telefone;
         [Required(ErrorMessage = "Campo obrigatório")]
-        [Range(0, 99999999, ErrorMessage = "Campo obrigatório")]
+        [Range(0, 99999999, ErrorMessage = "Matrícula inválida")]
         [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Valor de matrícula inválido")]
         public int MATRICULA
         {
@@ -69,16 +73,17 @@ namespace Shared_Razor_Components.FundamentalModels
         [MinLength(6, ErrorMessage = "Número minímo de caracteres não foi atingido, minímo : {1}")]
         public string SENHA
         {
-            get => _senha;
+            get => _hasVivoTask ? _senha : $"VIVO@{DateTime.Now.ToString("yyyy")}";
             set => SetField(ref _senha, value);
         }
+
         private string _senha = string.Empty;
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [Compare(nameof(SENHA), ErrorMessage = "Campos precisam ser iguais")]
         public string CONFIRMSENHA
         {
-            get => _confirmsenha;
+            get => _hasVivoTask ? _confirmsenha : $"VIVO@{DateTime.Now.ToString("yyyy")}";
             set => SetField(ref _confirmsenha, value);
         }
         private string _confirmsenha = string.Empty;
@@ -130,6 +135,41 @@ namespace Shared_Razor_Components.FundamentalModels
             set => SetField(ref _nome, value);
         }
         private string _nome = string.Empty;
+        private static readonly string[] Preposicoes = { "da", "de", "do", "das", "dos" };
+        TextInfo textinfo { get; set; } = new CultureInfo("pt-br", false).TextInfo;
+        public string NOME_SOCIAL
+        {
+            get => display_name;
+            set => display_name = value;
+        }
+
+        [Required(ErrorMessage = "Este campo é obrigatório")]
+        [StringLength(30, ErrorMessage = "Número máximo de caracteres: {1}")]
+        public string display_name { get; set; } = string.Empty;
+
+        public string[] DisplayName
+        {
+            get
+            {
+                if (NOME == null || string.IsNullOrWhiteSpace(NOME.ToString()))
+                {
+                    return [];
+                }
+
+                var palavras = NOME.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                // Conta palavras, ignorando preposições
+                var palavrasValidas = palavras.Where(p => !Preposicoes.Contains(p.ToLower())).ToArray();
+
+                if (palavrasValidas.Length < 3)
+                {
+                    return [];
+                    //new ValidationResult("O nome deve conter pelo menos três palavras, ignorando preposições como 'da', 'de', 'do', etc.")
+                }
+
+                return palavrasValidas;
+            }
+        }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         public string UF
@@ -193,7 +233,7 @@ namespace Shared_Razor_Components.FundamentalModels
             get => _elegivel;
             set => SetField(ref _elegivel, value);
         }
-        private bool _elegivel;
+        private bool _elegivel = true;
         //[Range(1, 99, ErrorMessage = "Valor inválido")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public int DDD
@@ -211,19 +251,22 @@ namespace Shared_Razor_Components.FundamentalModels
         private string _tpStatus = string.Empty;
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [ListHasElements<int>(ErrorMessage = "Campo {0} precisa conter algum elemento")]
+        [ValidationsHelpers.ListHasElements<int>(ErrorMessage = "Campo {0} precisa conter algum elemento")]
         public List<int> Perfil
         {
             get => _perfil;
             set => SetField(ref _perfil, value);
         }
         private List<int> _perfil = [];
+
+        public bool _hasVivoTask { get; set; } = false;
+        public string rede { get; set; } = string.Empty;
         public SOLICITAR_USUARIO_MODEL()
         {
 
         }
 
-        public SOLICITAR_USUARIO_MODEL(string telefone, int id, string email, int matricula, string senha, string regional, int cargo, int? canal, string nome, string uf, string cpf, string pdv, bool fixa, string? tpAfastamento, bool? status, int ddd, bool elegivel, string tpStatus, byte[]? userAvatar)
+        public SOLICITAR_USUARIO_MODEL(string telefone, int id, string email, int matricula, string senha, string regional, int cargo, int? canal, string nome, string uf, string cpf, string pdv, bool fixa, string? tpAfastamento, bool? status, int ddd, bool elegivel, string tpStatus, byte[]? userAvatar, string? _nome_social)
         {
             _telefone = telefone;
             _id = id;
@@ -244,6 +287,7 @@ namespace Shared_Razor_Components.FundamentalModels
             _elegivel = elegivel;
             _ddd = ddd;
             _tpStatus = tpStatus;
+            display_name = _nome_social ?? "-";
         }
     }
 
@@ -256,8 +300,10 @@ namespace Shared_Razor_Components.FundamentalModels
         public SOLICITACAO_USUARIO_DETALHADO(SOLICITAR_USUARIO_MODEL Model,
             int? iD_ACESSOS_MOBILE, bool? aPROVACAO,
             string tIPO, string? sTATUS_USUARIO,
-            ACESSOS_MOBILE? lOGIN_SOLICITANTE, ACESSOS_MOBILE? lOGIN_RESPONSAVEL,
-            DateTime dT_SOLICITACAO, DateTime? dT_RETORNO,
+            ACESSOS_MOBILE? lOGIN_SOLICITANTE,
+            ACESSOS_MOBILE? lOGIN_RESPONSAVEL,
+            DateTime dT_SOLICITACAO, 
+            DateTime? dT_RETORNO,
             IEnumerable<PERFIL_PLATAFORMAS_VIVO> pERFIS_SOLICITADOS)
         {
             ID_ACESSOS_MOBILE = iD_ACESSOS_MOBILE;
@@ -288,7 +334,9 @@ namespace Shared_Razor_Components.FundamentalModels
                 Model.DDD,
                 Model.ELEGIVEL,
                 Model.TP_STATUS,
-                Model.UserAvatar);
+                Model.UserAvatar,
+                Model.NOME_SOCIAL
+            );
         }
         public SOLICITAR_USUARIO_MODEL DADOS_SOLICITACAO { get; set; }
         public int? ID_ACESSOS_MOBILE { get; set; } = null;
@@ -301,31 +349,5 @@ namespace Shared_Razor_Components.FundamentalModels
         public DateTime? DT_RETORNO { get; set; }
         public IEnumerable<PERFIL_PLATAFORMAS_VIVO> PERFIS_SOLICITADOS { get; set; }
     }
-
-
-    public class ListHasElements<T> : ValidationAttribute
-    {
-
-        readonly int _minCount = 0;
-        public ListHasElements(int mincount = 0)
-        {
-            _minCount = mincount;
-        }
-        public override bool IsValid(object? value)
-        {
-            if (value == null)
-                return false;
-
-            if (value is IEnumerable enumerable)
-            {
-                if (_minCount != 0)
-                {
-                    return enumerable.Cast<T>().Where(x => x != null).Count() >= _minCount;
-                }
-
-                return enumerable.Cast<T>().Where(x => x != null).Any();
-            }
-            else return false;
-        }
-    }
 }
+

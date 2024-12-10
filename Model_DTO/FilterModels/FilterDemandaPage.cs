@@ -13,11 +13,12 @@ namespace Shared_Static_Class.Model_DTO.FilterModels
         {
         }
 
-        public FilterDemandaPage(List<int> fila_macro, List<int> fila, List<int> responsável, bool demandas, bool acessos, bool desligamentos, Acao acessoAcao, List<string> id_demandas, bool status_ABERTO, bool status_CANCELADO, bool status_REPROVADO, bool status_APROVADO, bool status_REABRIR, bool status_AGUARDANDO_OUTRA_AREA, bool status_AGUARDANDO_ANALISTA, bool status_AGUARDANDO_TREINAMENTO, bool status_AGUARDANDO_CRIAÇÃO_DE_ACESSO, bool status_DEVOLVIDO_PARA_SOLICITANTE)
+        public FilterDemandaPage(List<int> fila_macro, List<int> fila, List<int> responsável, bool demandas, bool acessos, bool desligamentos, Acao acessoAcao, List<string> id_demandas, bool status_ABERTO, bool status_CANCELADO, bool status_REPROVADO, bool status_APROVADO, bool status_REABRIR, bool status_AGUARDANDO_OUTRA_AREA, bool status_AGUARDANDO_ANALISTA, bool status_AGUARDANDO_TREINAMENTO, bool status_AGUARDANDO_CRIAÇÃO_DE_ACESSO, bool status_DEVOLVIDO_PARA_SOLICITANTE, bool GetFinalizados = false)
         {
             this.fila_macro = fila_macro;
             this.fila = fila;
             this.responsável = responsável;
+            this.GetFinalizados = GetFinalizados;
             Demandas = demandas;
             Acessos = acessos;
             Desligamentos = desligamentos;
@@ -38,6 +39,7 @@ namespace Shared_Static_Class.Model_DTO.FilterModels
         public List<int> fila_macro { get; set; } = [];
         public List<int> fila { get; set; } = [];
         public List<int> responsável { get; set; } = [];
+        public bool GetFinalizados { get; set; } = false;
         public bool Demandas { get; set; } = true;
         public bool Acessos { get; set; } = true;
         public bool Desligamentos { get; set; } = true;

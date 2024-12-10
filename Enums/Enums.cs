@@ -47,14 +47,14 @@ namespace Shared_Static_Class.Converters
             string[] liststatus = [CANCELADO.Value, CONCLUIDO.Value, CONCLUIDO_INDEVIDO.Value, CONCLUIDO_SEM_RETORNO.Value, REPROVADO.Value];
             return liststatus.Contains(status);
         }
-        public static bool IsWaitingSolicitante (string status)
+        public static bool IsWaitingSolicitante(string status)
         {
             string[] liststatus = [DEVOLVIDO_PARA_SOLICITANTE.Value];
             return liststatus.Contains(status);
         }
         public static bool IsEmAndamento(string status)
         {
-            string[] liststatus = [ABERTO.Value,AGUARDANDO_OUTRA_AREA.Value,AGUARDANDO_ANALISTA.Value,AGUARDANDO_TREINAMENTO.Value,AGUARDANDO_CRIAÇÃO_DE_ACESSO.Value,AGUARDANDO_RESPOSTA_SOLICITANTE.Value,DEVOLVIDO_PARA_SOLICITANTE.Value];
+            string[] liststatus = [ABERTO.Value, AGUARDANDO_OUTRA_AREA.Value, AGUARDANDO_ANALISTA.Value, AGUARDANDO_TREINAMENTO.Value, AGUARDANDO_CRIAÇÃO_DE_ACESSO.Value, AGUARDANDO_RESPOSTA_SOLICITANTE.Value, DEVOLVIDO_PARA_SOLICITANTE.Value];
             return liststatus.Contains(status);
         }
 
@@ -89,7 +89,6 @@ namespace Shared_Static_Class.Converters
         DETALHADO,
         MASSIVO
     }
-
     public enum Prioridade : int
     {
         [Display(Name = "Baixa")]
@@ -99,7 +98,6 @@ namespace Shared_Static_Class.Converters
         [Display(Name = "Alto")]
         ALTA
     }
-
     public enum RespostaAcessoPendente : int
     {
         FINALIZADO = 1,
@@ -131,25 +129,25 @@ namespace Shared_Static_Class.Converters
         [Display(Name = "Administrador")]
         ADM = 0,
         [Display(Name = "Vendedor PAP")]
-        Vendedor_PAP = 1,
+        Vendedor_PAP = 1, // Seleceiona PDV
         [Display(Name = "Gerente Parceiros")]
         Gerente_Parceiros = 2,
         [Display(Name = "Gerente Geral")]
-        Gerente_Geral = 3,
+        Gerente_Geral = 3, // Seleceiona PDV
         [Display(Name = "Supervisor PAP")]
-        Supervisor_PAP = 4,
+        Supervisor_PAP = 4, // Seleceiona PDV
         [Display(Name = "Vendedor de Revenda")]
-        Vendedor_Revenda = 5,
+        Vendedor_Revenda = 5, // Seleceiona PDV
         [Display(Name = "Gerente de Revenda")]
-        Gerente_Revenda = 6,
+        Gerente_Revenda = 6, // Seleceiona PDV
         [Display(Name = "Gerente de Área")]
         Gerente_Área = 7,
         [Display(Name = "Gerente de Operações")]
-        Gerente_Operações = 8,
+        Gerente_Operações = 8, // Seleceiona PDV
         [Display(Name = "Consultor de Negócios")]
-        Consultor_Negócios = 9,
+        Consultor_Negócios = 9, // Seleceiona PDV
         [Display(Name = "Consultor Tecnológico")]
-        Consultor_Tecnológico = 10,
+        Consultor_Tecnológico = 10, // Seleceiona PDV
         [Display(Name = "Gerente Vendas B2B")]
         Gerente_Vendas_B2C = 11,
         [Display(Name = "Gerente Senior Territorial")]
@@ -173,9 +171,9 @@ namespace Shared_Static_Class.Converters
         [Display(Name = "Gerente Senior Gestão Vendas")]
         Gerente_Senior_Gestão_Vendas = 21,
         [Display(Name = "Analista de Suporte Comercial")]
-        Analista_de_Suporte_Comercial = 22,
+        Analista_de_Suporte_Comercial = 22, // Seleceiona PDV
         [Display(Name = "Representante de Vendas")]
-        Representante_de_vendas = 23,
+        Representante_de_vendas = 23, // Seleceiona PDV
         [Display(Name = "Gerente de Área - PAP")]
         Gerente_de_area_PAP = 24
     }

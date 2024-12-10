@@ -16,6 +16,7 @@ namespace Shared_Razor_Components.FundamentalModels
         public int CARGO { get; set; }
         public int CANAL { get; set; }
         public string NOME { get; set; }
+        public string NOME_SOCIAL { get; set; } = "";
         public string UF { get; set; }
         public string CPF { get; set; }
         public string PDV { get; set; }

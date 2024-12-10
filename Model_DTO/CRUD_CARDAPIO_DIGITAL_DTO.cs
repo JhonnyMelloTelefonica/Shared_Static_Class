@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Shared_Static_Class.Helpers.ValidationsHelpers;
 
 namespace Shared_Static_Class.Model_DTO
 {

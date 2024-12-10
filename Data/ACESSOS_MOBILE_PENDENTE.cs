@@ -40,6 +40,7 @@ public partial class ACESSOS_MOBILE_PENDENTE
 
     [Unicode(false)]
     public string NOME { get; set; }
+    public string NOME_SOCIAL { get; set; }
 
     [Unicode(false)]
     public string UF { get; set; }

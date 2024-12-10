@@ -21,4 +21,5 @@ public partial class JORNADA_BD_CARGOS_CANAL
 
     [StringLength(255)]
     public string CANAL { get; set; }
+    public bool USER_PDV { get; set; } = false;
 }
