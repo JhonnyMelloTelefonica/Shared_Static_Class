@@ -60,7 +60,7 @@ namespace Shared_Static_Class.Converters
 
         public static bool EmAndamento(string status)
         {
-            string[] liststatus = [ABERTO.Value, AGUARDANDO_OUTRA_AREA.Value, AGUARDANDO_ANALISTA.Value, AGUARDANDO_TREINAMENTO.Value, AGUARDANDO_CRIAÇÃO_DE_ACESSO.Value, AGUARDANDO_RESPOSTA_SOLICITANTE.Value];
+            string[] liststatus = [ABERTO.Value, AGUARDANDO_OUTRA_AREA.Value, AGUARDANDO_ANALISTA.Value, AGUARDANDO_TREINAMENTO.Value, AGUARDANDO_CRIAÇÃO_DE_ACESSO.Value, AGUARDANDO_RESPOSTA_SOLICITANTE.Value, DEVOLVIDO_PARA_SOLICITANTE.Value];
             return liststatus.Contains(status);
         }
         private STATUS_ACESSOS_PENDENTES(string value) { Value = value; }
