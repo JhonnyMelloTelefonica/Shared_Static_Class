@@ -39,12 +39,13 @@ namespace Shared_Static_Class.Converters
         public static STATUS_ACESSOS_PENDENTES CANCELADO { get { return new("CANCELADO"); } }
         public static STATUS_ACESSOS_PENDENTES REPROVADO { get { return new("REPROVADO"); } }
         public static STATUS_ACESSOS_PENDENTES CONCLUIDO { get { return new("CONCLUIDO"); } }
+        public static STATUS_ACESSOS_PENDENTES APROVADO { get { return new("APROVADO"); } }
         public static STATUS_ACESSOS_PENDENTES CONCLUIDO_SEM_RETORNO { get { return new("SEM RETORNO"); } }
         public static STATUS_ACESSOS_PENDENTES CONCLUIDO_INDEVIDO { get { return new("DEMANDA INDEVIDA"); } }
         public static STATUS_ACESSOS_PENDENTES REABRIR { get { return new("REABERTO"); } }
         public static bool IsFinalizado(string status)
         {
-            string[] liststatus = [CANCELADO.Value, CONCLUIDO.Value, CONCLUIDO_INDEVIDO.Value, CONCLUIDO_SEM_RETORNO.Value, REPROVADO.Value];
+            string[] liststatus = [CANCELADO.Value, APROVADO.Value, CONCLUIDO.Value, CONCLUIDO_INDEVIDO.Value, CONCLUIDO_SEM_RETORNO.Value, REPROVADO.Value];
             return liststatus.Contains(status);
         }
         public static bool IsWaitingSolicitante(string status)
