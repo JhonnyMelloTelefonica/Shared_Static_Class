@@ -158,6 +158,12 @@ public partial class DemandasContext : DbContext
             .HasForeignKey(x => x.MATRICULA_SOLICITANTE)
             .HasPrincipalKey(x => x.MATRICULA);
 
+        modelBuilder.Entity<DEMANDA_ACESSOS>()
+            .HasOne(a => a.Responsavel)
+            .WithMany()
+            .HasForeignKey(x => x.MATRICULA_RESPONSAVEL)
+            .HasPrincipalKey(x => x.MATRICULA);
+
         modelBuilder.Entity<DEMANDA_ACESSO_RESPONSAVEL_UF>()
             .HasOne(a => a.Responsavel)
             .WithMany()
