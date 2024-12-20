@@ -64,6 +64,7 @@ namespace Shared_Static_Class.Model_DTO
         public IEnumerable<ACESSOS_MOBILE_DTO> Responsaveis { get; set; } = [];
     }
 
+
     public partial class DEMANDA_CAMPOS_FILA_DTO
     {
         public int ID_CAMPOS { get; set; }
@@ -141,38 +142,7 @@ namespace Shared_Static_Class.Model_DTO
         public Canal CANAL { get; set; }
         public string PDV { get; set; } = string.Empty;
         public string NOME { get; set; } = string.Empty;
-        [JsonIgnore]
-        public string DISPLAY_NOME
-        {
-            get
-            {
-                var Listname = this.NOME.Split();
-                var name = Listname.FirstOrDefault();
-
-                if (Listname.Length > 1)
-                {
-                    name += " " + Listname.LastOrDefault();
-                }
-
-                return textInfo.ToTitleCase(name.ToLower());
-            }
-        }
-        public string NOME_SOBRENOME
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(NOME))
-                    return "-";
-
-                string[] Listname = this.NOME.Split();
-                string name = Listname.First();
-                if (Listname.Count() > 1)
-                {
-                    name += " " + Listname[1];
-                }
-                return textInfo.ToTitleCase(name.ToLower());
-            }
-        }
+        public string NOME_SOCIAL { get; set; } = string.Empty;
         [AllowNull]
         public byte[] UserAvatar { get; set; } = null;
     }

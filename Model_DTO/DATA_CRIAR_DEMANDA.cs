@@ -9,7 +9,7 @@ namespace Shared_Static_Class.Model_DTO
 {
     public class DATA_CRIAR_DEMANDA
     {
-        public IEnumerable<Carteira_NE> Carteira { get; set; }
+        public IEnumerable<JORNADA_BD_HIERARQUIum> Carteira { get; set; }
         public IEnumerable<CNS_BASE_TERCEIROS_SAP_GT> Sap { get; set; }
     }
 }

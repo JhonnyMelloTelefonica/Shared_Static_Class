@@ -40,6 +40,5 @@ namespace Shared_Razor_Components.FundamentalModels
         public string MIMEType { get; set; }
         public string Extensao => FileName.Split('.')[1];
         public byte[] Bytes { get; set; }
-
     }
 }

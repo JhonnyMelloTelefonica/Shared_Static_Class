@@ -5,7 +5,19 @@ namespace Shared_Static_Class.Converters
 {
     public static class DePara
     {
-
+        public static string EstadoSubArea(string estado) => estado switch
+        {
+            "T - AL" => $"0012 {estado} SEDE",
+            "T - BA" => $"0024 {estado} SEDE",
+            "T-CE" => $"0011 {estado} SEDE",
+            "T-SE" => $"0025 {estado} SEDE",
+            "T-PI" => $"0007 {estado} SEDE",
+            "T-PE" => $"0008 {estado} SEDE",
+            "T-PB" => $"0026 {estado} SEDE",
+            "T-RN" => $"0020 {estado} SEDE",
+            _ => "NULL"
+        };
+        
         public static Canal CanalCargoEnum(Cargos cargo)
         {
             switch (cargo)
